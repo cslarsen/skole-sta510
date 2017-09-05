@@ -14,7 +14,12 @@ endif
 TARGETS := \
 	ex1.pdf
 
-all: $(TARGETS)
+.PHONY: ex1-code
+
+all: ex1-code $(TARGETS)
+
+ex1-code:
+	make -C $@
 
 open: all
 	open ex1.pdf
@@ -29,4 +34,5 @@ ex1.pdf: ex1.tex preamble.tex
 	$(PDFLATEX) $<
 
 clean:
+	make -C ex1-code clean
 	rm -f $(TARGETS) $(TARGETS:.pdf=.aux) $(TARGETS:.pdf=.log) $(TARGETS:.pdf=.out)

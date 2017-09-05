@@ -37,14 +37,24 @@ figure \vref{plot.1b}.
 As the number of simulations increase, we can see that the plot seem to
 approximate the normal distribution. This is what we expect from a discrete,
 Binomial distribution.
-
 \begin{figure}[h]
   \includegraphics[width=\textwidth]{ex1-code/problem-1b.pdf}
-  \caption{Problem 1 (b)}
+  \caption{Plot for problem 1 (b) on page \pageref{problem.1 (b)}}
   \label{plot.1b}
 \end{figure}
 
 \problem{1 (c)}
+I added the keyword argument \texttt{prob=c(0.4, 0.6)} to the \texttt{sample}
+function. That makes the probabilities for getting heads and tails 0.6 and 0.4,
+correspondingly.
+
+The resulting plots can be seen in figure \vref{plot.1c}. We clearly see that
+for a large number of samples, the plots are skewed to the right, as we expect.
+\begin{figure}[h]
+  \includegraphics[width=\textwidth]{ex1-code/problem-1c.pdf}
+  \caption{Plot for problem 1 (c) on page \pageref{problem.1 (c)}}
+  \label{plot.1c}
+\end{figure}
 
 \problem{2 (a)}
 \problem{2 (b)}

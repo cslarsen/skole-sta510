@@ -1,4 +1,4 @@
-TARGETS = problem-1b.pdf problem-1c.pdf
+TARGETS = problem-1b.pdf problem-1c.pdf problem-2a.pdf
 
 all: $(TARGETS)
 

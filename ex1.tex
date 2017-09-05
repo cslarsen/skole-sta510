@@ -10,6 +10,23 @@
 \maketitle
 
 \oppgave{Problem 1 (a)}
+The probability of getting \textit{any specific} sequence is exactly the same,
+because if we list all possible outcomes for $n$ flips, each sequence will
+appear exactly once.
+
+It is understood that each flip is stochastic, meaning there is no memory
+involved. Each flip is independent of any other flips. That the coin is
+unbiased means that the probability for getting heads or tails is exactly
+$0.5$, i.e.~the outcome is binary and evenly distributed. In fact, this is
+called a \textit{Bernoulli process}, and each flip is a \textit{Bernoulli
+trial}.
+
+In mathematical terms, we have that
+\begin{align*}
+  P(\textrm{HHTHT}) = P(\textrm{THHHT}) = P(\textrm{five flips}) =
+    \left(\frac{1}{2}\right)^5 = \frac{1}{32}
+\end{align*}
+
 \oppgave{Problem 1 (b)}
 \oppgave{Problem 1 (c)}
 

@@ -11,14 +11,15 @@ else
 	OPEN := open
 endif
 
-TARGETS := \
-	ex1.pdf
+TARGETS := ex1.pdf
 
-all: ex1-code $(TARGETS)
+all: $(TARGETS)
 
 ex1.pdf: ex1-code
 
-ex1-code: ex1-code/problem-1b.R
+.PHONY: ex1-code
+
+ex1-code:
 	make -C $@
 
 open: all

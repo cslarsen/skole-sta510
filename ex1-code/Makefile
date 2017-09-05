@@ -1,6 +1,15 @@
-TARGETS = problem-1b.pdf problem-1c.pdf problem-2a.pdf problem-2b.pdf
+TARGETS = \
+	problem-1b.pdf \
+	problem-1c.pdf \
+	problem-2a.pdf \
+	problem-2b.pdf \
+	problem-10a.out \
+	problem-10b.out
 
 all: $(TARGETS)
+
+%.out: %.R
+	Rscript $< > $@
 
 %.pdf: %.R
 	Rscript $< && mv Rplots.pdf $@

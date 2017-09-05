@@ -5,4 +5,4 @@ f <- function(x) {
   x/10
 }
 
-barplot(f(1:4), ylab="f", xlab="x")
+barplot(f(1:4), names=1:4, ylab="f", xlab="x")

@@ -19,9 +19,9 @@ simheads <- function(Nsim,k) {
 # simulations (Nsim) and plot the results.
 
 # Draw several graphs below each other
-par(mfrow=c(2,1))
+par(mfrow=c(3,1))
 
-for (Nsim in c(10,10000)) {
+for (Nsim in c(10, 20, 1000)) {
   k <- 5
   nheadsim <- simheads(Nsim=Nsim,k=k)
   relfreq <- table(nheadsim)/Nsim   # Calculate relative frequency for each outcome

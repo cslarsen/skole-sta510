@@ -58,14 +58,17 @@ for a large number of samples, the plots are skewed to the right, as we expect.
 
 \problem{2 (a)}
 The definition for a probability mass function (PMF) require that
-\begin{gather}
-  f(x) \geqslant 0 \label{pmf.1} \\
-  \sum_x{f(x)} = 1 \label{pmf.2} \\
-  f(x) = P(X=x) \label{pmf.3}
-\end{gather}
-For $f(x) = x/c$ with $x=1,2,3,4$, we see that (\ref{pmf.1}) is already met.
-For (\ref{pmf.2}) and (\ref{pmf.3}), we must have $c=1+2+3+4=10$. A plot can be
-seen in figure \vref{plot.2a}.
+\begin{align}
+  f(x) &\geqslant 0 \label{pmf.1} \\
+  \sum_x{f(x)} &= 1 \label{pmf.2} \\
+  f(x) &= P(X=x) \label{pmf.3}
+\end{align}
+For $f(x) = x/c$ with $x=1,2,3,4$, we see that requirement (\ref{pmf.1}) is met.
+But for (\ref{pmf.2}) and (\ref{pmf.3}), we must have
+$\sfrac{1}{c} + \sfrac{2}{c} + \sfrac{3}{c} + \sfrac{4}{c} = \sfrac{10}{c}$
+or $c=10$.
+
+A plot can be seen in figure \vref{plot.2a}.
 
 \begin{figure}[h]
   \includegraphics[width=\textwidth]{ex1-code/problem-2a.pdf}
@@ -74,7 +77,7 @@ seen in figure \vref{plot.2a}.
 \end{figure}
 
 \problem{2 (b)}
-For $f(x) = c(x+1)^2$, $x=0,1,2,3$ we have the sum $c+4c+9c+16c=30c$. To make
+For $f(x) = c(x+1)^2$ with $x=0,1,2,3$ we have the sum $c+4c+9c+16c=30c$. To make
 $\sum{f}=1$ we must therefore have $c=\frac{1}{30}$. All other requirements are
 then met. The plot can be found in figure \vref{plot.2b}.
 

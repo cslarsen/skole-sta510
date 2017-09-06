@@ -4,7 +4,7 @@ sim_expected <- function(domain, f, samples=1e4) {
 
   # Draws a weighted sample and updates the running total
   for (i in 1:samples) {
-    drawn <- sample(domain, 1, prob=weights)
+    drawn <- sample(domain, size=1, prob=weights)
     total <- total + drawn
   }
 

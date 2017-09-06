@@ -25,10 +25,10 @@ def simulate_expected_value(function, x_values, iterations=1000):
     return float(total) / float(iterations)
 
 def f(x, c=10.0):
-    return float(x) / c
+    return float(x) / float(c)
 
 def g(x, c=1.0/30.0):
-    return c*(x+1)**2
+    return float(c)*(x+1)**2.0
 
 e1 = simulate_expected_value(f, (1,2,3,4))
 print("E(X) for problem 2a: %s" % e1)

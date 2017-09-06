@@ -5,7 +5,7 @@
 # through simulation.
 #
 # It simply draws weighted samples and return the average value.
-sim_expected <- function(f, domain, samples=10000) {
+sim_expected <- function(f, domain, samples=100) {
   weights = f(domain)
   total <- 0
 
@@ -19,8 +19,9 @@ sim_expected <- function(f, domain, samples=10000) {
 
 # Try with functions from problem 2
 
-E <- sim_expected(function(x, c=10) x/c, 0:3)
-cat("Expected value (2a):", E, "\n")
+samples <- 1e4
+E <- sim_expected(function(x, c=10) x/c, 1:4, samples)
+cat("(2a) Expected value (", samples, " samples): ", E, "\n", sep="")
 
-E <- sim_expected(function(x, c=1/30) c*(x+1)^2, 1:4)
-cat("Expected value (2b):", E, "\n")
+E <- sim_expected(function(x, c=1/30) c*(x+1)^2, 0:3, samples)
+cat("(2a) Expected value (", samples, " samples): ", E, "\n", sep="")

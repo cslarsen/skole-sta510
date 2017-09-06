@@ -128,15 +128,25 @@ Likewise, $E(g(X))$ with $g(x)=x^3$ and $c=10$ gives
     3 c(3+1)^2 =
     4c + 18c + 48c = 70c
 \]
-With $c=\frac{1}{30}$ we get $E(x) = \frac{7}{3} \approx 2.33$.
+With $c=\frac{1}{30}$ we get $E(x) = \frac{7}{3} \approx 2.33$. For $E(g(X))$,
+as above, we get
+\begin{align*}
+  E(g(X)) &=
+    0 +
+    1 c^3(1+1)^6 +
+    2 c^3(2+1)^6 +
+    3 c^3(3+1)^6 \\
+    &= c^3(64 + 1458 + 12288) = 13747c^3 \\
+    &= \frac{13810}{27000} \approx 0.5115
+\end{align*}
 
 To double-check that the above values are indeed correct, I wrote a small R
 program to find $E(X)$ through iterated weighted sampling. It can be seen in
 figure \vref{code.3}.
-
+%
 An example run produced the output
 \verbatiminput{code1/problem-3.out}
-which corresponds exactly with our values.
+which corresponds very well with our calculated expected values.
 
 \begin{figure}[t]
   \verbatiminput{code1/problem-3.R}

@@ -15,11 +15,11 @@ TARGETS := ex1.pdf
 
 all: $(TARGETS)
 
-ex1.pdf: ex1-code
+ex1.pdf: code1
 
-.PHONY: ex1-code
+.PHONY: code1
 
-ex1-code:
+code1:
 	make -C $@
 
 open: all
@@ -35,5 +35,5 @@ ex1.pdf: ex1.tex preamble.tex
 	$(PDFLATEX) $<
 
 clean:
-	make -C ex1-code clean
+	make -C code1 clean
 	rm -f $(TARGETS) $(TARGETS:.pdf=.aux) $(TARGETS:.pdf=.log) $(TARGETS:.pdf=.out)

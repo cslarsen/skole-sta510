@@ -131,12 +131,19 @@ Likewise, $E(g(X))$ with $g(x)=x^3$ and $c=10$ gives
 With $c=\frac{1}{30}$ we get $E(x) = \frac{7}{3} \approx 2.33$.
 
 To double-check that the above values are indeed correct, I wrote a small R
-program to find $E(X)$ through iterated weighted sampling:
-\verbatiminput{code1/problem-3.R}
+program to find $E(X)$ through iterated weighted sampling. It can be seen in
+figure \vref{code.3}.
 
-An example run produced
+An example run produced the output
 \verbatiminput{code1/problem-3.out}
 which corresponds exactly with our values.
+
+\begin{figure}[t]
+  \verbatiminput{code1/problem-3.R}
+  \caption{R program for simulating the expected value of a PMF (problem 3)}
+  \label{code.3}
+\end{figure}
+
 
 \problem{4 (a)}
 \problem{4 (b)}

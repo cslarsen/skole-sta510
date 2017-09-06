@@ -146,7 +146,14 @@ figure \vref{code.3}.
 %
 An example run produced the output
 \verbatiminput{code1/problem-3.out}
-which corresponds very well with our calculated expected values.
+which corresponds very well with our calculated expected values, except for the
+last $E(g(X)) = 2.8232$. This has to do with how the code is structured: It
+uses the \texttt{sample} function, but provides a set of weighs that don't sum
+up to $1.0$. For the first $E(g(x))$, the values happen to sum to one.
+But we can normalize the second one by just summing the weighs. They sum to
+0.1811, so if we normalize we get $2.8282\sfrac{1}{0.1811} = 0.5122$, which is
+close enough to $0.5115$\footnote{Note that the R output here is regenerated each time
+this \LaTeX document is rendered, so the exact figures may vary.}
 
 \begin{figure}[t]
   \verbatiminput{code1/problem-3.R}

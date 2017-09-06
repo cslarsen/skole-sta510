@@ -115,6 +115,14 @@ With $c=10$ we then get $E(X) = 3$.
 \]
 With $c=\frac{1}{30}$ we get $E(x) = \frac{7}{3} \approx 2.33$.
 
+To double-check that the above values are indeed correct, I wrote a small R
+program to find $E(X)$ through iterated weighted sampling:
+\verbatiminput{ex1-code/problem-3.R}
+
+An example run produced
+\verbatiminput{ex1-code/problem-3.out}
+which corresponds exactly with our values.
+
 \problem{4 (a)}
 \problem{4 (b)}
 \problem{4 (c)}

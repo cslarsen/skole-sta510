@@ -14,7 +14,7 @@ def weighted_choice(choices):
       upto += w
    assert False, "Shouldn't get here"
 
-def simulate_expected_value(function, x_values, iterations=100000):
+def simulate_expected_value(function, x_values, iterations=1000):
     choices = list(map(lambda x: (x, f(x)), x_values))
 
     total = 0

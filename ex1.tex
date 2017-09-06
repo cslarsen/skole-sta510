@@ -110,50 +110,42 @@ numbers in.
 With $c=10$ we then get $E(X) = 3$.
 
 Likewise, $E(g(X))$ with $g(x)=x^3$ and $c=10$ gives
-\[
-  E(g(X)) =
-    1 \frac{1^3}{1000} +
-    2 \frac{2^3}{1000} +
-    3 \frac{3^3}{1000} +
-    4 \frac{4^3}{1000} =
-    \frac{1 + 16 + 81 + 256}{1000} = \frac{354}{1000} = 3.54
-\]
+\begin{align*}
+  E(g(X)) &= \sum_x{g(x)f(x)} =
+    1^3\frac{1}{10} +
+    2^3\frac{2}{10} +
+    3^3\frac{3}{10} +
+    4^3\frac{4}{10} =
+    \frac{354}{10} = 35.4
+\end{align*}
 
 \paragraph{The expected value for problem 2 (b)} is given by
-\[
-  E(X) =
+\begin{align*}
+  E(X) &=
     0 +
     1 c(1+1)^2 +
     2 c(2+1)^2 +
     3 c(3+1)^2 =
-    4c + 18c + 48c = 70c
-\]
-With $c=\frac{1}{30}$ we get $E(x) = \frac{7}{3} \approx 2.33$. For $E(g(X))$,
-as above, we get
+    4c + 18c + 48c = 70c \\
+    &= \frac{70}{30} \approx 2.33
+\end{align*}
+For $E(g(X))$, as above, we get
 \begin{align*}
   E(g(X)) &=
     0 +
-    1 c^3(1+1)^6 +
-    2 c^3(2+1)^6 +
-    3 c^3(3+1)^6 \\
-    &= c^3(64 + 1458 + 12288) = 13747c^3 \\
-    &= \frac{13810}{27000} \approx 0.5115
+    1^3 c(1+1)^2 +
+    2^3 c(2+1)^2 +
+    3^3 c(3+1)^2 \\
+    &=  4c + 72c + 432c = \frac{508}{30} \approx 16.93
 \end{align*}
 
 To double-check that the above values are indeed correct, I wrote a small R
-program to find $E(X)$ through iterated weighted sampling. It can be seen in
-figure \vref{code.3}.
+simulation to find $E(X)$ through iterated weighted sampling, rather than
+mechanically. It can be seen in figure \vref{code.3}.
 %
 An example run produced the output
 \verbatiminput{code1/problem-3.out}
-which corresponds very well with our calculated expected values, except for the
-last $E(g(X)) = 2.8232$. This has to do with how the code is structured: It
-uses the \texttt{sample} function, but provides a set of weighs that don't sum
-up to $1.0$. For the first $E(g(x))$, the values happen to sum to one.
-But we can normalize the second one by just summing the weighs. They sum to
-0.1811, so if we normalize we get $2.8282\sfrac{1}{0.1811} = 0.5122$, which is
-close enough to $0.5115$\footnote{Note that the R output here is regenerated each time
-this \LaTeX document is rendered, so the exact figures may vary.}
+which corresponds very well with our calculated expected values.
 
 \begin{figure}[t]
   \verbatiminput{code1/problem-3.R}

@@ -278,18 +278,21 @@ By using \texttt{cor(x, y)}, the result is $0.9431302$. This means that there
 is a very high correlation between the two gas station's prices.
 
 It also means that the correlation is on the positive side, meaning that they
-are correlated the same way. That is, they are not negatively correlation so
-that when one station's price is high, the other is low. Here they are both
-high or both low.
+are correlated the same way. That is, they are not negatively correlated so
+that when one station's price is high, the other is low.
 
-In practical terms, the two stations are probably pretty close by. I would
-expect two stations the are far apart in the same city to have less correlated
-prices. This is because they serve different groups of customers. E.g., a good
-location with a lot of passing cars and an easy access may permit higher
-prices, while a small station may need to lower prices to attract customers.
+In practical terms, the two stations may be close to another within the same
+city. Even for a relatively small city like Sandnes, some stations are located
+with easy access and a lot of passing cars. A station like that can likely
+demand higher prices, while a station with few customers must lower its prices
+to attract customers.
 
-But we should not read too much into the correlation value, except that these
-prices are very similar on the same days.
+A high correlation also means that the prices tend to be close \textit{on the
+same days}. If we take the same data, but shift the prices by five days in one
+series, we will get a very low correlation.
+
+Finally, one should never read too much into a high correlation. Especially,
+remember the maxim <<Correleation does not imply causation>>.
 
 \problem{7 (a)}
 \problem{7 (b)}

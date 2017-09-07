@@ -159,13 +159,7 @@ We can calculate $P(X < 0.5)$ from first principles by using its definition
 \begin{equation}
   \label{eq.4a}
   P(a < X < b) = \int_b^x{f(x)\, \mathrm{d} x}
-\end{equation} and setting $a=-\infty$ and $b=0.5$.
-Of course, equation \vref{eq.4a} assumes that $f(x) \geqslant 0$ for all $x$,
-and that the entire integral for $f$ equals exactly $1.0$\footnote{If it
-didn't, we could normalize the result of equation \vref{eq.4a} with the
-complete area.}.
-
-We then have
+\end{equation} and setting $a=-\infty$ and $b=0.5$, or
 \begin{align*}
   P(X < 0.5) &= \int_{-\infty}^{0.5} \left(
     \begin{cases}
@@ -179,6 +173,13 @@ We then have
     \left[2x^2 - x^4 \right]_0^{0.5}
   = \frac{1}{2} - \frac{1}{16} = \frac{7}{16} = 0.4375
 \end{align*}
+\paragraph{Normalization check}
+\[
+  \int_{-\infty}^{\infty} f(x)\, \mathrm{d} x =
+    \left[ 2x^2 - x^4 \right]_{0}^{1} = 2 - 1 = 1
+\]%
+Since the area is $1$ and $f(x) \geqslant 0$ for all
+$x$, we don't need to normalize $P(X)$ calculations.
 
 \problem{4 (b)}
 

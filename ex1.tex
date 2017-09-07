@@ -37,7 +37,7 @@ figure \vref{plot.1b}.
 As the number of simulations increase, we can see that the plot seem to
 approximate the normal distribution. This is what we expect from a discrete,
 Binomial distribution.
-\begin{figure}[h]
+\begin{figure}[H]
   \includegraphics[width=\textwidth]{code1/problem-1b.pdf}
   \caption{Plot for problem 1 (b) on page \pageref{problem.1 (b)}.}
   \label{plot.1b}
@@ -50,7 +50,7 @@ correspondingly.
 
 The resulting plots can be seen in figure \vref{plot.1c}. We clearly see that
 for a large number of samples, the plots are skewed to the right, as we expect.
-\begin{figure}[h]
+\begin{figure}[H]
   \includegraphics[width=\textwidth]{code1/problem-1c.pdf}
   \caption{Plot for problem 1 (c) on page \pageref{problem.1 (c)}.}
   \label{plot.1c}
@@ -69,8 +69,7 @@ $\sfrac{1}{c} + \sfrac{2}{c} + \sfrac{3}{c} + \sfrac{4}{c} = \sfrac{10}{c}$
 or $c=10$.
 
 The bar plot can be seen in figure \vref{plot.2a}.
-
-\begin{figure}[h]
+\begin{figure}[H]
   \includegraphics[width=\textwidth]{code1/problem-2a.pdf}
   \caption{Plot for problem 2 (a) on page \pageref{problem.2 (a)}.}
   \label{plot.2a}
@@ -82,8 +81,7 @@ make the sum one, we must therefore have $c=\frac{1}{30}$. All other
 requirements are then met.
 
 The bar plot can be seen in figure \vref{plot.2b}.
-
-\begin{figure}[h]
+\begin{figure}[H]
   \includegraphics[width=\textwidth]{code1/problem-2b.pdf}
   \caption{Plot for problem 2 (b) on page \pageref{problem.2 (b)}.}
   \label{plot.2b}
@@ -145,14 +143,12 @@ weighted samples and computes their average. The source is in figure
 While the simulation runs slower than the exact calculation for this example,
 it will run \textit{vastly} faster for large, complex and computationally
 expensive probability functions.
-
-\begin{figure}[t]
+\begin{figure}[H]
   \verbatiminput{code1/problem-3.R}
   \caption{R program for simulating the expected value of a PMF (problem 3).}
   \label{code.3}
 \end{figure}
-
-\begin{figure}[t]
+\begin{figure}[H]
   \verbatiminput{code1/problem-3.out}
   \caption{Example output from the program in figure \vref{code.3}.}
   \label{output.3}
@@ -228,7 +224,7 @@ $\boldsymbol{\Prb(X > 0.7)}$ is given by
 
 \problem{4 (c)}
 A plot of $f$ and $F$ can be seen in figure \vref{plot.4c}.
-\begin{figure}[h]
+  \begin{figure}[H]
   \includegraphics[width=\textwidth]{code1/problem-4c.pdf}
   \caption{Plot for problem 4 (c) on page \pageref{problem.4 (c)}.}
   \label{plot.4c}

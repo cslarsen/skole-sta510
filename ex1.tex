@@ -184,6 +184,20 @@ The expected value is given by
     = \left[ \frac{4}{3}x^3 - \frac{4}{5}x^5 \right]_{0}^{1}
     = \frac{8}{5} = 1.6
 \]
+To find the variance, we first calculate
+\begin{align*}
+  E(X^2)
+    = \int_{-\infty}^{\infty} x^2 4x(1-x^2)\, \mathrm{d} x
+    = \int_{0}^{0.5} 4x^3 - 4x^5 \, \mathrm{d} x
+    = \left[ x^4 - \frac{4}{6}x^6 \right]_{0}^{1}
+    = 1 - \frac{4}{6} = \frac{2}{6}
+\end{align*}
+which gives us
+\begin{align*}
+  Var(X) = E(X^2) - E(X)^2 = \frac{2}{6} - \frac{8}{6} = -\frac{2}{3} \approx -0.667
+\end{align*}
+We shouldn't get a negative variance, so I will have to look into the
+calculations again.
 
 \problem{4 (b)}
 

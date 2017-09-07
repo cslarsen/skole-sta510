@@ -23,7 +23,7 @@ trial}.
 
 In mathematical terms, we have that
 \begin{align*}
-  \P(\textrm{HHTHT}) = \P(\textrm{THHHT}) = \P(\textrm{five flips}) =
+  \Prb(\textrm{HHTHT}) = \Prb(\textrm{THHHT}) = \Prb(\textrm{five flips}) =
     \left(\frac{1}{2}\right)^5 = \frac{1}{32}
 \end{align*}
 Conversely, we see that there are $2^5 = 32$ possible ways to toss a fair coin
@@ -61,7 +61,7 @@ The definition for a probability mass function (PMF) require that
 \begin{align}
   f(x) &\geqslant 0 \label{pmf.1} \\
   \sum_x{f(x)} &= 1 \label{pmf.2} \\
-  f(x) &= \P(X=x) \label{pmf.3}
+  f(x) &= \Prb(X=x) \label{pmf.3}
 \end{align}
 For $f(x) = x/c$ with $x=1,2,3,4$, we see that requirement (\ref{pmf.1}) is met.
 But for (\ref{pmf.2}) and (\ref{pmf.3}), we must have
@@ -160,13 +160,13 @@ functions.
 \end{figure}
 
 \problem{4 (a)}
-We can calculate $\P(X < 0.5)$ from first principles by using its definition
+We can calculate $\Prb(X < 0.5)$ from first principles by using its definition
 \begin{equation}
   \label{eq.4a}
-  \P(a < X < b) = \int_b^x{f(x)\, \mathrm{d} x}
+  \Prb(a < X < b) = \int_b^x{f(x)\, \mathrm{d} x}
 \end{equation} and setting $a=-\infty$ and $b=0.5$, or
 \begin{align*}
-  \P(X < 0.5) &=
+  \Prb(X < 0.5) &=
     \int_0^{0.5} 4x(1-x^2)\, \mathrm{d} x =
     \int_0^{0.5} 4x\, \mathrm{d} x - \int_0^{0.5} 4x^3\, \mathrm{d} x \\
   &=
@@ -179,7 +179,7 @@ We can calculate $\P(X < 0.5)$ from first principles by using its definition
     \left[ 2x^2 - x^4 \right]_{0}^{1} = 2 - 1 = 1
 \]%
 Since the area is $1$ and $f(x) \geqslant 0$ for all
-$x$, we don't need to normalize $\P(X)$.
+$x$, we don't need to normalize $\Prb(X)$.
 
 \paragraph{Expected value}
 \[

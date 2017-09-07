@@ -161,12 +161,7 @@ We can calculate $P(X < 0.5)$ from first principles by using its definition
   P(a < X < b) = \int_b^x{f(x)\, \mathrm{d} x}
 \end{equation} and setting $a=-\infty$ and $b=0.5$, or
 \begin{align*}
-  P(X < 0.5) &= \int_{-\infty}^{0.5} \left(
-    \begin{cases}
-      4x(1-x^2) \textrm{ for } 0 \leqslant x \leqslant 1 \\
-      0 \textrm{ otherwise}
-    \end{cases}\right)\, \mathrm{d} x \\
-  &=
+  P(X < 0.5) &=
     \int_0^{0.5} 4x(1-x^2)\, \mathrm{d} x =
     \int_0^{0.5} 4x\, \mathrm{d} x - \int_0^{0.5} 4x^3\, \mathrm{d} x \\
   &=
@@ -179,7 +174,16 @@ We can calculate $P(X < 0.5)$ from first principles by using its definition
     \left[ 2x^2 - x^4 \right]_{0}^{1} = 2 - 1 = 1
 \]%
 Since the area is $1$ and $f(x) \geqslant 0$ for all
-$x$, we don't need to normalize $P(X)$ calculations.
+$x$, we don't need to normalize $P(X)$.
+
+The expected value is given by
+\[
+  E(X)
+    = \int_{-\infty}^{\infty} x 4x(1-x^2)\, \mathrm{d} x
+    = \int_{0}^{0.5} 4x^2 - 4x^4 \, \mathrm{d} x
+    = \left[ \frac{4}{3}x^3 - \frac{4}{5}x^5 \right]_{0}^{1}
+    = \frac{8}{5} = 1.6
+\]
 
 \problem{4 (b)}
 

@@ -39,7 +39,7 @@ approximate the normal distribution. This is what we expect from a discrete,
 Binomial distribution.
 \begin{figure}[h]
   \includegraphics[width=\textwidth]{code1/problem-1b.pdf}
-  \caption{Plot for problem 1 (b) on page \pageref{problem.1 (b)}}
+  \caption{Plot for problem 1 (b) on page \pageref{problem.1 (b)}.}
   \label{plot.1b}
 \end{figure}
 
@@ -52,7 +52,7 @@ The resulting plots can be seen in figure \vref{plot.1c}. We clearly see that
 for a large number of samples, the plots are skewed to the right, as we expect.
 \begin{figure}[h]
   \includegraphics[width=\textwidth]{code1/problem-1c.pdf}
-  \caption{Plot for problem 1 (c) on page \pageref{problem.1 (c)}}
+  \caption{Plot for problem 1 (c) on page \pageref{problem.1 (c)}.}
   \label{plot.1c}
 \end{figure}
 
@@ -72,7 +72,7 @@ The bar plot can be seen in figure \vref{plot.2a}.
 
 \begin{figure}[h]
   \includegraphics[width=\textwidth]{code1/problem-2a.pdf}
-  \caption{Plot for problem 2 (a) on page \pageref{problem.2 (a)}}
+  \caption{Plot for problem 2 (a) on page \pageref{problem.2 (a)}.}
   \label{plot.2a}
 \end{figure}
 
@@ -85,7 +85,7 @@ The bar plot can be seen in figure \vref{plot.2b}.
 
 \begin{figure}[h]
   \includegraphics[width=\textwidth]{code1/problem-2b.pdf}
-  \caption{Plot for problem 2 (b) on page \pageref{problem.2 (b)}}
+  \caption{Plot for problem 2 (b) on page \pageref{problem.2 (b)}.}
   \label{plot.2b}
 \end{figure}
 
@@ -129,7 +129,7 @@ Likewise, $\E(g(X))$ with $g(x)=x^3$ and $c=10$ gives
     4c + 18c + 48c = 70c \\
     &= \frac{70}{30} \approx 2.33
 \end{align*}
-For $\E(g(X))$, as above, we get
+For $\E(g(X))$ we get
 \begin{align*}
   \E(g(X)) &=
     0 +
@@ -138,25 +138,24 @@ For $\E(g(X))$, as above, we get
     3^3 c(3+1)^2 \\
     &=  4c + 72c + 432c = \frac{508}{30} \approx 16.93
 \end{align*}
+I wrote an R simulation to verify the above numbers. It repeatedly draws
+weighted samples and computes their average. The source is in figure
+\vref{code.3} and an example run is given in figure \vref{output.3}.
 
-To double-check that the above values are indeed correct, I wrote a small R
-simulation to find $\E(X)$ through iterated weighted sampling, rather than
-mechanically. It can be seen in figure \vref{code.3}.
-%
-An example run produced the output
-\verbatiminput{code1/problem-3.out}
-which corresponds very well with our calculated expected values.
-
-While the simulation runs slower for this example, it will run \textit{vastly}
-faster than the exact version when we have either a computationally expensive
-probability mass function and a domain that covers a large number of discrete
-values --- and even more so for complex, continuous probability density
-functions.
+While the simulation runs slower than the exact calculation for this example,
+it will run \textit{vastly} faster for large, complex and computationally
+expensive probability functions.
 
 \begin{figure}[t]
   \verbatiminput{code1/problem-3.R}
-  \caption{R program for simulating the expected value of a PMF (problem 3)}
+  \caption{R program for simulating the expected value of a PMF (problem 3).}
   \label{code.3}
+\end{figure}
+
+\begin{figure}[t]
+  \verbatiminput{code1/problem-3.out}
+  \caption{Example output from the program in figure \vref{code.3}.}
+  \label{output.3}
 \end{figure}
 
 \problem{4 (a)}
@@ -213,19 +212,24 @@ The cumulative distribution function (CDF) is given by
   F(X) = \Prb(X \leqslant x) = \int_{-\infty}^{x} f(t)\, \mathrm{d}t
     = \left[ 2t^2 - t^4 \right]_{0}^{x} = 2x^2 - x^4
 \]
-\paragraph{$\boldsymbol{P(X \leqslant 0.3)}$} is found by using $F(0.3)$.
-The reason $F$ gives us the probability of $X$ being less than \textit{or
-equal to} $x$ is because $P(x) = 0$ for continuous distributions. We get
+\paragraph{$\boldsymbol{\Prb(X \leqslant 0.3)}$} is found by using $F(0.3)$.
+The reason $F$ gives us the probability of $X$ being less than \textit{or equal
+to} $x$ is because the point probability $\Prb(x) = 0$ for continuous
+distributions. We get
 \[
-  P(X \leqslant 0.3) = F(0.3) = 2\cdot0.3^2 - 0.3^4 = 0.18 - 0.0081 = 0.1719
+  \Prb(X \leqslant 0.3) = F(0.3) = 2\cdot0.3^2 - 0.3^4 = 0.18 - 0.0081 = 0.1719
 \]
-
+\paragraph{$\boldsymbol{\Prb(X > 0.7)}$} is given by
+\[
+  1 - \Prb(X \leqslant 0.7) = 1 - F(0.7)
+    = 1 - (2\cdot 0.7^2 - 0.7^4) = 0.2601
+\]
 
 \problem{4 (c)}
 A plot of $f$ and $F$ can be seen in figure \vref{plot.4c}.
 \begin{figure}[h]
   \includegraphics[width=\textwidth]{code1/problem-4c.pdf}
-  \caption{Plot for problem 4 (c) on page \pageref{problem.4 (c)}}
+  \caption{Plot for problem 4 (c) on page \pageref{problem.4 (c)}.}
   \label{plot.4c}
 \end{figure}
 

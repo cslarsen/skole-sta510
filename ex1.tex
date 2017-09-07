@@ -155,8 +155,25 @@ which corresponds very well with our calculated expected values.
 
 
 \problem{4 (a)}
+We can calculate $P(X < 0.5)$ from first principles by using its definition
+\begin{equation}
+  \label{eq.4a}
+  P(a < X < b) = \int_b^x{f(x) dx}
+\end{equation} and setting $a=-\infty$ and $b=0.5$.
+Of course, equation \vref{eq.4a} assumes that $f(x) \geqslant 0$ for all $x$,
+and that the entire integral for $f$ equals exactly $1.0$\footnote{If it
+didn't, we could normalize the result of equation \vref{eq.4a} with the
+complete area.}.
+
 \problem{4 (b)}
+
 \problem{4 (c)}
+A plot of $f$ and $F$ can be seen in figure \vref{plot.4c}.
+\begin{figure}[h]
+  \includegraphics[width=\textwidth]{code1/problem-4c.pdf}
+  \caption{Plot for problem 4 (c) on page \pageref{problem.4 (c)}}
+  \label{plot.4c}
+\end{figure}
 
 \problem{5 (a)}
 To determine $k$, we use the fact that any probability density function (PDF)

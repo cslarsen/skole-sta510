@@ -8,7 +8,8 @@ TARGETS = \
 	problem-2a.pdf \
 	problem-2b.pdf \
 	problem-3.out \
-	problem-4c.pdf
+	problem-4c.pdf \
+	problem-5a.pdf
 
 all: $(TARGETS)
 

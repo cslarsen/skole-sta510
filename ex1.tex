@@ -208,6 +208,18 @@ which gives us
 \]
 
 \problem{4 (b)}
+The cumulative distribution function (CDF) is given by
+\[
+  F(X) = \Prb(X \leqslant x) = \int_{-\infty}^{x} f(t)\, \mathrm{d}t
+    = \left[ 2t^2 - t^4 \right]_{0}^{x} = 2x^2 - x^4
+\]
+\paragraph{$\boldsymbol{P(X \leqslant 0.3)}$} is found by using $F(0.3)$.
+The reason $F$ gives us the probability of $X$ being less than \textit{or
+equal to} $x$ is because $P(x) = 0$ for continuous distributions. We get
+\[
+  P(X \leqslant 0.3) = F(0.3) = 2\cdot0.3^2 - 0.3^4 = 0.18 - 0.0081 = 0.1719
+\]
+
 
 \problem{4 (c)}
 A plot of $f$ and $F$ can be seen in figure \vref{plot.4c}.

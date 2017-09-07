@@ -19,6 +19,6 @@ for (Nsim in c(10, 20, 1000)) {
   relfreq <- table(nheadsim) / Nsim
   barplot(relfreq,
           ylab="Relative frequency",
-          xlab=paste("Heads in ", k, " coin flips (", Nsim, " simulations)",
+          xlab=paste("Biased heads in ", k, " coin flips (", Nsim, " simulations)",
                      sep=""))
 }

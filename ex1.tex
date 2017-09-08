@@ -295,6 +295,30 @@ Finally, one should never read too much into a high correlation. Especially,
 remember the maxim <<Correleation does not imply causation>>.
 
 \problem{7 (a)}
+If the two drinks taste the same, picking the right one will be mere chance:
+$\frac{1}{5}$ chance for one person to pick the right, and $\frac{4}{5}$ to get
+it wrong.
+
+Let's enumerate. The chance that all people get it wrong will then be
+\[
+  P(X=0) = \left( \frac{4}{5} \right)^{10}
+\]
+The chance that exactly one person gets it right means the other nine must get
+it wrong:
+\[
+  P(X=1) = \left( \frac{4}{5} \right)^{9} \left( \frac{1}{5} \right)^{1}
+\]
+Continuing like this, we will have
+\[
+  P(X=x) = \left( \frac{4}{5} \right)^{10-x} \left( \frac{1}{5} \right)^{x}
+\]
+However, we need to normalize this so that the area under the curve from $x=0$
+to $x=10$ equals one. The integral of the above expression is $0.077545$ so we
+will set the normalization factor to the inverse of this:
+\[
+  P(X=x) = 12.896\left( \frac{4}{5} \right)^{10-x} \left( \frac{1}{5} \right)^{x}
+\]
+
 \problem{7 (b)}
 
 \problem{8}

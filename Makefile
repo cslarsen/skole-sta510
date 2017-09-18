@@ -34,6 +34,7 @@ assignment-1.pdf: assignment-1.tex preamble.tex
 
 %.pdf: %.tex
 	$(PDFLATEX) $<
+	$(BIBTEX) $(<:.tex=)
 	$(PDFLATEX) $<
 
 clean:

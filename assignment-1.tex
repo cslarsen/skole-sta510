@@ -2,28 +2,36 @@
 \input{preamble}
 
 \title{STA510 --- Statistical modelling and simulation}
-\subtitle{Mandatory Exercise 1}
+\subtitle{Mandatory exercise 1}
 \author{Christian Stigen}
 \date{UiS, September \nth{21}, 2017}
 
 \begin{document}
 \maketitle
 
-\problem{1 (a)}
+\problem{1a)}
 The density function of the \textit{exponential distribution} is given in
 \cite{walpole} as
 \[
   f(x) =
     \begin{cases}
       \displaystyle
-        \frac{1}{\beta} e^{\sfrac{-x}{\beta}} & x > 0  \\
+        \frac{1}{\beta} e^{-\frac{x}{\beta}} & x > 0  \\
         0 & \text{elsewhere}
     \end{cases}
 \]
 We then have that
 \[
-  P(X \leqslant x) = \int_{-\infty}^{x} f(t)\, \mathrm{d}t
+  P(X \leqslant x) = \int_{-\infty}^{x} f(t)\, \mathrm{d}t 
+    = \left[ -e^{-\frac{t}{\beta}} \right]_{0}^{x} = 1 - e^{-\frac{x}{\beta}}
 \]
+
+\problem{1 a i)}
+\[
+  P(X > 4000) = 1 - P(X \leqslant 4000) = e^{-\frac{4000}{5000}} \approx 0.45
+\]
+
+
 
 \problem{1 (b)}
 \problem{1 (c)}

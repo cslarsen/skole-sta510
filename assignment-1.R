@@ -1,5 +1,7 @@
+# ===========================
 # Mandatory Excercise 1
 # Written by Christian Stigen
+# ===========================
 
 # Clear any existing environment
 rm(list=ls())
@@ -12,4 +14,5 @@ println <- function(...) {
 
 println("Problem 1 (b)")
 println("P(X > 4000) = ", 1 - pexp(4000, rate=1/5000))
-println("P(4000 <= X <= 6000) = ", pexp(6000, rate=1/5000) - pexp(4000, rate=1/5000))
+println("P(4000 <= X <= 6000) = ",
+        pexp(6000, rate=1/5000) - pexp(4000, rate=1/5000))

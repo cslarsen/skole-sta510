@@ -10,5 +10,6 @@ println <- function(...) {
   cat(paste(..., "\n", sep=""))
 }
 
-# Problem 1 (b)
-println("Problem 1 (b) P(X > 4000) = ", 1 - pexp(4000, rate=1/5000))
+println("Problem 1 (b)")
+println("P(X > 4000) = ", 1 - pexp(4000, rate=1/5000))
+println("P(4000 <= X <= 6000) = ", pexp(6000, rate=1/5000) - pexp(4000, rate=1/5000))

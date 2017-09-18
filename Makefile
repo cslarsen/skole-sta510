@@ -11,7 +11,7 @@ else
 	OPEN := open
 endif
 
-TARGETS := ex1.pdf
+TARGETS := assignment-1.pdf
 
 all: $(TARGETS)
 
@@ -23,12 +23,14 @@ code1:
 	make -C $@
 
 open: all
-	open ex1.pdf
+	open assignment-1.pdf
 
 %.eps: %.gp data.txt
 	gnuplot $<
 
 ex1.pdf: ex1.tex preamble.tex
+
+assignment-1.pdf: assignment-1.tex preamble.tex
 
 %.pdf: %.tex
 	$(PDFLATEX) $<

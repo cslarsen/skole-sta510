@@ -31,3 +31,9 @@ println("P(X > 4000) 10 simulations: ", P_longer(4000, 10))
 println("P(X > 4000) 100 simulations: ", P_longer(4000, 100))
 println("P(X > 4000) 10000 simulations: ", P_longer(4000, 10000))
 println("P(X > 4000) 100000 simulations: ", P_longer(4000, 100000))
+
+# Comment: We definitely see that the larger number of samples, the closer we
+# get to the theoretical correct answer. However, it also becomes more costly
+# to computate, at least the way we do it here. The winnings for doing it this
+# way will only be seen when the underlying function is not known (i.e. not
+# exactly) or computationally very expensive.

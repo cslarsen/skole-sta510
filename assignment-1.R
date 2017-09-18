@@ -9,7 +9,7 @@ rm(list=ls())
 # A variadic helper-function to print stuff to the console. Meaning you can run
 # with Rscript.
 println <- function(...) {
-  cat(paste(..., "\n", sep=""))
+  cat(..., "\n", sep="")
 }
 
 println("Problem 1 (b)")
@@ -47,8 +47,25 @@ println("P(X + X > 10000) 100 simulations: ", P_sum(100))
 println("P(X + X > 10000) 1000 simulations: ", P_sum(1000))
 println("P(X + X > 10000) 10000 simulations: ", P_sum(10000))
 println("P(X + X > 10000) 100000 simulations: ", P_sum(100000))
-println("P(X + X > 10000) 1000000 simulations: ", P_sum(1000000))
-println("P(X + X > 10000) 10000000 simulations: ", P_sum(10000000))
 
 println("Problem 1 (e)")
 println("Exact: ", 1 - pgamma(10000, shape=2, rate=1/5000))
+
+println("Problem 2 (b)")
+
+lottosim <- function(runs) {
+  hits <- 0
+
+  for ( n in 1:runs ) {
+    numbers <- sample(1:34, 7)
+    consec <- min(diff(sort(numbers))) == 1
+    hits <- hits + consec
+  }
+
+  hits / runs
+}
+
+println("n=10: ", lottosim(10))
+println("n=100: ", lottosim(1000))
+println("n=1000: ", lottosim(1000))
+println("n=10000: ", lottosim(10000))

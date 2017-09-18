@@ -10,14 +10,19 @@
 \maketitle
 
 \problem{1 (a)}
-The exponential distribution, as given in \cite{walpole}, is given by
+The density function of the \textit{exponential distribution} is given in
+\cite{walpole} as
 \[
   f(x) =
     \begin{cases}
-      \frac{1}{\beta^\alpha \Gamma(\alpha)} x^{\alpha - 1} e^{\sfrac{-x}{\beta}}
-        & x > 0  \\
+      \displaystyle
+        \frac{1}{\beta} e^{\sfrac{-x}{\beta}} & x > 0  \\
         0 & \text{elsewhere}
     \end{cases}
+\]
+We then have that
+\[
+  P(X \leqslant x) = \int_{-\infty}^{x} f(t)\, \mathrm{d}t
 \]
 
 \problem{1 (b)}

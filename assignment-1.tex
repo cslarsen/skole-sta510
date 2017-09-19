@@ -101,9 +101,11 @@ x-value will give this value by finding the inverse of the cumulative density
 function (CDF) $g$.
 
 The CDF is given by
-\[
-  g(x) = \int_{-\infty}^{x} f(x)\, \mathrm{d}t
-\]
+\begin{align*}
+  g(x) & = \int_{-\infty}^{x} f(x)\, \mathrm{d}t 
+     = \left[ -e^{-\frac{t^2}{2\theta^2}} \right]_0^{x} = 
+     1 - e^{-\frac{x^2}{2\theta^2}}, \text{ where } x>0 \text{ and } \theta > 0
+\end{align*}
 
 \problem{3 (b)}
 \problem{3 (c)}

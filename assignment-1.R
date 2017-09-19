@@ -92,13 +92,21 @@ rayleigh <- function(samples, theta, decimals=6) {
 
 problem3b <- function(num_samples=10000, theta=1.78) {
   samples <- rayleigh(num_samples, theta=theta)
-  hist(samples, main=paste(length(samples), "Rayleigh samples"), freq=FALSE,
-       right=FALSE, xlab="wave heights")
 
-  # Show expected value
+  # Make a histogram
+  hist(samples, main=paste(length(samples), "Rayleigh samples"), freq=FALSE,
+       right=FALSE, xlab="wave heights", breaks=40)
+
+  # Show expected value as a vertical line
   expected <- theta * sqrt(pi/2)
   variance <- theta^2 * (4 - pi) / 2
-  abline(v=expected, col="red", lty=2)
+  abline(v=expected, col="red", lty=2, lwd=2)
+
+  # Also plot the computer distribution
+  rayleigh_pdf <- function(x) {
+    (x/theta^2) * exp(-x^2/(2*theta^2))
+  }
+  curve(rayleigh_pdf, from=0, to=7, col="red", add=TRUE, lwd=2)
 
   # Compare with theoretically expected values
 
@@ -118,8 +126,8 @@ problem3b <- function(num_samples=10000, theta=1.78) {
   println("    Variance", " & ", variance, " & ", sample_var, " \\\\")
   println("    \\bottomrule")
   println("  \\end{tabular}")
-  println("  \\caption{Comparison of theoretically")
-  println("     computed values and sampled ones in problem 3 (b).}")
+  println("  \\caption{Theoretical and sampled metrics for problem 3 (b). ")
+  println("     ``Expected Mean'' is actually the \\textit{expected value}.}")
   println("  \\label{table:3b}")
   println("\\end{table}")
 }

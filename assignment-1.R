@@ -71,6 +71,7 @@ problem2b <- function() {
 }
 
 rayleigh <- function(samples, theta, decimals=6) {
+  # TODO: Make this faster!
   out <- c()
 
   for ( i in 1:samples) {
@@ -89,5 +90,11 @@ rayleigh <- function(samples, theta, decimals=6) {
   out
 }
 
-println("3 Reyleigh samples with theta=1.78: ")
-cat(paste(rayleigh(3, theta=1.78)), "\n")
+problem3b <- function(theta=1.78) {
+  samples <- rayleigh(10000, theta=theta)
+  hist(samples, main=paste(length(samples), "Rayleigh samples"))
+
+  # Show expected value
+  expected <- theta * sqrt(pi/2)
+  abline(v=expected, col="red", lty=2)
+}

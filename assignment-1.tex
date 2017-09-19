@@ -40,6 +40,28 @@ We then have that
 Note that for continuous density functions, $P(X=x) = 0$, so we don't have
 to be exact with the equals-or-less symbols.
 
+\problem{1 (b)}
+Output from R:
+\VerbatimInput{problem1b.out}
+
+\problem{1 (c)}
+Output from R:
+\VerbatimInput{problem1c.out}
+We definitely see that the larger number of samples, the closer we
+get to the theoretical correct answer. However, it also becomes more costly
+to computate, at least the way we do it here. The winnings for doing it this
+way will only be seen when the underlying function is not known (for example,
+it may be hard or impossible to work out algebraically) or computationally very
+expensive.
+
+\problem{1 (d)}
+Output from R:
+\VerbatimInput{problem1d.out}
+
+\problem{1 (e)}
+Output from R:
+\VerbatimInput{problem1e.out}
+
 \problem{2 (a)}
 For each round, we draw seven random numbers between one and 34. We count how
 many draws contain at least two consecutive number ($c$) and divide by how many
@@ -53,16 +75,21 @@ We have
 \begin{align*}
   \text{ME} &= z\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
   \left(\frac{\text{ME}}{z}\right)^2 &= \frac{\hat{p}(1-\hat{p})}{n} \\
-  n &= \hat{p}(1-\hat{p}) \frac{z^2}{\text{ME}^2}
+  n &= \ceil*{ \hat{p}(1-\hat{p}) \frac{z^2}{\text{ME}^2} }
 \end{align*}
-I wrote a test program that seems to indicate that $\hat{p} = 0.779$, so let's
-see what we get. The z-value must be 1.96 for a 0.95 interval, and we have the
-margin of error (ME) to be 0.01
+where $\ceil{\dots}$ is the ceiling function.
+
+I wrote a test program that seems to indicate that $\hat{p} = 0.779$, so we can
+use that and see what we get.  The z-value must be 1.96 for a 95\%{} interval,
+and we have the margin of error $\text{ME} = 0.01$, which gives us
 \[
   n = 6614
 \]
+That suggests that we should have around 6614 samples.
 
 \problem{2 (b)}
+Output from R:
+\VerbatimInput{problem2b.out}
 
 \problem{3 (a)}
 \problem{3 (b)}

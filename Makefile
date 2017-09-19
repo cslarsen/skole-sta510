@@ -1,26 +1,24 @@
-OS := $(shell uname)
-MAIN := bachelor
+TARGETS := assignment-1.pdf
 
+OS := $(shell uname)
 ifeq ($(OS),Linux)
 	PDFLATEX := /opt-rh7/texlive/2017/bin/x86_64-linux/pdflatex
 	BIBTEX := /opt-rh7/texlive/2017/bin/x86_64-linux/bibtex
 	OPEN := xdg-open
+	RSCRIPT := Rscript
 else
 	PDFLATEX := pdflatex
 	BIBTEX := bibtex
 	OPEN := open
+	RSCRIPT := Rscript
 endif
-
-TARGETS := assignment-1.pdf
 
 all: $(TARGETS)
 
-ex1.pdf: code1
+assignment-1.pdf: problem1b.out problem1c.out problem1d.out problem1e.out problem2b.out
 
-.PHONY: code1
-
-code1:
-	make -C $@
+problem%.out: assignment-1.R
+	$(RSCRIPT) -e 'source("$<"); $(@:.out=)()' > $@
 
 open: all
 	$(OPEN) assignment-1.pdf
@@ -28,15 +26,13 @@ open: all
 %.eps: %.gp data.txt
 	gnuplot $<
 
-ex1.pdf: ex1.tex preamble.tex
-
 assignment-1.pdf: assignment-1.tex preamble.tex
 
 %.pdf: %.tex
-	$(PDFLATEX) $<
+	$(PDFLATEX) -halt-on-error $<
 	$(BIBTEX) $(<:.tex=)
-	$(PDFLATEX) $<
+	$(PDFLATEX) -halt-on-error $<
+	$(PDFLATEX) -halt-on-error $<
 
 clean:
-	make -C code1 clean
-	rm -f $(TARGETS) $(TARGETS:.pdf=.aux) $(TARGETS:.pdf=.log) $(TARGETS:.pdf=.out)
+	rm -f $(TARGETS) *.out $(TARGETS:.pdf=.aux) $(TARGETS:.pdf=.log) $(TARGETS:.pdf=.out)

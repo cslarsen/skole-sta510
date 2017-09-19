@@ -106,6 +106,14 @@ The CDF is given by
      = \left[ -e^{-\frac{t^2}{2\theta^2}} \right]_0^{x} = 
      1 - e^{-\frac{x^2}{2\theta^2}}, \text{ where } x>0 \text{ and } \theta > 0
 \end{align*}
+We now need to solve for x
+\begin{align*}
+  g(g^{-1}(u)) &= 1 - e^{-\frac{g^{-1}(u)^2}{2\theta^2}} = u \\
+  - \frac{ g^{-1}(u)^2 }{ 2\theta^2 } &= \log{(1-u)} \\
+  g^{-1}(u) & = \pm \theta \sqrt{ -2 \log{(1-u)} }
+\end{align*}
+At this point we need to go back, because I don't want to use imaginary
+numbers. We could perhaps write this in trigonometric terms, perhaps.
 
 \problem{3 (b)}
 \problem{3 (c)}

@@ -95,7 +95,7 @@ problem3b <- function(num_samples=10000, theta=1.78) {
 
   # Make a histogram
   hist(samples, main=paste(length(samples), "Rayleigh samples"), freq=FALSE,
-       right=FALSE, xlab="wave heights", breaks=40)
+       right=FALSE, xlab="wave heights", breaks=32)
 
   # Show expected value as a vertical line
   expected <- theta * sqrt(pi/2)

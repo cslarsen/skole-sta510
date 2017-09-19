@@ -18,9 +18,7 @@ all: $(TARGETS)
 assignment-1.pdf: problem1b.out problem1c.out problem1d.out problem1e.out problem2b.out problem3b.out
 
 problem%.out: assignment-1.R
-	rm -f Rplots.pdf
-	$(RSCRIPT) -e 'source("$<"); $(@:.out=)()' > $@
-	if [ -e Rplots.pdf ]; then mv Rplots.pdf $(@:.out=.pdf); fi
+	$(RSCRIPT) -e 'pdf("$(@:.out=.pdf)"); source("$<"); $(@:.out=)()' > $@
 
 open: all
 	$(OPEN) assignment-1.pdf

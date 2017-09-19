@@ -1,7 +1,7 @@
 \documentclass[a4paper,english,12pt]{article}
 \input{preamble}
 
-\title{STA510 --- Statistical modelling and simulation}
+\title{STA-510 Statistical modelling and simulation}
 \subtitle{Mandatory exercise 1}
 \author{Christian Stigen}
 \date{UiS, September \nth{21}, 2017}
@@ -116,11 +116,9 @@ We now need to find $g^{-1}(u)$ for
 Since $x > 0$ we can only have positive square roots. We get
 \begin{align*}
     x &= g^{-1}(u) = \theta\sqrt{2\log{\left(\frac{1}{1 - u}\right)}}
-   \text{ where } x>0\, , \theta>0\, , u<1
+   \text{ where } x>0\, , \theta>0\, , u \in \left[0,1\right>
    \\
 \end{align*}%
-and given that the uniform, pesudo-random number $u \in \left[ 0,1 \right>$.
-
 The algorithm to generate one sample will then be
 \begin{itemize}
   \item set $u = \mathrm{uniform}(0,1)$ where $u<1$

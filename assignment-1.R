@@ -90,9 +90,10 @@ rayleigh <- function(samples, theta, decimals=6) {
   out
 }
 
-problem3b <- function(theta=1.78) {
-  samples <- rayleigh(10000, theta=theta)
-  hist(samples, main=paste(length(samples), "Rayleigh samples"))
+problem3b <- function(num_samples=10000, theta=1.78) {
+  samples <- rayleigh(num_samples, theta=theta)
+  hist(samples, main=paste(length(samples), "Rayleigh samples"), freq=FALSE,
+       right=FALSE)
 
   # Show expected value
   expected <- theta * sqrt(pi/2)

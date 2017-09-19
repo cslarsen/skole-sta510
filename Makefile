@@ -23,7 +23,7 @@ code1:
 	make -C $@
 
 open: all
-	open assignment-1.pdf
+	$(OPEN) assignment-1.pdf
 
 %.eps: %.gp data.txt
 	gnuplot $<

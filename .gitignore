@@ -6,3 +6,6 @@
 *.out
 *.pdf
 *.pyc
+GPATH
+GRTAGS
+GTAGS

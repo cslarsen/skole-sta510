@@ -100,14 +100,26 @@ problem3b <- function(num_samples=10000, theta=1.78) {
   variance <- theta^2 * (4 - pi) / 2
   abline(v=expected, col="red", lty=2)
 
-  # Print some figures
+  # Compare with theoretically expected values
+
   n <- length(samples)
   sample_mean <- sum(samples) / n
   sample_var <- sum((samples - sample_mean)^2) / (n - 1)
 
-  println("Theoretical expected value: ", expected)
-  println("Sample mean: ", sample_mean)
+  # Print a LaTeX table
 
-  println("Theoretical variance: ", variance)
-  println("Sample variance: ", sample_var)
+  println("\\begin{table}")
+  println("  \\centering")
+  println("  \\begin{tabular}{@{}lcc@{}}")
+  println("    \\toprule")
+  println("     & Expected & Sampled \\\\")
+  println("    \\midrule")
+  println("    Mean", " & ", expected, " & ", sample_mean, " \\\\")
+  println("    Variance", " & ", variance, " & ", sample_var, " \\\\")
+  println("    \\bottomrule")
+  println("  \\end{tabular}")
+  println("  \\caption{Comparison of theoretically")
+  println("     computed values and sampled ones in problem 3 (b).}")
+  println("  \\label{table:3b}")
+  println("\\end{table}")
 }

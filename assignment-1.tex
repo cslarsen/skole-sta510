@@ -106,12 +106,10 @@ The CDF is given by
      = \left[ -e^{-\frac{t^2}{2\theta^2}} \right]_0^{x} = 
      1 - e^{-\frac{x^2}{2\theta^2}}, \text{ where } x>0 \text{ and } \theta > 0
 \end{align*}
-We now need to solve for x
+We now need to find $g^{-1}(u)$ for
 \begin{align*}
   g(g^{-1}(u)) &= 1 - e^{-\frac{g^{-1}(u)^2}{2\theta^2}} = u \\
-   \frac{1}{e^\frac{g^{-1}(u)^2}{2\theta^2} } &= 1 - u \\
    e^\frac{g^{-1}(u)^2}{2\theta^2}  &= \frac{1}{1 - u} \\
-   \frac{g^{-1}(u)^2}{2\theta^2}  &= \log{\left(\frac{1}{1 - u}\right)} \\
    g^{-1}(u)^2  &= 2\theta^2\log{\left(\frac{1}{1 - u}\right)} \\
    g^{-1}(u)  &= \pm\theta\sqrt{2\log{\left(\frac{1}{1 - u}\right)}} \\
 \end{align*}

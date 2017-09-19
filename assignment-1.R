@@ -69,3 +69,25 @@ problem2b <- function() {
   println("n=10000: ", lottosim(10000))
   println("n=6614: ", lottosim(6614))
 }
+
+rayleigh <- function(samples, theta, decimals=6) {
+  out <- c()
+
+  for ( i in 1:samples) {
+    u <- 1
+    while ( u == 1 ) {
+      u <- sample(0:10^decimals, 1) / 10^decimals
+    }
+
+    g <- function(x) {
+      theta*sqrt(2*log(1/(1-u)))
+    }
+
+    out <- c(out, g(u))
+  }
+
+  out
+}
+
+println("3 Reyleigh samples with theta=1.78: ")
+cat(paste(rayleigh(3, theta=1.78)), "\n")

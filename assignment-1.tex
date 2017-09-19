@@ -94,11 +94,12 @@ Output from R:
 \problem{3 (a)}
 \paragraph{Problem} We want to sample x-values whose distribution is given by a
 probability density function (PDF) is $f(x)$.
-\paragraph{Solution} We use the \textit{inverse transform method}: Since any
-the values given by the PDF is within 0--1, we use a uniform pseudo-random
-number generator to select a value in the interval 0--1. We then find which
-x-value will give this value by finding the inverse of the cumulative density
-function (CDF) $g$.
+
+\paragraph{Solution} We use the \textit{inverse transform method}
+\cite{wiki:inverse.transform.method}: Since any the values given by the PDF is
+within 0--1, we use a uniform pseudo-random number generator to select a value
+in the interval 0--1. We then find which x-value will give this value by
+finding the inverse of the cumulative density function (CDF) $g$.
 
 The CDF is given by
 \begin{align*}

@@ -109,11 +109,25 @@ The CDF is given by
 We now need to solve for x
 \begin{align*}
   g(g^{-1}(u)) &= 1 - e^{-\frac{g^{-1}(u)^2}{2\theta^2}} = u \\
-  - \frac{ g^{-1}(u)^2 }{ 2\theta^2 } &= \log{(1-u)} \\
-  g^{-1}(u) & = \pm \theta \sqrt{ -2 \log{(1-u)} }
+   \frac{1}{e^\frac{g^{-1}(u)^2}{2\theta^2} } &= 1 - u \\
+   e^\frac{g^{-1}(u)^2}{2\theta^2}  &= \frac{1}{1 - u} \\
+   \frac{g^{-1}(u)^2}{2\theta^2}  &= \log{\left(\frac{1}{1 - u}\right)} \\
+   g^{-1}(u)^2  &= 2\theta^2\log{\left(\frac{1}{1 - u}\right)} \\
+   g^{-1}(u)  &= \pm\theta\sqrt{2\log{\left(\frac{1}{1 - u}\right)}} \\
 \end{align*}
-At this point we need to go back, because I don't want to use imaginary
-numbers. We could perhaps write this in trigonometric terms, perhaps.
+Since $x > 0$ we can only have positive square roots. We get
+\begin{align*}
+    x &= g^{-1}(u) = \theta\sqrt{2\log{\left(\frac{1}{1 - u}\right)}}
+   \text{ where } x>0\, , \theta>0\, , u<1
+   \\
+\end{align*}%
+and given that the uniform, pesudo-random number $u \in \left[ 0,1 \right>$.
+
+The algorithm to generate one sample will then be
+\begin{itemize}
+  \item set $u = \mathrm{uniform}(0,1)$ where $u<1$
+  \item return $x = g^{-1}(u)$, where $g^{-1}$ as defined above.
+\end{itemize}
 
 \problem{3 (b)}
 \problem{3 (c)}

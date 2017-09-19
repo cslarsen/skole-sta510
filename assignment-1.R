@@ -93,9 +93,21 @@ rayleigh <- function(samples, theta, decimals=6) {
 problem3b <- function(num_samples=10000, theta=1.78) {
   samples <- rayleigh(num_samples, theta=theta)
   hist(samples, main=paste(length(samples), "Rayleigh samples"), freq=FALSE,
-       right=FALSE)
+       right=FALSE, xlab="wave heights")
 
   # Show expected value
   expected <- theta * sqrt(pi/2)
+  variance <- theta^2 * (4 - pi) / 2
   abline(v=expected, col="red", lty=2)
+
+  # Print some figures
+  n <- length(samples)
+  sample_mean <- sum(samples) / n
+  sample_var <- sum((samples - sample_mean)^2) / (n - 1)
+
+  println("Theoretical expected value: ", expected)
+  println("Sample mean: ", sample_mean)
+
+  println("Theoretical variance: ", variance)
+  println("Sample variance: ", sample_var)
 }

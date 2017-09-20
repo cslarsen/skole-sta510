@@ -70,17 +70,20 @@ problem2b <- function() {
   println("n=6614: ", lottosim(6614))
 }
 
+# Samples from a Rayleigh distribution. The decimals controls how many decimals
+# each sample u can have. "samples" are the number of samples we want to
+# generate.
 rayleigh <- function(samples, theta, decimals=6) {
-  # Get random numbers in [0,1>. To get close to 1 but noe exactly, we choose
-  # from a slightly smaller interval (i.e., the highest value we can get is
-  # 10^decimals-1, then we divide by 10^decimals so that number will never be
-  # one. This is g(u) cannot let u==1, or else we divide by zero.
-  u <- sample(0:(10^decimals-1), samples) / 10^decimals
-
+  # The inverse function g^{-1}(u)
   g <- function(u) {
     theta*sqrt(2*log(1/(1-u)))
   }
 
+  # Get random numbers in [0,1>, because u must be less than 1. We do this by
+  # sampling from 0...10^decimals-1, then divide by 10^decimals.
+  u <- sample(0:(10^decimals-1), samples) / 10^decimals
+
+  # Calculate the inverses of all u values we sampled
   g(u)
 }
 

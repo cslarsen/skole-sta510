@@ -193,11 +193,19 @@ Output from R:
 With acceptance-rejection sampling, we are supposed to assume that the PDF of the triangle distribution, or that it
 is impractical to sample from directly. Instead, we should find a function with
 similar shape and find a constant $c$ so that $\frac{f(t)}{cg(t)} \leqslant c$
-for all $t$. Instead, we just use the original function and instead calculate
-$c$ to normalize the PDF of the triangle function. See the code for more
-details, or the algorithm \vref{algorithm:rtriangle}.
+for all $t$. But since we need a function that follows the shape of the
+triangular PDF itself, we must reimplement it but with a factor off
+so that we can use acceptance-rejection sampling. Instead, we just set
+$c=\frac{2}{(b-a)}$ to normalize $f$ so that we check if $u < \sfrac{f(y)}{c}$.
 
-In \cite{STEIN20091143} there is another method to do this.
+This is a somewhat contrived case, and the sentiment is shared in
+\cite{STEIN20091143}:
+
+\textit{In the case of the triangular, this is not competitive with the
+inversion method but is widely used for pedagogical purposes.}
+
+For details on how I have implemented this, see the code and algorithm
+\vref{algorithm:rtriangle}.
 
 \begin{algorithm}
   \caption{Generates $n$ samples from the triangle distribution}

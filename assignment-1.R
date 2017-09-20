@@ -178,32 +178,19 @@ rtriangle <- function(n, a=1.5, b=3, c=2) {
     ptriangle(x, a, b, c)
   }
 
-  # Top-point of f
-  M <- 2 / (b - a)
-
-  # About proposal function: We have to choose a function that has the same
-  # shape as ptriangle, but that is only a constant away from it. That's how we
-  # get the correct shape in the sampling below. Usually, we choose shape
-  # functions that are simpler, easier to compute and so on. Perhaps there *is*
-  # no PDF at all, so we create splines that mimic an empirical sample set.
-  # However, for this case, I find it contrived to set up a function that is
-  # exactly like ptriangle, but a constant off. So I just use M (the top point
-  # of ptriangle) to *normalize* the PDF of the triangle distribution. Of
-  # course, it works, although the whole example here becomes very contrived.
-
   retries <- 0
   samples <- numeric(n)
 
   for ( i in 1:n ) {
     repeat {
-      u <- runif(1)
-      y <- runif(1, min=a, max=b)
-      if ( u < f(y)/M ) { # see above note
+      y <- runif(1)
+      x <- runif(1, min=a, max=b)
+      if ( y < f(x)*(b-a) / 2 ) {
         break
       }
       retries <- retries + 1
     }
-    samples[i] <- y
+    samples[i] <- x
   }
 
   println("rtriangle: Generated ", length(samples), " samples with ", retries,

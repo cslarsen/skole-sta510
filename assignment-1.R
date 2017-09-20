@@ -175,11 +175,15 @@ rtriangle <- function(n, a=1.5, b=3, c=2) {
     ptriangle(x, a, b, c)
   }
 
+  # Top-point of f
   M <- 2 / (b - a)
+
+  retries <- 0
   samples <- numeric(n)
 
   for ( i in 1:n ) {
     repeat {
+      retries <- retries + 1
       u <- runif(1)
       y <- runif(1, min=a, max=b)
       if ( u < f(y)/M ) {
@@ -189,6 +193,9 @@ rtriangle <- function(n, a=1.5, b=3, c=2) {
     samples[i] <- y
   }
 
+  println("rtriangle: Generated ", length(samples), " samples with ", retries,
+          " retries, or ", retries / length(samples),
+          " retries per sample")
   samples
 }
 
@@ -202,7 +209,7 @@ problem3f <- function() {
   # Draw PDF
   x <- seq(1.5, 3, 0.01)
   f <- function(x) { ptriangle(x, a=1.5, b=3, c=2) }
-  lines(x, f(x), col="red", add=TRUE, lwd=2)
+  lines(x, f(x), col="red", lwd=2)
 
   # Draw expected value
   abline(v=2, col="red", lty=2, lwd=2)

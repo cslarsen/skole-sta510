@@ -21,23 +21,23 @@ The probability density function is given in \cite{walpole} as
 \]
 We then have that
 \[
-  P(X \leqslant x) = \int_{-\infty}^{x} f(t)\, \mathrm{d}t 
+  \Prb(X \leqslant x) = \int_{-\infty}^{x} f(t)\, \mathrm{d}t 
     = \left[ -e^{-\frac{t}{\beta}} \right]_{0}^{x} = 1 - e^{-\frac{x}{\beta}}
 \]
 
 \problem{1 (a i)}
 \[
-  P(X > 4000) = 1 - P(X \leqslant 4000) = e^{-\frac{4000}{5000}} \approx 0.449
+  \Prb(X > 4000) = 1 - \Prb(X \leqslant 4000) = e^{-\frac{4000}{5000}} \approx 0.449
 \]
 
 \problem{1 (a ii)}
 \[
-  P(4000 \leqslant X \leqslant 6000) =
-    P(X \leqslant 6000) - P(X \leqslant 4000) =
+  \Prb(4000 \leqslant X \leqslant 6000) =
+    \Prb(X \leqslant 6000) - \Prb(X \leqslant 4000) =
        e^{-\frac{4000}{5000}} - e^{-\frac{6000}{5000}}
        \approx 0.148
 \]
-Note that for continuous density functions, $P(X=x) = 0$. Therefore I have not
+Note that for continuous density functions, $\Prb(X=x) = 0$. Therefore I have not
 been diligent in the use of the less-than-or-equal symbols here.
 
 \problem{1 (b)}
@@ -62,7 +62,7 @@ For each round, we draw seven random numbers from 1--34. We count how many
 draws contain at least two consecutive number ($c$) and divide by how many
 total draws we have made ($n$). The probability will then be
 \[
-  P(\text{contains two or more consecutive numbers}) = \frac{c}{n}
+  \Prb(\text{contains two or more consecutive numbers}) = \frac{c}{n}
 \]
 % TODO: Find how many sims to be 95% that the error is at most 0.01. See slides
 % for this!
@@ -119,7 +119,8 @@ cancelling out the signs: Thus, the following two solutions are equal:
 For the above two equations, the left one may be more numerically stable when
 implemented in computers. It also avoids one division. In fact, this is the one
 that was chosen in the implementation of \texttt{rrayleigh} in the
-\texttt{VGAM} package \cite{github:vgam}.
+\texttt{VGAM} package\footnote{In \texttt{VGAM}, the $\theta$-parameter is
+called \textit{scale}.} \cite{github:vgam}.
 
 Since $x > 0$ we can only have positive square roots. We get
 \begin{align*}

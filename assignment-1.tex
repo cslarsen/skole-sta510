@@ -147,7 +147,7 @@ $\left[0,1\right>$, but that was painstakingly slow compared to \texttt{runif}.
   \begin{algorithmic}[1]
     \Function{rayleigh}{$n, \theta$}
       \Let{$\textrm{samples}$}{vector of size $n$}
-      \For{$i \gets 0 \textrm{ to } n$}
+      \For{$i \gets 0 \textrm{ to } (n-1)$}
         \Let{$u$}{$\mathrm{uniform}(0,1)$} \Comment{Random float $u \in \left[0,1\right>$}
         \Let{$\textrm{samples}[i]$}{$\theta\sqrt{2\log{\left(\sfrac{1}{1-u}\right)}}$}
       \EndFor

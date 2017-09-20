@@ -37,8 +37,8 @@ We then have that
        e^{-\frac{4000}{5000}} - e^{-\frac{6000}{5000}}
        \approx 0.148
 \]
-Note that for continuous density functions, $P(X=x) = 0$, so I have not been
-very diligent in the use of the less-than-or-equal symbols.
+Note that for continuous density functions, $P(X=x) = 0$. Therefore I have not
+been diligent in the use of the less-than-or-equal symbols here.
 
 \problem{1 (b)}
 Output from R:
@@ -58,9 +58,9 @@ Output from R:
 \VerbatimInput{problem1e.out}
 
 \problem{2 (a)}
-For each round, we draw seven random numbers between one and 34. We count how
-many draws contain at least two consecutive number ($c$) and divide by how many
-total draws we have made ($n$). The chance will then be
+For each round, we draw seven random numbers from 1--34. We count how many
+draws contain at least two consecutive number ($c$) and divide by how many
+total draws we have made ($n$). The probability will then be
 \[
   P(\text{contains two or more consecutive numbers}) = \frac{c}{n}
 \]
@@ -74,9 +74,9 @@ We have
 \end{align*}
 where $\ceil{\dots}$ is the ceiling function.
 
-I wrote a test program that seems to indicate that $\hat{p} = 0.779$, so we can
-use that and see what we get.  The z-value must be 1.96 for a 95\%{} interval,
-and we have the margin of error $\text{ME} = 0.01$, which gives us
+I wrote a test program that seems to indicate that $\hat{p} = 0.779$. The
+z-value must be 1.96 for a 95\%{} interval, and we have the margin of error
+$\text{ME} = 0.01$, which gives us
 \[
   n = 6614
 \]
@@ -137,6 +137,11 @@ are given in table \vref{table:3b}.
 \end{figure}
 
 \problem{3 (c)}
+One simulation: Set $\theta=1.3$ and take Rayleigh 200 samples. Return 0 if all
+waves are less than or equal to five meters, 1 if not. We then perform a large
+number of simulations and divide the sum of each simulation by the number of
+simulations made.
+
 \problem{3 (d)}
 \problem{3 (e)}
 \problem{3 (f)}

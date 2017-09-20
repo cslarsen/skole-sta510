@@ -71,31 +71,25 @@ problem2b <- function() {
 }
 
 rayleigh <- function(samples, theta, decimals=6) {
-  # TODO: Make this faster!
-  out <- c()
+  # Get random numbers in [0,1>. To get close to 1 but noe exactly, we choose
+  # from a slightly smaller interval (i.e., the highest value we can get is
+  # 10^decimals-1, then we divide by 10^decimals so that number will never be
+  # one. This is g(u) cannot let u==1, or else we divide by zero.
+  u <- sample(0:(10^decimals-1), samples) / 10^decimals
 
-  for ( i in 1:samples) {
-    u <- 1
-    while ( u == 1 ) {
-      u <- sample(0:10^decimals, 1) / 10^decimals
-    }
-
-    g <- function(x) {
-      theta*sqrt(2*log(1/(1-u)))
-    }
-
-    out <- c(out, g(u))
+  g <- function(u) {
+    theta*sqrt(2*log(1/(1-u)))
   }
 
-  out
+  g(u)
 }
 
-problem3b <- function(num_samples=10000, theta=1.78) {
+problem3b <- function(num_samples=1000000, theta=1.78) {
   samples <- rayleigh(num_samples, theta=theta)
 
   # Make a histogram
   hist(samples, main=paste(length(samples), "Rayleigh samples"), freq=FALSE,
-       right=FALSE, xlab="wave heights", breaks=32)
+       right=FALSE, xlab="wave heights", breaks=50)
 
   # Show expected value as a vertical line
   expected <- theta * sqrt(pi/2)
@@ -130,4 +124,18 @@ problem3b <- function(num_samples=10000, theta=1.78) {
   println("     ``Expected Mean'' is actually the \\textit{expected value}.}")
   println("  \\label{table:3b}")
   println("\\end{table}")
+}
+
+problem3d <- function() {
+  simulate <- function(runs) {
+    total <- 0
+    for ( n in 1:runs ) {
+      if ( max(rayleigh(200, 1.3)) > 5 ) {
+        total <- total + 1
+      }
+    }
+    total / runs
+  }
+
+  println("1k simulations, wave>5 prob: ", simulate(1000))
 }

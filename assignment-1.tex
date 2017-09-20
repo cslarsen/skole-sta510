@@ -132,11 +132,23 @@ since we know $x>0$ we can remove the minus sign. We then get
    \text{ where } x>0\, , \theta>0\, , u \in \left[0,1\right>
    \\
 \end{align*}%
-The algorithm to generate one sample will then be
-\begin{itemize}
-  \item set $u = \mathrm{uniform}(0,1)$ where $u<1$
-  \item return $x = g^{-1}(u)$, where $g^{-1}$ as defined above.
-\end{itemize}
+The algorithm to generate samples from the Rayleigh distribution is given in
+algorithm \vref{algorithm:rayleigh}.
+
+\begin{algorithm}
+  \caption{Generates $n$ samples from the Rayleigh distribution}
+  \label{algorithm:rayleigh}
+  \begin{algorithmic}[1]
+    \Function{rayleigh}{$n, \theta$}
+      \Let{$\textrm{samples}$}{vector of size $n$}
+      \For{$i \gets 0 \textrm{ to } n$}
+        \Let{$u$}{$\mathrm{uniform}(0,1)$} \Comment{Random float $u \in \left<0,1\right>$}
+        \Let{$\textrm{samples}[i]$}{$\theta\sqrt{2\log{\left(\sfrac{1}{1-u}\right)}}$}
+      \EndFor
+        \State \Return{samples}
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
 
 \problem{3 (b)}
 A histogram of Rayleigh samples is given in figure \vref{plot:3b}, while a

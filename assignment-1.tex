@@ -133,7 +133,13 @@ since we know $x>0$ we can remove the minus sign. We then get
    \\
 \end{align*}%
 The algorithm to generate samples from the Rayleigh distribution is given in
-algorithm \vref{algorithm:rayleigh}.
+algorithm \vref{algorithm:rayleigh}. Note that in the actual implementation I
+made for the Rayleigh sampling, I used the \texttt{runif} function to draw
+uniform floating point samples. This function does \textit{not} include its
+extreme values, meaning you only get $\left<0,1\right>$ in the default case.
+This is explained in the help for \texttt{runif}. I originally used
+\texttt{sample(1:10\^{}decimals-1, n) / 10\^{}decimals} to generate
+$\left[0,1\right>$, but that was painstakingly slow compared to \texttt{runif}.
 
 \begin{algorithm}
   \caption{Generates $n$ samples from the Rayleigh distribution}
@@ -142,7 +148,7 @@ algorithm \vref{algorithm:rayleigh}.
     \Function{rayleigh}{$n, \theta$}
       \Let{$\textrm{samples}$}{vector of size $n$}
       \For{$i \gets 0 \textrm{ to } n$}
-        \Let{$u$}{$\mathrm{uniform}(0,1)$} \Comment{Random float $u \in \left<0,1\right>$}
+        \Let{$u$}{$\mathrm{uniform}(0,1)$} \Comment{Random float $u \in \left[0,1\right>$}
         \Let{$\textrm{samples}[i]$}{$\theta\sqrt{2\log{\left(\sfrac{1}{1-u}\right)}}$}
       \EndFor
         \State \Return{samples}

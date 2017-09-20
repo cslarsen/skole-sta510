@@ -190,33 +190,39 @@ Output from R:
 \VerbatimInput{problem3d.out}
 
 \problem{3 (e)}
-We \textit{uniformly} sample $n$ points consiting of an $x \in [1.5, 3]$ and $y
-\in [0, 1]$. We then check that each point is inside the region defined by the
-triangle PDF and the axis. Points outside are rejected, points inside are
-accepted and used as samples.  Because of the triangle shape, it will be more
-likely to get values around the most expected wave height of 2, while values
-near the extremes $1.5$ and $3$ will be less likely to have been accepted.
+See algorithm \vref{algorithm:rtriangle}.
 
-With more details, we have $a=1.5$, $c=2$ and $b=3$. The height at $c$ is
-$\frac{2}{b-a} = \frac{4}{3}$. In our algorithm, we thus check that the point's $x$
-value is less than or equal to $c$. If it is, it will be accepted if its $y$
-value is less than or equal to $\frac{8}{3}x - 4$. Likewise, for values higher
-than $c$, we check against $-\frac{4}{3} + 4$.
-
-\paragraph{Algorithm}
-\begin{itemize}
-  \item Let $a=\text{minimum wave height}$, $b=\text{maximum wave height}$ and
-    $c=\text{expected wave height}$.
-  \item Let $l(x) = \frac{2}{(b-a)(c-a)}$  and $r(x) = \frac{2}{(b-a)(b-c)}$
-    (left and right lines)
-  \item Uniformly pick a random point $x \in [a, b]$ and $y \in [0, \frac{2}{b-a}]$.
-  \item If $x \leqslant c$, accept if $y \in \left[0, l(x)\right]$
-  \item If $x > c$, accept if $y \in \left[0, r(x)\right]$
-  \item Else reject
-\end{itemize}
+\begin{algorithm}
+  \caption{Generates $n$ samples from the triangle distribution}
+  \label{algorithm:rtriangle}
+  \begin{algorithmic}[1]
+    \Function{ptriangle}{$x, a, b, c$}
+      \If{$x \leqslant c$}
+        \State \Return{$\frac{2}{(b-a)(c-a)}(x-a)$}
+      \Else
+        \State \Return{$\frac{2}{(b-a)(b-c)}(b-x)$}
+      \EndIf
+    \EndFunction
+    \Function{rtriangle}{$n, a, b, c$}
+      \Let{$c$}{$ \sfrac{2}{(b-a)}$}
+        \Comment{Constant so that $\forall t: \frac{f(t)}{g(t)} \leqslant c$}
+      \Let{$f(x)$}{\Call{ptriangle}{$x, a, b, c$}}
+        \Comment{Partial application}
+      \Let{$\textrm{samples}$}{numeric vector of size $n$}
+      \For{$i \gets 1 \textrm{ to } n$}
+        \Repeat
+          \Let{$u$}{$\textrm{uniform}(0, 1)$}
+          \Let{$y$}{$\textrm{uniform}(a, b)$} \Comment{$y \in \left[a,b\right]$}
+        \Until{$u < \frac{f(y)}{c}$}
+        \Let{$\textrm{samples}[i]$}{$y$}
+      \EndFor
+      \State \Return{samples}
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
 
 \problem{3 (f)}
-See figure \vref{plot:3f}.
+For a plot of algorithm \vref{algorithm:rtriangle}, see figure \vref{plot:3f}.
 
 \begin{figure}
   \centering

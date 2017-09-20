@@ -109,20 +109,24 @@ We now need to find $g^{-1}(u)$ for
    g^{-1}(u)^2  &= 2\theta^2\log{\left(\frac{1}{1 - u}\right)} \\
    g^{-1}(u)  &= \pm\theta\sqrt{2\log{\left(\frac{1}{1 - u}\right)}} \\
 \end{align*}
-In solving these, I got a minus sign under the square root. However, taking the
-logarithm of a number less than zero will of course yield a negative number,
-cancelling out the signs: Thus, the following two solutions are equal:
+When I first solved this, I got the expression $\theta\sqrt{-2\log{(1-u)}}$ and
+thought I had made a mistake --- because of the minus sign. However, since
+$u<1$, the logarithm expression will obviously always compute to a negative
+number. That is, the following two expressions are exactly the same:
 \[
   \theta\sqrt{-2\log{(1-u)}} = \theta\sqrt{2\log{\left(\frac{1}{1-u}\right)}}\,
   \text{ where } u \in \left[0,1\right>
 \]
-For the above two equations, the left one may be more numerically stable when
-implemented in computers. It also avoids one division. In fact, this is the one
-that was chosen in the implementation of \texttt{rrayleigh} in the
-\texttt{VGAM} package\footnote{In \texttt{VGAM}, the $\theta$-parameter is
-called \textit{scale}.} \cite{github:vgam}.
+When implemented on a computer, the left expression \textit{could} be
+numerically more stable, depending on the floating point system used. With IEEE
+754 (which is most likely the one that R uses), it doesn't seem to matter.
+Anyway, it avoids one division. In fact, this is the one that was chosen in
+\texttt{rrayleigh} implementation in the \texttt{VGAM} package\footnote{In
+\texttt{VGAM}, the $\theta$-parameter is called \textit{scale}.}
+\cite{github:vgam}.
 
-Since $x > 0$ we can only have positive square roots. We get
+As to the $\pm$ operator, the whole expression returns a value for $x$, and
+since we know $x>$ we can remove the minus sign. We then get
 \begin{align*}
     x &= g^{-1}(u) = \theta\sqrt{2\log{\left(\frac{1}{1 - u}\right)}}
    \text{ where } x>0\, , \theta>0\, , u \in \left[0,1\right>

@@ -17,7 +17,14 @@ endif
 
 all: $(TARGETS)
 
-assignment-1.pdf: references.bib problem1b.out problem1c.out problem1d.out problem1e.out problem2b.out problem3b.out
+assignment-1.pdf: references.bib \
+	problem1b.out \
+	problem1c.out \
+	problem1d.out \
+	problem1e.out \
+	problem2b.out \
+	problem3b.out \
+	problem3d.out
 
 problem%.out: assignment-1.R
 	$(RSCRIPT) -e 'pdf("$(@:.out=.pdf)"); source("$<"); $(@:.out=)()' > $@

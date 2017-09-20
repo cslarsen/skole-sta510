@@ -142,7 +142,18 @@ waves are less than or equal to five meters, 1 if not. We then perform a large
 number of simulations and divide the sum of each simulation by the number of
 simulations made.
 
+I've been experimenting with an alternative way: Take $200n$ samples where $n$
+is the number of simulations. Then count how many waves are larger than five
+meters, and divide by $n$. The rationale is that each wave is independent, and
+because of the law of large values, we should be able to ignore if any wave
+occurs in a batch of 200 or not. While this is much faster to computer in R, it
+does give just slightly different results. This is included in the output in
+problem 3 (d) as \texttt{simulations v2}, but I prefer not to use that.
+
 \problem{3 (d)}
+Output from R:
+\VerbatimInput{problem3d.out}
+
 \problem{3 (e)}
 \problem{3 (f)}
 \problem{3 (g)}

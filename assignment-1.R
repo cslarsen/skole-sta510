@@ -70,21 +70,27 @@ problem2b <- function() {
   println("n=6614: ", lottosim(6614))
 }
 
-# Samples from a Rayleigh distribution. The decimals controls how many decimals
-# each sample u can have. "samples" are the number of samples we want to
-# generate.
-rayleigh <- function(samples, theta, decimals=6) {
+# Samples from a Rayleigh distribution.
+rayleigh <- function(samples, theta) {
   # The inverse function g^{-1}(u)
   g <- function(u) {
     theta*sqrt(2*log(1/(1-u)))
   }
 
-  # Get random numbers in [0,1>, because u must be less than 1. We do this by
-  # sampling from 0...10^decimals-1, then divide by 10^decimals.
-  u <- sample(0:(10^decimals-1), samples) / 10^decimals
-
-  # Calculate the inverses of all u values we sampled
-  g(u)
+  # Generate `samples` random numbers. Runif doesn't include extreme values, so
+  # will never get 0 or 1. We don't want 1, but it would be nice to be able to
+  # get 0. I initially tried sample(1:10^decimals, samples) / 10^decimals,
+  # where decimals typically was 6. That gives me numbers in the range
+  # 0--0.999999, and seems to work very well in simulations. However, it is a
+  # very slow way to generate floating point numbers, so I switched to runif.
+  # Runif is much faster, but does not generate 0. However, because of the
+  # large number of simulations, I get almost similar results to what I had
+  # before.
+  #
+  # The runif source code is here:
+  # https://github.com/wch/r-source/blob/e5b21d0397c607883ff25cca379687b86933d730/src/nmath/runif.c
+  # Seems they use the regular rand-trick to get numbers in that range.
+  g(runif(samples))
 }
 
 problem3b <- function(num_samples=1000000, theta=1.78) {
@@ -131,14 +137,21 @@ problem3b <- function(num_samples=1000000, theta=1.78) {
 
 problem3d <- function() {
   simulate <- function(runs) {
-    total <- 0
+    results <- vector(mode="logical", runs)
     for ( n in 1:runs ) {
-      if ( max(rayleigh(200, 1.3)) > 5 ) {
-        total <- total + 1
-      }
+      results[n] <- max(rayleigh(200, 1.3 )) > 5
     }
-    total / runs
+    sum(results) / runs
   }
 
-  println("1k simulations, wave>5 prob: ", simulate(1000))
+  simv2 <- function(runs) {
+    sum(rayleigh(200*runs, 1.3) > 5) / runs
+  }
+
+  println("100 simulations, wave > 5 prob: ", simulate(100))
+  println("1000 simulations, wave > 5 prob: ", simulate(1000))
+  println("10000 simulations, wave > 5 prob: ", simulate(10000))
+  println("100000 simulations, wave > 5 prob: ", simulate(100000))
+  println("100000 simulations v2, wave > 5 prob: ", simv2(100000))
+  #println("1000000 simulations, wave > 5 prob: ", simulate(1000000))
 }

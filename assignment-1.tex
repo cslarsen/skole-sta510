@@ -109,6 +109,18 @@ We now need to find $g^{-1}(u)$ for
    g^{-1}(u)^2  &= 2\theta^2\log{\left(\frac{1}{1 - u}\right)} \\
    g^{-1}(u)  &= \pm\theta\sqrt{2\log{\left(\frac{1}{1 - u}\right)}} \\
 \end{align*}
+In solving these, I got a minus sign under the square root. However, taking the
+logarithm of a number less than zero will of course yield a negative number,
+cancelling out the signs: Thus, the following two solutions are equal:
+\[
+  \theta\sqrt{-2\log{(1-u)}} = \theta\sqrt{2\log{\left(\frac{1}{1-u}\right)}}\,
+  \text{ where } u \in \left[0,1\right>
+\]
+For the above two equations, the right one may be more numerically stable when
+implemented in computers. It also avoids one division. In fact, this is the one
+that was chosen in the implementation of \texttt{rrayleigh} in the
+\texttt{VGAM} package \cite{github:vgam}.
+
 Since $x > 0$ we can only have positive square roots. We get
 \begin{align*}
     x &= g^{-1}(u) = \theta\sqrt{2\log{\left(\frac{1}{1 - u}\right)}}

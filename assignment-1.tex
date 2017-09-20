@@ -190,19 +190,26 @@ Output from R:
 \VerbatimInput{problem3d.out}
 
 \problem{3 (e)}
-With acceptance-rejection sampling, we are supposed to assume that the PDF of the triangle distribution, or that it
-is impractical to sample from directly. Instead, we should find a function with
-similar shape and find a constant $c$ so that $\frac{f(t)}{cg(t)} \leqslant c$
-for all $t$. But since we need a function that follows the shape of the
-triangular PDF itself, we must reimplement it but with a factor off
-so that we can use acceptance-rejection sampling. Instead, we just set
-$c=\frac{2}{(b-a)}$ to normalize $f$ so that we check if $u < \sfrac{f(y)}{c}$.
+With acceptance-rejection sampling \footnote{Developed by the very famous Jon
+von Neumann} \cite{von1961various} we are supposed to assume that the PDF of
+the triangle distribution, or that it is impractical to sample from directly.
+Instead, we should find a function with similar shape and find a constant $c$
+so that $\frac{f(t)}{cg(t)} \leqslant c$ for all $t$. But since we need a
+function that follows the shape of the triangular PDF itself, we must
+reimplement it but with a factor off so that we can use acceptance-rejection
+sampling. Instead, we just set $c=\frac{2}{(b-a)}$ to normalize $f$ so that we
+check if $u < \sfrac{f(y)}{c}$.
 
 This is a somewhat contrived case, and the sentiment is shared in
 \cite{STEIN20091143}:
 
 \textit{In the case of the triangular, this is not competitive with the
 inversion method but is widely used for pedagogical purposes.}
+
+Furthermore, the examples given in the lectures accepts only when $u$ is
+\textit{less than}, but in \cite{stanford} they use
+\textit{less-than-or-equals}. I have not looked more into that detail, but have
+used less than or equals.
 
 For details on how I have implemented this, see the code and algorithm
 \vref{algorithm:rtriangle}.
@@ -228,7 +235,7 @@ For details on how I have implemented this, see the code and algorithm
         \Repeat
           \Let{$u$}{$\textrm{uniform}(0, 1)$}
           \Let{$y$}{$\textrm{uniform}(a, b)$} \Comment{$y \in \left[a,b\right]$}
-        \Until{$u < \frac{f(y)}{c}$}
+        \Until{$u \leqslant \frac{f(y)}{c}$}
         \Let{$\textrm{samples}[i]$}{$y$}
       \EndFor
       \State \Return{samples}
@@ -251,6 +258,7 @@ For a plot of algorithm \vref{algorithm:rtriangle}, see figure \vref{plot:3f}.
 \problem{3 (h)}
 \problem{3 (i)}
 
+\clearpage
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,references}
 

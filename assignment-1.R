@@ -185,7 +185,7 @@ rtriangle <- function(n, a=1.5, b=3, c=2) {
     repeat {
       y <- runif(1)
       x <- runif(1, min=a, max=b)
-      if ( y < f(x)*(b-a) / 2 ) {
+      if ( y <= f(x)*(b-a) / 2 ) {
         break
       }
       retries <- retries + 1

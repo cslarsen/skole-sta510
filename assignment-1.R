@@ -138,18 +138,22 @@ problem3b <- function(num_samples=1000000, theta=1.78) {
 
 problem3d <- function() {
   simulate <- function(runs) {
-    results <- vector(mode="logical", runs)
+    count <- 0
     for ( n in 1:runs ) {
-      results[n] <- max(rayleigh(200, 1.3 )) > 5
+      count <- count + (max(rayleigh(200, 1.3)) > 5)
     }
-    sum(results) / runs
+    count / runs
   }
 
   println("100 simulations, wave > 5 prob: ", simulate(100))
   println("1000 simulations, wave > 5 prob: ", simulate(1000))
   println("10000 simulations, wave > 5 prob: ", simulate(10000))
   println("100000 simulations, wave > 5 prob: ", simulate(100000))
-  println("1000000 simulations, wave > 5 prob: ", simulate(1000000))
+
+  # The following two takes a LONG time to execute, but show that we converge
+  # to the correct value calculated in problem 3 (g).
+  #println("1000000 simulations, wave > 5 prob: ", simulate(1000000))
+  #println("10000000 simulations, wave > 5 prob: ", simulate(10000000))
 }
 
 ptriangle <- function(x, a, b, c) {

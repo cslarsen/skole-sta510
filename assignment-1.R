@@ -98,7 +98,7 @@ problem3b <- function(num_samples=1000000, theta=1.78) {
 
   # Make a histogram
   hist(samples, main=paste(length(samples), "Rayleigh samples"), freq=FALSE,
-       right=FALSE, xlab="wave heights", breaks=50)
+       right=FALSE, xlab="Wave Heights", breaks=50)
 
   # Show expected value as a vertical line
   expected <- theta * sqrt(pi/2)
@@ -156,38 +156,47 @@ problem3d <- function() {
   #println("1000000 simulations, wave > 5 prob: ", simulate(1000000))
 }
 
-problem3e <- function() {
-  rtriangle <- function(samples, a=1.5, b=3, c=2) {
-    l <- function(x) {
-      x*2/((b-a)*(c-a)) - a*2/((b-a)*(c-a))
-    }
-    r <- function(x) {
-      -x*2/((b-a)*(b-c)) + b*2/((b-a)*(b-c))
-    }
-    f <- function(x) {
-      if ( x <= c ) {
-        l(x)
-      } else {
-        r(x)
-      }
-    }
-
-    #out <- character(samples)
-    out <- c()
-    for ( n in 1:samples ) {
-      x <- 99999
-      y <- 99999
-      while ( y > f(x) ) {
-        x <- runif(1)*4
-        y <- runif(1)*3
-      }
-
-      #out[n] <- x
-      out <- c(out, x)
-    }
-    out
+make_triangle_function <- function(a,b,c) {
+  l <- function(x) {
+    x*2/((b-a)*(c-a)) - a*2/((b-a)*(c-a))
   }
+  r <- function(x) {
+    -x*2/((b-a)*(b-c)) + b*2/((b-a)*(b-c))
+  }
+  f <- function(xs) {
+    sapply(xs, function(x) {
+    if ( x <= c ) {
+      l(x)
+    } else {
+      r(x)
+    }})
+  }
+  f
+}
 
-  ss <- rtriangle(100000)
-  hist(ss, breaks=100)
+rtriangle <- function(samples, a=1.5, b=3, c=2) {
+  f <- make_triangle_function(a, b, c)
+
+  #out <- character(samples)
+  out <- numeric(samples)
+  for ( n in 1:samples ) {
+    x <- 99999
+    y <- 99999
+    while ( y > f(x) ) {
+      x <- runif(1)*4
+      y <- runif(1)*3
+    }
+
+    out[n] <- x
+  }
+  out
+}
+
+problem3f <- function() {
+  ss <- rtriangle(1000)
+  hist(ss, breaks=100, freq=FALSE, right=FALSE, main="Triangle distribution",
+       xlab="Wave Height")
+  f <- make_triangle_function(a=1.5, b=3, c=2)
+  curve(f, from=1.5, to=3, col="red", add=TRUE, lwd=2)
+  abline(v=2, lwd=2, col="red", lty=2)
 }

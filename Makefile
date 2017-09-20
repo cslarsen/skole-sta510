@@ -17,7 +17,8 @@ endif
 
 all: $(TARGETS)
 
-assignment-1.pdf: references.bib \
+assignment-1.pdf: \
+	references.bib \
 	problem1b.out \
 	problem1c.out \
 	problem1d.out \

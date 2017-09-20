@@ -190,7 +190,14 @@ Output from R:
 \VerbatimInput{problem3d.out}
 
 \problem{3 (e)}
-See algorithm \vref{algorithm:rtriangle}.
+With acceptance-rejection sampling, we are supposed to assume that the PDF of the triangle distribution, or that it
+is impractical to sample from directly. Instead, we should find a function with
+similar shape and find a constant $c$ so that $\frac{f(t)}{cg(t)} \leqslant c$
+for all $t$. Instead, we just use the original function and instead calculate
+$c$ to normalize the PDF of the triangle function. See the code for more
+details, or the algorithm \vref{algorithm:rtriangle}.
+
+In \cite{STEIN20091143} there is another method to do this.
 
 \begin{algorithm}
   \caption{Generates $n$ samples from the triangle distribution}

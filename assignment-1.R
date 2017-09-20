@@ -156,13 +156,15 @@ problem3d <- function() {
   #println("1000000 simulations, wave > 5 prob: ", simulate(1000000))
 }
 
-ptriangle <- function(xs, a, b, c) {
-  delta_left = 2 / ((b - a) * (c - a))
-  delta_right = -2 / ((b - a) * (b - c))
-  offset_left = -2*a / ((b - a) * (c - a))
-  offset_right = 2*b / ((b - a) * (b - c))
+ptriangle <- function(x, a, b, c) {
+  delta_left <- 2 / ((b - a) * (c - a))
+  delta_right <- -2 / ((b - a) * (b - c))
+  offset_left <- -2*a / ((b - a) * (c - a))
+  offset_right <- 2*b / ((b - a) * (b - c))
 
-  sapply(xs, function(x) {
+  # We use sapply in case we get several values: Then we can use this function
+  # for example with ptriangle(seq(1.5,3,0.1)) and so on.
+  sapply(x, function(x) {
     if ( x <= c ) {
       delta_left*x + offset_left
     } else {
@@ -178,17 +180,27 @@ rtriangle <- function(n, a=1.5, b=3, c=2) {
   # Top-point of f
   M <- 2 / (b - a)
 
+  # About proposal function: We have to choose a function that has the same
+  # shape as ptriangle, but that is only a constant away from it. That's how we
+  # get the correct shape in the sampling below. Usually, we choose shape
+  # functions that are simpler, easier to compute and so on. Perhaps there *is*
+  # no PDF at all, so we create splines that mimic an empirical sample set.
+  # However, for this case, I find it contrived to set up a function that is
+  # exactly like ptriangle, but a constant off. So I just use M (the top point
+  # of ptriangle) to *normalize* the PDF of the triangle distribution. Of
+  # course, it works, although the whole example here becomes very contrived.
+
   retries <- 0
   samples <- numeric(n)
 
   for ( i in 1:n ) {
     repeat {
-      retries <- retries + 1
       u <- runif(1)
       y <- runif(1, min=a, max=b)
-      if ( u < f(y)/M ) {
+      if ( u < f(y)/M ) { # see above note
         break
       }
+      retries <- retries + 1
     }
     samples[i] <- y
   }

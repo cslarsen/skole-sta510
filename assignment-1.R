@@ -156,47 +156,54 @@ problem3d <- function() {
   #println("1000000 simulations, wave > 5 prob: ", simulate(1000000))
 }
 
-make_triangle_function <- function(a,b,c) {
-  l <- function(x) {
-    x*2/((b-a)*(c-a)) - a*2/((b-a)*(c-a))
-  }
-  r <- function(x) {
-    -x*2/((b-a)*(b-c)) + b*2/((b-a)*(b-c))
-  }
-  f <- function(xs) {
-    sapply(xs, function(x) {
+ptriangle <- function(xs, a, b, c) {
+  delta_left = 2 / ((b - a) * (c - a))
+  delta_right = -2 / ((b - a) * (b - c))
+  offset_left = -2*a / ((b - a) * (c - a))
+  offset_right = 2*b / ((b - a) * (b - c))
+
+  sapply(xs, function(x) {
     if ( x <= c ) {
-      l(x)
+      delta_left*x + offset_left
     } else {
-      r(x)
-    }})
-  }
-  f
+      delta_right*x + offset_right
+  }})
 }
 
-rtriangle <- function(samples, a=1.5, b=3, c=2) {
-  f <- make_triangle_function(a, b, c)
-
-  #out <- character(samples)
-  out <- numeric(samples)
-  for ( n in 1:samples ) {
-    x <- 99999
-    y <- 99999
-    while ( y > f(x) ) {
-      x <- runif(1)*4
-      y <- runif(1)*3
-    }
-
-    out[n] <- x
+rtriangle <- function(n, a=1.5, b=3, c=2) {
+  f <- function(x) {
+    ptriangle(x, a, b, c)
   }
-  out
+
+  M <- 2 / (b - a)
+  samples <- numeric(n)
+
+  for ( i in 1:n ) {
+    repeat {
+      u <- runif(1)
+      y <- runif(1, min=a, max=b)
+      if ( u < f(y)/M ) {
+        break
+      }
+    }
+    samples[i] <- y
+  }
+
+  samples
 }
 
 problem3f <- function() {
-  ss <- rtriangle(1000)
-  hist(ss, breaks=100, freq=FALSE, right=FALSE, main="Triangle Distribution",
+  samples <- rtriangle(10000)
+
+  hist(samples, freq=FALSE, breaks=100,
+       main="Triangle Distribution",
        xlab="Wave Height")
-  f <- make_triangle_function(a=1.5, b=3, c=2)
-  curve(f, from=1.5, to=3, col="red", add=TRUE, lwd=2)
-  abline(v=2, lwd=2, col="red", lty=2)
+
+  # Draw PDF
+  x <- seq(1.5, 3, 0.01)
+  f <- function(x) { ptriangle(x, a=1.5, b=3, c=2) }
+  lines(x, f(x), col="red", add=TRUE, lwd=2)
+
+  # Draw expected value
+  abline(v=2, col="red", lty=2, lwd=2)
 }

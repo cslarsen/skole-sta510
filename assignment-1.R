@@ -194,7 +194,7 @@ rtriangle <- function(samples, a=1.5, b=3, c=2) {
 
 problem3f <- function() {
   ss <- rtriangle(1000)
-  hist(ss, breaks=100, freq=FALSE, right=FALSE, main="Triangle distribution",
+  hist(ss, breaks=100, freq=FALSE, right=FALSE, main="Triangle Distribution",
        xlab="Wave Height")
   f <- make_triangle_function(a=1.5, b=3, c=2)
   curve(f, from=1.5, to=3, col="red", add=TRUE, lwd=2)

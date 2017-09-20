@@ -145,16 +145,11 @@ problem3d <- function() {
     sum(results) / runs
   }
 
-  simv2 <- function(runs) {
-    sum(rayleigh(200*runs, 1.3) > 5) / runs
-  }
-
   println("100 simulations, wave > 5 prob: ", simulate(100))
   println("1000 simulations, wave > 5 prob: ", simulate(1000))
   println("10000 simulations, wave > 5 prob: ", simulate(10000))
   println("100000 simulations, wave > 5 prob: ", simulate(100000))
-  println("100000 simulations v2, wave > 5 prob: ", simv2(100000))
-  #println("1000000 simulations, wave > 5 prob: ", simulate(1000000))
+  println("1000000 simulations, wave > 5 prob: ", simulate(1000000))
 }
 
 ptriangle <- function(x, a, b, c) {

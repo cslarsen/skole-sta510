@@ -155,3 +155,39 @@ problem3d <- function() {
   println("100000 simulations v2, wave > 5 prob: ", simv2(100000))
   #println("1000000 simulations, wave > 5 prob: ", simulate(1000000))
 }
+
+problem3e <- function() {
+  rtriangle <- function(samples, a=1.5, b=3, c=2) {
+    l <- function(x) {
+      x*2/((b-a)*(c-a)) - a*2/((b-a)*(c-a))
+    }
+    r <- function(x) {
+      -x*2/((b-a)*(b-c)) + b*2/((b-a)*(b-c))
+    }
+    f <- function(x) {
+      if ( x <= c ) {
+        l(x)
+      } else {
+        r(x)
+      }
+    }
+
+    #out <- character(samples)
+    out <- c()
+    for ( n in 1:samples ) {
+      x <- 99999
+      y <- 99999
+      while ( y > f(x) ) {
+        x <- runif(1)*4
+        y <- runif(1)*3
+      }
+
+      #out[n] <- x
+      out <- c(out, x)
+    }
+    out
+  }
+
+  ss <- rtriangle(100000)
+  hist(ss, breaks=100)
+}

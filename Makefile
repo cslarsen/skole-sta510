@@ -6,11 +6,13 @@ ifeq ($(OS),Linux)
 	BIBTEX := /opt-rh7/texlive/2017/bin/x86_64-linux/bibtex
 	OPEN := xdg-open
 	RSCRIPT := Rscript
+	DETEX := /opt-rh7/texlive/2017/bin/x86_64-linux/detex
 else
 	PDFLATEX := pdflatex
 	BIBTEX := bibtex
 	OPEN := open
 	RSCRIPT := Rscript
+	DETEX := detex
 endif
 
 all: $(TARGETS)
@@ -22,6 +24,9 @@ problem%.out: assignment-1.R
 
 open: all
 	$(OPEN) assignment-1.pdf
+
+check:
+	$(DETEX) assignment-1.tex | diction -bs
 
 %.eps: %.gp data.txt
 	gnuplot $<

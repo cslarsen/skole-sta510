@@ -120,15 +120,15 @@ number. That is, the following two expressions are exactly the same:
 When implemented on a computer, the left expression \textit{could} be
 numerically more stable, depending on the floating point system used. With IEEE
 754 (which is most likely the one that R uses), it doesn't seem to matter.
-Anyway, it avoids one division. In fact, this is the one that was chosen in
+Anyway, it avoids one division. In fact, this is the one that was chosen in the
 \texttt{rrayleigh} implementation in the \texttt{VGAM} package\footnote{In
 \texttt{VGAM}, the $\theta$-parameter is called \textit{scale}.}
 \cite{github:vgam}.
 
 As to the $\pm$ operator, the whole expression returns a value for $x$, and
-since we know $x>$ we can remove the minus sign. We then get
+since we know $x>0$ we can remove the minus sign. We then get
 \begin{align*}
-    x &= g^{-1}(u) = \theta\sqrt{2\log{\left(\frac{1}{1 - u}\right)}}
+  x(u) &= g^{-1}(u) = \theta\sqrt{2\log{\left(\frac{1}{1 - u}\right)}}
    \text{ where } x>0\, , \theta>0\, , u \in \left[0,1\right>
    \\
 \end{align*}%

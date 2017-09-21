@@ -48,7 +48,7 @@ problem1d <- function() {
 }
 
 problem1e <- function() {
-  println(1 - pgamma(10000, shape=2, rate=1/5000))
+  println("Exact P(X + X > 10000) = ", 1 - pgamma(10000, shape=2, rate=1/5000))
 }
 
 problem2b <- function() {

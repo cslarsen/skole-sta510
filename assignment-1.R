@@ -185,7 +185,6 @@ rtriangle <- function(n, a=1.5, b=3, c=2) {
     samples[i] <- x
   }
 
-  println("Iterations until acceptance: ", its_until_acc)
   samples
 }
 

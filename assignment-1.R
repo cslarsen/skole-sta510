@@ -68,7 +68,7 @@ problem2b <- function() {
   println("n=100: ", lottosim(1000))
   println("n=1000: ", lottosim(1000))
   println("n=10000: ", lottosim(10000))
-  println("n=6614: ", lottosim(6614))
+  println("95% certain of error at most 0.01 n=6614: ", lottosim(6614))
 }
 
 # Samples from a Rayleigh distribution.

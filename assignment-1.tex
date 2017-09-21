@@ -83,8 +83,6 @@ total draws we have made ($n$). The probability will then be
 \[
   \Prb(\text{contains two or more consecutive numbers}) = \frac{c}{n}
 \]
-% TODO: Find how many sims to be 95% that the error is at most 0.01. See slides
-% for this!
 We have
 \begin{align*}
   \text{ME} &= z\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
@@ -99,10 +97,13 @@ $\text{ME} = 0.01$, which gives us
 \[
   n = 6614
 \]
-That suggests that we should have around 6614 samples.
+That suggests that we should have around 6614 samples. Note that the estimate
+$\hat{p}$ should not be sampled as I did here. The proper way is to estimate it
+empirically.
 
 \problem{2 (b)}
-Output from R:
+Simulating the probability that seven out of 34 numbers contain at least two
+consecutive numbers was done in R with the output:
 \VerbatimInput{problem2b.out}
 
 \problem{3 (a)}

@@ -213,3 +213,19 @@ problem3f <- function() {
   # Draw expected value
   abline(v=2, col="red", lty=2, lwd=2)
 }
+
+problem3h <- function() {
+  heights <- rtriangle(10)
+
+  maxheight <- function(y, theta, m) {
+    1 - (1 - exp(-y^2/(2*theta^2)))^m
+  }
+
+  println("Max height y=5, theta=1.3, m=200: ",
+          maxheight(5, 1.3, 200))
+
+  for ( height in heights ) {
+    # calculate theta
+    # use equation from g
+  }
+}

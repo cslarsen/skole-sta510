@@ -205,9 +205,9 @@ Neumann argues that a good way to sample from a given distribution is to take
 two uniformly sampled numbers, then feed one of them into a computationally
 simpler function that is proportional to the desired PDF. By comparing with a
 scale factor ($\alpha$ in the article, $c$ in the lecure notes), one can then
-throw away the numbers if they are less than this comparison. He also shows how
-his algorithm enables to embed simpler mathematical expressions directly in the
-code, if applicable.
+throw away the numbers if they are higher than the comparison operation. He
+also shows how his algorithm enables to embed simpler mathematical expressions
+directly in the code, if applicable.
 
 However, using acceptance-rejection sampling for the triangle distribution is
 somewhat contrived. We need to find a function whose shape is similar to that

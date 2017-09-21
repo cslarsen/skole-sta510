@@ -93,21 +93,20 @@ total draws we have made ($n$). The probability will then be
 \]
 We have
 \begin{align*}
-  \text{ME} &= z\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
-  \left(\frac{\text{ME}}{z}\right)^2 &= \frac{\hat{p}(1-\hat{p})}{n} \\
-  n &= \ceil*{ \hat{p}(1-\hat{p}) \frac{z^2}{\text{ME}^2} }
+  \text{ME} &< z_{\sfrac{\alpha}{2}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
+  \left(\frac{\text{ME}}{z_{\sfrac{\alpha}{2}}}\right)^2 &\geqslant \frac{\hat{p}(1-\hat{p})}{n} \\
+  n &\geqslant \ceil*{ \hat{p}(1-\hat{p}) \frac{z_{\sfrac{\alpha}{2}}^2}{\text{ME}^2} }
 \end{align*}
-where $\ceil{\dots}$ is the ceiling function.
+where $\ceil{\dots}$ is the ceiling function and $\text{ME}$ is the margin of
+error ($e$ in the lecture notes).
 
 I wrote a test program that seems to indicate that $\hat{p} = 0.779$. The
-z-value must be 1.96 for a 95\%{} interval, and we have the margin of error
-$\text{ME} = 0.01$, which gives us
+z-value must be 1.96 for a 95\%{} interval ($z_{0.025} = 1.96$), and we
+have the margin of error $\text{ME} = 0.01$, which gives us
 \[
   n = 6614
 \]
-That suggests that we should have around 6614 samples. Note that the estimate
-$\hat{p}$ should not be sampled as I did here. The proper way is to estimate it
-empirically.
+That suggests that we should have \textit{at least} 6614 samples.
 
 \problem{2 (b)}
 Simulating the probability that seven out of 34 numbers contain at least two

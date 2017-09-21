@@ -87,6 +87,7 @@ Output from R:
 \VerbatimInput{problem2b.out}
 
 \problem{3 (a)}
+\label{problem:3a}
 \paragraph{Problem} We want to sample x-values whose distribution is given by a
 probability density function (PDF) is $f(x)$.
 
@@ -260,6 +261,26 @@ For a plot of algorithm \vref{algorithm:rtriangle}, see figure \vref{plot:3f}.
 \end{figure}
 
 \problem{3 (g)}
+The probability that a \textit{single} wave is smaller or equal to $y$ is given
+by the CDF in problem 3 (a) on page \pageref{problem:3a}:
+\[
+  \Prb(X\leqslant y) = 1 - e^{-\frac{x^2}{2\theta^2}}
+\]
+The chance that all $m$ waves are smaller than or equal to $y$ will then be
+\[
+  \Prb(X\leqslant y)^m = (1 - e^{-\frac{x^2}{2\theta^2}})^m
+\]
+This uses the fact that each wave is independent of the other (which is most
+likely not true in real life). It's just like the chance of two coin tosses
+being heads, i.e.~$\frac{1}{2}\cdot\frac{1}{2} = \frac{1}{4}$.
+
+Now, the reverse would be that \textit{at least one} wave is higher than $y$,
+expressed as
+\[
+  \Prb(X>y) = 1 - \Prb(X\leqslant y)^m = 1 - (1 - e^{-\frac{x^2}{2\theta^2}})^m
+  \hfill\blacksquare
+\]
+
 The exact calculation with $\theta=1.3$ and $m=200$ gives
 \[
   \Prb(Y>5) = 1 - \left(1 - e^{\frac{-y^2}{2\theta^2}} \right)^m

@@ -268,7 +268,8 @@ by the CDF in problem 3 (a) on page \pageref{problem:3a}:
 \]
 The probability that $m$ waves are smaller than or equal to $y$ will then be
 \[
-  \Prb(X\leqslant y)^m = (1 - e^{-\frac{y^2}{2\theta^2}})^m = \Prb(Y \leqslant y)
+  \Prb(X\leqslant y)^m = \left( 1 - e^{-\frac{y^2}{2\theta^2}} \right)^m
+       = \Prb(Y \leqslant y)
 \]
 because each wave is independent of another (which is most likely not true in
 real life).
@@ -276,7 +277,8 @@ real life).
 Now, the reverse would be that \textit{at least one} wave is higher than $y$.
 We can express that as
 \[
-  \Prb(Y > y) = 1 - \Prb(X\leqslant y)^m = 1 - (1 - e^{-\frac{y^2}{2\theta^2}})^m
+  \Prb(Y > y) = 1 - \Prb(Y \leqslant y)^m = 1 - \left(1 -
+                    e^{-\frac{y^2}{2\theta^2}} \right)^m
 \]
 $\hfill\blacksquare$
 

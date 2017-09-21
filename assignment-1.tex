@@ -9,6 +9,9 @@
 \begin{document}
 \maketitle
 
+%%% List of TODO:
+%%% - Problem 2a: Estimate hat(p) empirically, see how they do it in the slides
+
 \section*{\normalsize{How to run the code}}
 All the code for this exercise can be found in \texttt{assignment-1.R}. I have
 made a single function for each problem. For example, to see the output of
@@ -110,14 +113,15 @@ consecutive numbers was done in R with the output:
 
 \problem{3 (a)}
 \label{problem:3a}
-\paragraph{Problem} We want to sample x-values whose distribution is given by a
-probability density function (PDF) is $f(x)$.
+We want to sample x-values whose distribution is given by a probability density
+function (PDF) is $f(x)$.
 
-\paragraph{Solution} We use the \textit{inverse transform method}
-\cite{wiki:inverse.transform.method}: Since any the values given by the PDF is
-within 0--1, we use a uniform pseudo-random number generator to select a value
-in the interval 0--1. We then find which x-value will give this value by
-finding the inverse of the cumulative density function (CDF) $g$.
+We will use the \textit{inverse transform method}
+\cite{wiki:inverse.transform.method}: Since the values given by the CDF is in
+the range 0--1, we can select $u$ by drawing a number from a uniform
+pseudo-random number generator. We then use the inverse CDF function
+$g^{-1}(u)$ to find which $x$-value this corresponds to. This requires that it
+is possible to invert the CDF.
 
 The CDF is given by
 \begin{align*}
@@ -132,21 +136,17 @@ We now need to find $g^{-1}(u)$ for
    g^{-1}(u)^2  &= 2\theta^2\log{\left(\frac{1}{1 - u}\right)} \\
    g^{-1}(u)  &= \pm\theta\sqrt{2\log{\left(\frac{1}{1 - u}\right)}} \\
 \end{align*}
-When I first solved this, I got the expression $\theta\sqrt{-2\log{(1-u)}}$ and
-thought I had made a mistake --- because of the minus sign. However, since
-$u<1$, the logarithm expression will obviously always compute to a negative
-number. That is, the following two expressions are exactly the same:
+Note that since $u<1$ then $\log{(1-u)} < 1$, meaning the following two
+equations are exactly the same:
 \[
   \theta\sqrt{-2\log{(1-u)}} = \theta\sqrt{2\log{\left(\frac{1}{1-u}\right)}}\,
   \text{ where } u \in \left[0,1\right>
 \]
-When implemented on a computer, the left expression \textit{could} be
-numerically more stable, depending on the floating point system used. With IEEE
-754 (which is most likely the one that R uses), it doesn't seem to matter.
-Anyway, it avoids one division. In fact, this is the one that was chosen in the
-\texttt{rrayleigh} implementation in the \texttt{VGAM} package\footnote{In
-\texttt{VGAM}, the $\theta$-parameter is called \textit{scale}.}
-\cite{github:vgam}.
+The left expression is how \texttt{rrayleigh} has been implemented in the
+\texttt{VGAM} package \cite{github:vgam}. While it avoids one division, one
+could imagine that it would be numerically more stable. I made a test program
+using IEEE 754 floats \cite{1985--ieee754} (which is what R uses), and it
+doesn't seem to be more stable.
 
 As to the $\pm$ operator, the whole expression returns a value for $x$, and
 since we know $x>0$ we can remove the minus sign. We then get

@@ -233,8 +233,6 @@ problem3h <- function() {
     prob_crit[i] <- maxh
   }
 
-  summary(prob_crit)
-
   # We will make a recommendation based on a confidence interval
   m <- mean(prob_crit)
   s <- sd(prob_crit)
@@ -258,4 +256,7 @@ problem3h <- function() {
     println("That IS the case for the above confidence interval.")
     println("Recommendation: DO NOT PROCEED")
   }
+
+  println("\nSummary:")
+  summary(prob_crit)
 }

@@ -215,7 +215,7 @@ problem3f <- function() {
 }
 
 problem3h <- function() {
-  heights <- rtriangle(10)
+  heights <- rtriangle(100000)
 
   maxheight <- function(y, theta, m) {
     1 - (1 - exp(-y^2/(2*theta^2)))^m
@@ -224,8 +224,38 @@ problem3h <- function() {
   println("Max height y=5, theta=1.3, m=200: ",
           maxheight(5, 1.3, 200))
 
-  for ( height in heights ) {
-    # calculate theta
-    # use equation from g
+  prob_crit <- numeric(length(heights))
+
+  for ( i in 1:length(heights) ) {
+    expected_height <- heights[i]
+    theta <- expected_height / sqrt(pi/2)
+    maxh <- maxheight(7, theta, 800)
+    prob_crit[i] <- maxh
+  }
+
+  summary(prob_crit)
+
+  # We will make a recommendation based on a confidence interval
+  m <- mean(prob_crit)
+  s <- sd(prob_crit)
+
+  println("Mean probability of critical wave: ", m)
+  println("Standard deviation of critical wave probability: ", s)
+
+  # 95% confidence interval
+  error <- qt(0.0975,
+              df=length(prob_crit)-1)*sd(prob_crit)/sqrt(length(prob_crit))
+  interval <- c(m-error, m+error)
+  println("95% confidence interval [", interval[1], ", ", interval[2], "]")
+
+  cutoff = 0.1
+  println("")
+  println("We would like that 95% of the probabilities of a critical wave is below 0.1")
+  if ( max(interval) < 0.1 ) {
+    println("That is not the case for the above confidence interval.")
+    println("Recommendation: GO AHEAD")
+  } else {
+    println("That IS the case for the above confidence interval.")
+    println("Recommendation: DO NOT PROCEED")
   }
 }

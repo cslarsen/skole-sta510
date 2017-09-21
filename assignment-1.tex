@@ -9,8 +9,11 @@
 \begin{document}
 \maketitle
 
-%%% List of TODO:
-%%% - Problem 2a: Estimate hat(p) empirically, see how they do it in the slides
+% List of TODO:
+% - Problem 2a: Estimate hat(p) empirically, see how they do it in the slides
+%   (maximum likelihood estimation?)
+% - Problem 3e: finding number of expected iterations
+% - Problem 3h: Look in the slides
 
 \section*{\normalsize{How to run the code}}
 All the code for this exercise can be found in \texttt{assignment-1.R}. I have
@@ -198,12 +201,13 @@ is given in table \vref{table:3b}.
 For one simulation: Set $\theta=1.3$ and take $200$ Rayleigh samples. Return
 $0$ if all waves are less than or equal to $5$ meters, $1$ if not.
 
-We then perform a large number of simulations and divide the sum of each
-simulation by the number of simulations made.
+We then divide the total of a large number of such simulations with the number
+of simulations made.
 
 \problem{3 (d)}
 \label{problem:3d}
-Output from R:
+Implemented the simulation described in problem 3 (c): The approximate
+probability that highest wave is higher than 5 meters. Output form R:
 \VerbatimInput{problem3d.out}
 
 \problem{3 (e)}
@@ -226,20 +230,21 @@ are actually very much in line with von Neumann's original article, which is
 something I want to stress: I just plug the pseudo-random number into the
 actual PDF and use a normalization factor instead.
 
-In \cite{STEIN20091143} we see that the triangle distribution does not have a
-closed form, and therefore cannot be used with the inverse transform method.
-The paper presents multiple alternatives, such as the MINIMAX-method, but also
-presents a novel method of calculating the triangle PDF in one line. However, I
-have used that formula in my code, because I wanted to mimic the code given in
-the lectures.
+In \cite{STEIN20091143} we see that the \textit{inverse} of the triangle
+distribution does not have a closed form, and therefore cannot be used with the
+inverse transform method. The paper presents multiple alternatives, such as the
+MINIMAX-method, but also presents a novel method of calculating the triangle
+PDF in one line. However, I have used that formula in my code, because I wanted
+to mimic the code given in the lectures.
 
-It also seems that in papers like \cite{stanford} the comparison is
-\textit{less-than-or-equal} instead of just \textit{less-than}. I have also
-used that in my code, because I found it reasonable --- even though most of the
-code I've seen does use the less-than binary operator.
+It is also worth noting that \cite{von1961various, stanford} always use the
+\textit{less-than-or-equal} comparison instead of \textit{less-than}.
 
 For details on how I have implemented this, see the code and algorithm
-\ref{algorithm:rtriangle} on page \pageref{algorithm:rtriangle}.
+\ref{algorithm:rtriangle} on page \pageref{algorithm:rtriangle}. Since we are
+using the scaling factor $M = \sfrac{2}{(b-a)}$ (designated $c$ in algorithm
+\ref{algorithm:rtriangle}), the expected number of iterations will be
+%%% TODO: Number of iterations
 
 \begin{algorithm}
   \caption{Generates $n$ samples from the triangle distribution}

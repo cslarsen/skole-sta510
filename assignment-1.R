@@ -45,6 +45,7 @@ problem1d <- function() {
   println("P(X + X > 10000) 1000 simulations: ", P_sum(1000))
   println("P(X + X > 10000) 10000 simulations: ", P_sum(10000))
   println("P(X + X > 10000) 100000 simulations: ", P_sum(100000))
+  println("P(X + X > 10000) 1000000 simulations: ", P_sum(1000000))
 }
 
 problem1e <- function() {

@@ -192,9 +192,9 @@ rtriangle <- function(n, a=1.5, b=3, c=2) {
     samples[i] <- x
   }
 
-  println("rtriangle: Generated ", length(samples), " samples with ", retries,
-          " retries, or ", retries / length(samples),
-          " retries per sample")
+  #println("rtriangle: Generated ", length(samples), " samples with ", retries,
+          #" retries, or ", retries / length(samples),
+          #" retries per sample")
   samples
 }
 
@@ -221,8 +221,7 @@ problem3h <- function() {
     1 - (1 - exp(-y^2/(2*theta^2)))^m
   }
 
-  println("Max height y=5, theta=1.3, m=200: ",
-          maxheight(5, 1.3, 200))
+  #println("Max height y=5, theta=1.3, m=200: ", #maxheight(5, 1.3, 200))
 
   prob_crit <- numeric(length(heights))
 
@@ -233,30 +232,43 @@ problem3h <- function() {
     prob_crit[i] <- maxh
   }
 
+  println("Generated ", length(heights), " maximum height samples.")
+
   # We will make a recommendation based on a confidence interval
   m <- mean(prob_crit)
   s <- sd(prob_crit)
 
+  println("")
   println("Mean probability of critical wave: ", m)
   println("Standard deviation of critical wave probability: ", s)
+
+  hsum <- summary(prob_crit)
+  println("")
+  println("Minimum:      ", hsum[1])
+  println("1st Quartile: ", hsum[2])
+  println("Median:       ", hsum[3])
+  println("Mean:         ", hsum[4])
+  println("3rd Quartile: ", hsum[5])
+  println("Maximum:      ", hsum[6])
 
   # 95% confidence interval
   error <- qt(0.0975,
               df=length(prob_crit)-1)*sd(prob_crit)/sqrt(length(prob_crit))
-  interval <- c(m-error, m+error)
+  interval <- c(m+error, m-error)
+  println("")
   println("95% confidence interval [", interval[1], ", ", interval[2], "]")
 
   cutoff = 0.1
   println("")
-  println("We would like that 95% of the probabilities of a critical wave is below 0.1")
+  println("We require that the confidence interval extreme is below 0.1")
   if ( max(interval) < 0.1 ) {
-    println("That is not the case for the above confidence interval.")
     println("Recommendation: GO AHEAD")
   } else {
-    println("That IS the case for the above confidence interval.")
     println("Recommendation: DO NOT PROCEED")
   }
 
-  println("\nSummary:")
+  #   Min.   1st Qu.    Median      Mean   3rd Qu.      Max.
+  println("")
+  println("Summary:")
   summary(prob_crit)
 }

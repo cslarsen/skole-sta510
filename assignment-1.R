@@ -266,9 +266,4 @@ problem3h <- function() {
   } else {
     println("Recommendation: DO NOT PROCEED")
   }
-
-  #   Min.   1st Qu.    Median      Mean   3rd Qu.      Max.
-  println("")
-  println("Summary:")
-  summary(prob_crit)
 }

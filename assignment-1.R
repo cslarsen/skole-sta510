@@ -78,19 +78,9 @@ rayleigh <- function(samples, theta) {
     theta*sqrt(2*log(1/(1-u)))
   }
 
-  # Generate `samples` random numbers. Runif doesn't include extreme values, so
-  # will never get 0 or 1. We don't want 1, but it would be nice to be able to
-  # get 0. I initially tried sample(1:10^decimals, samples) / 10^decimals,
-  # where decimals typically was 6. That gives me numbers in the range
-  # 0--0.999999, and seems to work very well in simulations. However, it is a
-  # very slow way to generate floating point numbers, so I switched to runif.
-  # Runif is much faster, but does not generate 0. However, because of the
-  # large number of simulations, I get almost similar results to what I had
-  # before.
-  #
-  # The runif source code is here:
-  # https://github.com/wch/r-source/blob/e5b21d0397c607883ff25cca379687b86933d730/src/nmath/runif.c
-  # Seems they use the regular rand-trick to get numbers in that range.
+  # Generate `samples` random numbers, and pass them all through the inverse
+  # function g. Note that runif doesn't include extreme values of 0 and 1, so
+  # our simulation will be a little bit off. See the report for more details.
   g(runif(samples))
 }
 

@@ -299,18 +299,23 @@ Output from R:
 \VerbatimInput{problem3h.out}
 
 \problem{3 (i)}
-We could sample $m$ from some kind of distribution, for example the normal
-distribution. We could even sample from the triangle distribution, setting the
-lowest number of waves to zero, and the largest to a value that the
-metereologist thinks may be feasible (one should probably look at the weather
-forecast for that day before inserting the numbers).
+We could sample $m$ from a distribution --- for example the normal
+distribution, or perhaps the triangle distribution based on input from the
+meteorologist and the weather forecast.
 
-After that, we could repeat the experiment but with different values sampled
-for $m$. Based on the recommendation, as shown in the code, (zero means go, one
-means no-go), we could divide that sum with the number of experiments.
+The next step would then be to repeat the experiment with different values for
+$m$. An automatic recommendation could be generated for each experiment
+(i.e.,~a binomial output) and summed together and divided by the number of
+experiments. Or we could aggregate confidence intervals for each experiment and
+then find out which interval would be most likely. This could be done by, for
+example, finding overlapping regions (like in interval arithmetic) and
+reporting on the most frequent. Or one could turn that into a frequency
+distribution of some kind and look at that.
 
-Or we could take the 95\%{} confidence interval for each run and aggregate
-those in a vector. We could then see which intervals are most likely.
+I feel that the best would be to base everything on actual, observable data,
+like the weather forecast, consult with the opinion of the meteorologist,
+consider details about the operation and facility (e.g.,~tear and wear of the
+installation) and use that to make a more informed opinion.
 
 \clearpage
 \bibliographystyle{IEEEtran}

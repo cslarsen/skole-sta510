@@ -221,23 +221,12 @@ throw away the numbers if they are higher than the comparison operation. He
 also shows how his algorithm enables to embed simpler mathematical expressions
 directly in the code, if applicable.
 
-However, using acceptance-rejection sampling for the triangle distribution is
-somewhat contrived. We need to find a function whose shape is similar to that
-of the actual PDF, and then use a scaling factor for comparison. However, the
-function cannot be simplified further, so I've made a few tweaks. Those tweaks
-are actually very much in line with von Neumann's original article, which is
-something I want to stress: I just plug the pseudo-random number into the
-actual PDF and use a normalization factor instead.
-
 In \cite{STEIN20091143} we see that the \textit{inverse} of the triangle
 distribution does not have a closed form, and therefore cannot be used with the
 inverse transform method. The paper presents multiple alternatives, such as the
 MINIMAX-method, but also presents a novel method of calculating the triangle
-PDF in one line. However, I have used that formula in my code, because I wanted
-to mimic the code given in the lectures.
-
-It is also worth noting that \cite{von1961various, stanford} always use the
-\textit{less-than-or-equal} comparison instead of \textit{less-than}.
+PDF in one line. However, I have used the triangle PDF that I developed in my
+code.
 
 For details on how I have implemented this, see algorithm
 \ref{algorithm:rtriangle} on page \pageref{algorithm:rtriangle} and the

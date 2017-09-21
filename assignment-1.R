@@ -25,8 +25,8 @@ problem1c <- function() {
 
   # Returns the probability (via simulation) that a lightbulb lives longer than
   # 4000 hours.
-  P_longer <- function(x, sims, beta=5000) {
-    sum(rexp(sims, 1/beta) > x) / sims
+  P_longer <- function(x, runs, beta=5000) {
+    sum(rexp(runs, 1/beta) > x) / runs
   }
 
   println("P(X > 4000) 10 simulations: ", P_longer(4000, 10))

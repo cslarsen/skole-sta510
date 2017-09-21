@@ -201,27 +201,33 @@ Output from R:
 Acceptance-rejection sampling was first presented in \cite{von1961various} by the
 famous Jon von Neumann, and is a beautiful piece that every one should read.
 
-... 
+Neumann argues that a good way to sample from a given distribution is to take
+two uniformly sampled numbers, then feed one of them into a computationally
+simpler function that is proportional to the desired PDF. By comparing with a
+scale factor ($\alpha$ in the article, $c$ in the lecure notes), one can then
+throw away the numbers if they are less than this comparison. He also shows how
+his algorithm enables to embed simpler mathematical expressions directly in the
+code, if applicable.
 
-We are supposed to assume that the PDF of
-the triangle distribution, or that it is impractical to sample from directly.
-Instead, we should find a function with similar shape and find a constant $c$
-so that $\frac{f(t)}{cg(t)} \leqslant c$ for all $t$. But since we need a
-function that follows the shape of the triangular PDF itself, we must
-reimplement it but with a factor off so that we can use acceptance-rejection
-sampling. Instead, we just set $c=\frac{2}{(b-a)}$ to normalize $f$ so that we
-check if $u < \sfrac{f(y)}{c}$.
+However, using acceptance-rejection sampling for the triangle distribution is
+somewhat contrived. We need to find a function whose shape is similar to that
+of the actual PDF, and then use a scaling factor for comparison. However, the
+function cannot be simplified further, so I've made a few tweaks. Those tweaks
+are actually very much in line with von Neumann's original article, which is
+something I want to stress: I just plug the pseudo-random number into the
+actual PDF and use a normalization factor instead.
 
-This is a somewhat contrived case, and the sentiment is shared in
-\cite{STEIN20091143}:
+In \cite{STEIN20091143} we see that the triangle distribution does not have a
+closed form, and therefore cannot be used with the inverse transform method.
+The paper presents multiple alternatives, such as the MINIMAX-method, but also
+presents a new method of calculating the triangle PDF in one line. However, I
+have used that formula in my code, because I wanted to mimic the code given in
+the lectures.
 
-\textit{In the case of the triangular, this is not competitive with the
-inversion method but is widely used for pedagogical purposes.}
-
-Furthermore, the examples given in the lectures accepts only when $u$ is
-\textit{less than}, but in \cite{stanford} they use
-\textit{less-than-or-equals}. I have not looked more into that detail, but have
-used less than or equals.
+It also seems that in papers like \cite{stanford} the comparison is
+\textit{less-than-or-equal} instead of just \textit{less-than}. I have also
+used that in my code, because I found it reasonable --- even though most of the
+code I've seen does use the less-than binary operator.
 
 For details on how I have implemented this, see the code and algorithm
 \ref{algorithm:rtriangle} on page \pageref{algorithm:rtriangle}.

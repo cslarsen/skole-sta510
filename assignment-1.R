@@ -152,7 +152,7 @@ problem3d <- function() {
 
   # The following two takes a LONG time to execute, but show that we converge
   # to the correct value calculated in problem 3 (g).
-  #println("1000000 simulations, wave > 5 prob: ", simulate(1000000))
+  println("1000000 simulations, wave > 5 prob: ", simulate(1000000))
   #println("10000000 simulations, wave > 5 prob: ", simulate(10000000))
 }
 

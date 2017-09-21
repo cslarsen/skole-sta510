@@ -239,11 +239,11 @@ to mimic the code given in the lectures.
 It is also worth noting that \cite{von1961various, stanford} always use the
 \textit{less-than-or-equal} comparison instead of \textit{less-than}.
 
-For details on how I have implemented this, see the code and algorithm
-\ref{algorithm:rtriangle} on page \pageref{algorithm:rtriangle}. Since we are
-using the scaling factor $M = \sfrac{2}{(b-a)}$ (designated $c$ in algorithm
-\ref{algorithm:rtriangle}), the expected number of iterations will be
-%%% TODO: Number of iterations
+For details on how I have implemented this, see algorithm
+\ref{algorithm:rtriangle} on page \pageref{algorithm:rtriangle} and the
+implementation in \texttt{assignment-1.R}. The number of expected iterations
+until acceptance will, with $c=1.333\dots$, we would expect around $cn$
+iterations until acceptance for $n$ simulations.
 
 \begin{algorithm}
   \caption{Generates $n$ samples from the triangle distribution}
@@ -281,7 +281,7 @@ For a plot of algorithm \vref{algorithm:rtriangle}, see figure \vref{plot:3f}.
   \centering
   \includegraphics[width=\textwidth]{problem3f.pdf}
   \caption{Acceptance-rejection sampling from the triangle distribution with
-  $a=1.5$, $b=3$ and $c=2$.}
+  $a=1.5$, $b=3$ and $c=2$ for problem 3 (f).}
   \label{plot:3f}
 \end{figure}
 

@@ -168,24 +168,24 @@ rtriangle <- function(n, a=1.5, b=3, c=2) {
     ptriangle(x, a, b, c)
   }
 
-  retries <- 0
+  its_until_acc <- 0
   samples <- numeric(n)
+
+  C <- 2 / (b-a)
 
   for ( i in 1:n ) {
     repeat {
       y <- runif(1)
       x <- runif(1, min=a, max=b)
-      if ( y <= f(x)*(b-a) / 2 ) {
+      its_until_acc <- its_until_acc + 1
+      if ( y <= f(x)/C ) {
         break
       }
-      retries <- retries + 1
     }
     samples[i] <- x
   }
 
-  #println("rtriangle: Generated ", length(samples), " samples with ", retries,
-          #" retries, or ", retries / length(samples),
-          #" retries per sample")
+  println("Iterations until acceptance: ", its_until_acc)
   samples
 }
 

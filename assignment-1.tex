@@ -9,6 +9,20 @@
 \begin{document}
 \maketitle
 
+\section*{How to run the code}
+All the code for this exercise can be found in \texttt{assignment-1.R}. I have
+made a single function for each problem. For example, to see the output of
+problem 1 (b), execute the function \texttt{problem1d()}.
+
+From the UNIX command-line, you can produce an output file and PDF by running
+
+\begin{verbatim}
+$ Rscript -e 'pdf("problem1b.pdf"); source("assignment-1.R"); problem1b()' \
+    > problem1b.out
+\end{verbatim}
+This will produce \texttt{problem1b.out} and \texttt{problem1b.pdf} if anything
+is plotted.
+
 \problem{1 (a)}
 The probability density function is given in \cite{walpole} as
 \[

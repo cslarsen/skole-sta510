@@ -36,8 +36,8 @@ problem1c <- function() {
 }
 
 problem1d <- function() {
-  P_sum <- function(sims, beta=5000) {
-    sum((rexp(sims, 1/beta) + rexp(sims, 1/beta)) > 10000) / sims
+  P_sum <- function(runs, beta=5000) {
+    sum((rexp(runs, 1/beta) + rexp(runs, 1/beta)) > 10000) / runs
   }
 
   println("P(X + X > 10000) 10 simulations: ", P_sum(10))

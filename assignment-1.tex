@@ -299,6 +299,18 @@ Output from R:
 \VerbatimInput{problem3h.out}
 
 \problem{3 (i)}
+We could sample $m$ from some kind of distribution, for example the normal
+distribution. We could even sample from the triangle distribution, setting the
+lowest number of waves to zero, and the largest to a value that the
+metereologist thinks may be feasible (one should probably look at the weather
+forecast for that day before inserting the numbers).
+
+After that, we could repeat the experiment but with different values sampled
+for $m$. Based on the recommendation, as shown in the code, (zero means go, one
+means no-go), we could divide that sum with the number of experiments.
+
+Or we could take the 95\%{} confidence interval for each run and aggregate
+those in a vector. We could then see which intervals are most likely.
 
 \clearpage
 \bibliographystyle{IEEEtran}

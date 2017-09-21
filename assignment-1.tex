@@ -95,16 +95,16 @@ We have
 \begin{align*}
   e &> z_{\sfrac{\alpha}{2}}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \\
   \left(\frac{e}{z_{\sfrac{\alpha}{2}}}\right)^2 &> \frac{\hat{p}(1-\hat{p})}{n} \\
-  n &> \ceil*{ \hat{p}(1-\hat{p}) \frac{z_{\sfrac{\alpha}{2}}^2}{e^2} }
+  n &\geqslant \ceil*{ \hat{p}(1-\hat{p}) \frac{z_{\sfrac{\alpha}{2}}^2}{e^2} }
 \end{align*}
 where $\ceil{\dots}$ is the ceiling function and $e$ is the margin of
 error.
 
 I wrote a test program that seems to indicate that $\hat{p} = 0.779$. The
 z-value must be 1.96 for a 95\%{} interval ($z_{0.025} = 1.96$), and we
-have the margin of error $\text{ME} = 0.01$, which gives us
+have the margin of error $e = 0.01$, which gives us
 \[
-  n = 6614
+  n \geqslant 6614
 \]
 That suggests that we should have \textit{at least} 6614 samples.
 

@@ -218,7 +218,7 @@ Furthermore, the examples given in the lectures accepts only when $u$ is
 used less than or equals.
 
 For details on how I have implemented this, see the code and algorithm
-\vref{algorithm:rtriangle}.
+\ref{algorithm:rtriangle} on page \pageref{algorithm:rtriangle}.
 
 \begin{algorithm}
   \caption{Generates $n$ samples from the triangle distribution}
@@ -264,22 +264,21 @@ For a plot of algorithm \vref{algorithm:rtriangle}, see figure \vref{plot:3f}.
 The probability that a \textit{single} wave is smaller or equal to $y$ is given
 by the CDF in problem 3 (a) on page \pageref{problem:3a}:
 \[
-  \Prb(X\leqslant y) = 1 - e^{-\frac{x^2}{2\theta^2}}
+  \Prb(X\leqslant y) = 1 - e^{-\frac{y^2}{2\theta^2}}
 \]
-The chance that all $m$ waves are smaller than or equal to $y$ will then be
+The probability that $m$ waves are smaller than or equal to $y$ will then be
 \[
-  \Prb(X\leqslant y)^m = (1 - e^{-\frac{x^2}{2\theta^2}})^m
+  \Prb(X\leqslant y)^m = (1 - e^{-\frac{y^2}{2\theta^2}})^m = \Prb(Y \leqslant y)
 \]
-This uses the fact that each wave is independent of the other (which is most
-likely not true in real life). It's just like the chance of two coin tosses
-being heads, i.e.~$\frac{1}{2}\cdot\frac{1}{2} = \frac{1}{4}$.
+because each wave is independent of another (which is most likely not true in
+real life).
 
-Now, the reverse would be that \textit{at least one} wave is higher than $y$,
-expressed as
+Now, the reverse would be that \textit{at least one} wave is higher than $y$.
+We can express that as
 \[
-  \Prb(X>y) = 1 - \Prb(X\leqslant y)^m = 1 - (1 - e^{-\frac{x^2}{2\theta^2}})^m
-  \hfill\blacksquare
+  \Prb(Y > y) = 1 - \Prb(X\leqslant y)^m = 1 - (1 - e^{-\frac{y^2}{2\theta^2}})^m
 \]
+$\hfill\blacksquare$
 
 The exact calculation with $\theta=1.3$ and $m=200$ gives
 \[

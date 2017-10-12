@@ -24,20 +24,14 @@ the same time as this document.
 
 \problem{1 (a)}
 \paragraph{The covariance matrix}
-We know that $\rho_{ii} = \rho(X_i, X_i) = \Var{X_i}$, giving us
-$\rho_{11} = \sigma_1^2 = 900$, $\rho_{22} = \sigma_2^2 = 100$ and $\rho_{33}
-= \sigma_3^2 = 16$.
+We know that $\rho_{ii} = \rho(X_i, X_i) = \Cov{X_i, X_i} = \Var{X_i}$, giving
+  us $\rho_{11} = \sigma_1^2 = 900$, $\rho_{22} = \sigma_2^2 = 100$ and
+  $\rho_{33} = \sigma_3^2 = 16$.
 \[
-  \Sigma =
+  \Sigma(\textbf{X}) =
     \begin{bmatrix}
       \rho_{11} & \rho_{12} & \rho_{13} \\
       \rho_{21} & \rho_{22} & \rho_{23} \\
-      \rho_{31} & \rho_{32} & \rho_{33} \\
-    \end{bmatrix}
-  =
-    \begin{bmatrix}
-      \rho_{11} & -0.8 & 0.2 \\
-      \rho_{21} & \rho_{22} & -0.3 \\
       \rho_{31} & \rho_{32} & \rho_{33} \\
     \end{bmatrix}
   =

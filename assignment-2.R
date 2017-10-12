@@ -16,11 +16,11 @@ println <- function(...) {
 }
 
 # Install required packages
-if ( !"mtvnorm" %in% rownames(installed.packages()) ) {
-  println("=========================================================")
-  println("You do not have the mtvnorm package. Will install it now.")
-  println("=========================================================")
-  install.packages("mtvnorm")
+if ( !"mvtnorm" %in% rownames(installed.packages()) ) {
+  println("==========================================================")
+  println("You do not have the mvtnorm package. You should install it")
+  println("==========================================================")
+  quit(1)
 }
 
 problem1b <- function() {

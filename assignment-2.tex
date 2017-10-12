@@ -23,7 +23,30 @@ to produce the textual output file \texttt{problem1b.out} and any plots in
 the same time as this document.
 
 \problem{1 (a)}
-\cite{walpole}
+\paragraph{The covariance matrix}
+We know that $\rho_{ii}$ is equal to $\Var{X_{i}}$ so we can furthermore set
+  $\rho_{11} = \sigma_1^2 = 900$, $\rho_{22} = \sigma_2^2 = 100$ and $\rho_{33}
+  = \sigma_3^2 = 16$ so we get
+\[
+  \Sigma =
+    \begin{bmatrix}
+      \rho_{11} & \rho_{12} & \rho_{13} \\
+      \rho_{21} & \rho_{22} & \rho_{23} \\
+      \rho_{31} & \rho_{32} & \rho_{33} \\
+    \end{bmatrix}
+  =
+    \begin{bmatrix}
+      \rho_{11} & -0.8 & 0.2 \\
+      \rho_{21} & \rho_{22} & -0.3 \\
+      \rho_{31} & \rho_{32} & \rho_{33} \\
+    \end{bmatrix}
+  =
+    \begin{bmatrix}
+      900 & -0.8 & 0.2 \\
+      \rho_{21} & 100 & -0.3 \\
+      \rho_{31} & \rho_{32} & 16 \\
+    \end{bmatrix}
+\]
 
 \problem{1 (b)}
 \problem{1 (c)}
@@ -41,6 +64,7 @@ the same time as this document.
 \problem{3 (b)}
 \problem{3 (c)}
 \problem{3 (d)}
+\cite{walpole}
 
 \clearpage
 \bibliographystyle{IEEEtran}

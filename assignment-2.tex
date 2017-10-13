@@ -79,6 +79,17 @@ $X_2$ (or the other way around).
       \rho_{31} & \rho_{32} & \rho_{33} \\
     \end{bmatrix}
   =
+    \begin{bmatrix}
+                         900 & -0.8 \cdot 30 \cdot 10 &    0 \\
+      -0.8 \cdot 10 \cdot 30 &                    100 &    0 \\
+                           0 &                      0 &   16 \\
+    \end{bmatrix}
+  =
+    \begin{bmatrix}
+                         900 &                   -240 &    0 \\
+                        -240 &                    100 &    0 \\
+                           0 &                      0 &   16 \\
+    \end{bmatrix}
 \]
 This scenario should have the \textit{least probability} of a top-tier
 character, because $X_1$ and $X_2$ are correlated negatively: When one is high,
@@ -93,6 +104,17 @@ the other tends to be low.
       \rho_{31} & \rho_{32} & \rho_{33} \\
     \end{bmatrix}
   =
+    \begin{bmatrix}
+                         900 &    0 \cdot 30 \cdot 10 &    0 \\
+         0 \cdot 10 \cdot 30 &                    100 &    0 \\
+                           0 &                      0 &   16 \\
+    \end{bmatrix}
+  =
+    \begin{bmatrix}
+                         900 &                      0 &    0 \\
+                           0 &                    100 &    0 \\
+                           0 &                      0 &   16 \\
+    \end{bmatrix}
 \]
 
 \paragraph{(iii) $\rho_{12} = 0.8$, $\rho_{13} = \rho_{23} = 0$}
@@ -105,15 +127,15 @@ the other tends to be low.
     \end{bmatrix}
   =
     \begin{bmatrix}
-      900       & 0.8 \cdot 30 \cdot 10 & 0.2 \cdot 30 \cdot 4 \\
-      \rho_{12} & 100                    & -0.3 \cdot 10 \cdot 4 \\
-      \rho_{13} & \rho_{23}              & 16 \\
+                         900 &  0.8 \cdot 30 \cdot 10 &    0 \\
+       0.8 \cdot 10 \cdot 30 &                    100 &    0 \\
+                           0 &                      0 &   16 \\
     \end{bmatrix}
   =
     \begin{bmatrix}
-      900       & 240                    & 24 \\
-      240       & 100                    & -12 \\
-       24       & -12                    & 16 \\
+                         900 &                    240 &    0 \\
+                         240 &                    100 &    0 \\
+                           0 &                      0 &   16 \\
     \end{bmatrix}
 \]
 This scenario should have the \textit{highest probability} of a top-tier

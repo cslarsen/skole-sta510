@@ -55,7 +55,7 @@ problem1b <- function(runs=1000000) {
           " (", runs, " simulations)")
 }
 
-problem1b_exact <- function() {
+problem1b_alternative <- function() {
   # Covariance matrix from problem 1 (a).
   sigma <- matrix(c( 900, -240,  24,
                     -240,  100, -12,
@@ -63,12 +63,12 @@ problem1b_exact <- function() {
   # Expectation vector from problem 1 (a).
   mean <- c(90, 48, 18)
 
-  println("Exact P(X1 > 100, X2 > 50, X3 > 20) = ",
+  println("Alternative P(X1 > 100, X2 > 50, X3 > 20) = ",
           pmvnorm(mean=mean, sigma=sigma,
                   lower=c(100,  50,  20),
                   upper=c(Inf, Inf, Inf)))
 
-  println("Exact P(X1 < 100, X2 > 50, X3 < 15) = ",
+  println("Alternative P(X1 < 100, X2 > 50, X3 < 15) = ",
           pmvnorm(mean=mean, sigma=sigma,
                   lower=c(-Inf,  50, -Inf),
                   upper=c( 100, Inf,   15)))

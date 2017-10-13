@@ -32,7 +32,7 @@ assignment-1.pdf: \
 assignment-2.pdf: \
 	assignment-2.bib \
 	problem1b.out \
-	problem1b_exact.out \
+	problem1b_alternative.out \
 	problem1d.out
 
 problem%.out: assignment-2.R

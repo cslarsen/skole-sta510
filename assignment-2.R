@@ -54,3 +54,42 @@ problem1b <- function(runs=1000000) {
           (sum((x1 + 2*x2 + 5*x3) > 300) / runs),
           " (", runs, " simulations)")
 }
+
+problem1d <- function(runs=1000000) {
+  # Expectation vector from problem 1 (a).
+  mean <- c(90, 48, 18)
+
+  # Covariance matrices for the three difference scenarios
+
+  sigma1 <- matrix(c( 900, -240,   0,
+                     -240,  100,   0,
+                        0,    0,  16), ncol=3)
+
+  sigma2 <- matrix(c( 900,    0,   0,
+                        0,  100,   0,
+                        0,    0,  16), ncol=3)
+
+  sigma3 <- matrix(c( 900,  240,   0,
+                      240,  100,   0,
+                        0,    0,  16), ncol=3)
+
+  # Simulate the three scenarios
+
+  scenario1 <- rmvnorm(n=runs, sigma=sigma1, mean=mean)
+  scenario2 <- rmvnorm(n=runs, sigma=sigma2, mean=mean)
+  scenario3 <- rmvnorm(n=runs, sigma=sigma3, mean=mean)
+
+  display <- function(label, x) {
+    x1 <- x[,1]
+    x2 <- x[,2]
+    x3 <- x[,3]
+
+    println(label, " P(X1 > 100, X2 > 50, X3 > 20) = ",
+            (sum(x1 > 100 & x2 > 50 & x3 > 20) / runs),
+            " (", runs, " simulations)")
+  }
+
+  display("(i)  ", scenario1)
+  display("(ii) ", scenario2)
+  display("(iii)", scenario3)
+}

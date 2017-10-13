@@ -85,10 +85,10 @@ problem1d <- function(runs=1000000) {
     x3 <- x[,3]
 
     println(label, " P(X1 > 100, X2 > 50, X3 > 20) = ",
-            (sum(x1 > 100 & x2 > 50 & x3 > 20) / runs),
-            " (", runs, " simulations)")
+            (sum(x1 > 100 & x2 > 50 & x3 > 20) / runs))
   }
 
+  println("Results for ", runs, " simulations")
   display("(i)  ", scenario1)
   display("(ii) ", scenario2)
   display("(iii)", scenario3)

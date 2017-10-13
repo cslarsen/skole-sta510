@@ -23,6 +23,7 @@ to produce the textual output file \texttt{problem1b.out} and any plots in
 the same time as this document.
 
 \problem{1 (a)}
+\label{problem.1a}
 Because
 \begin{align*}
   \rho_{ab} &= \frac{\Cov(X_a, X_b)}{\sqrt{\Var(X_a)\Var(X_b)}} =
@@ -70,6 +71,8 @@ character if they are positively correlated, i.e.~a high $X_1$ implies a high
 $X_2$ (or the other way around).
 
 \paragraph{(i)   $\rho_{12} =  -0.8$}
+The covariance matrix for this scenario is exactly the same as in problem 1 (a)
+\vpageref{problem.1a}.
 \[
   \Sigma\left(\textbf{X}\right) =
     \begin{bmatrix}
@@ -78,6 +81,11 @@ $X_2$ (or the other way around).
       \rho_{31} & \rho_{32} & \rho_{33} \\
     \end{bmatrix}
   =
+    \begin{bmatrix}
+       900 & -240 &  24 \\
+      -240 &  100 & -12 \\
+        24 &  -12 &  16 \\
+    \end{bmatrix}
 \]
 This scenario has the \textit{least probability} of a top-tier character,
 because $X_1$ and $X_2$ are correlated negatively: When one is high, the other
@@ -92,6 +100,17 @@ tends to be low.
       \rho_{31} & \rho_{32} & \rho_{33} \\
     \end{bmatrix}
   =
+    \begin{bmatrix}
+      900       & 0 \cdot 30 \cdot 10 & 0.2 \cdot 30 \cdot 4 \\
+      \rho_{12} & 100                    & -0.3 \cdot 10 \cdot 4 \\
+      \rho_{13} & \rho_{23}              & 16 \\
+    \end{bmatrix}
+  =
+    \begin{bmatrix}
+      900       & 0                      & 24 \\
+        0       & 100                    & -12 \\
+       24       & -12                    & 16 \\
+    \end{bmatrix}
 \]
 
 \paragraph{(iii) $\rho_{12} = 0.8$}
@@ -103,6 +122,17 @@ tends to be low.
       \rho_{31} & \rho_{32} & \rho_{33} \\
     \end{bmatrix}
   =
+    \begin{bmatrix}
+      900       & 0.8 \cdot 30 \cdot 10 & 0.2 \cdot 30 \cdot 4 \\
+      \rho_{12} & 100                    & -0.3 \cdot 10 \cdot 4 \\
+      \rho_{13} & \rho_{23}              & 16 \\
+    \end{bmatrix}
+  =
+    \begin{bmatrix}
+      900       & 240                    & 24 \\
+      240       & 100                    & -12 \\
+       24       & -12                    & 16 \\
+    \end{bmatrix}
 \]
 This scenare has the \textit{highest probability} of a top-tier character,
 because the two values are positively correlated. That is, they both tend to be

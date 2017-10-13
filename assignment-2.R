@@ -26,11 +26,11 @@ if ( !"mvtnorm" %in% rownames(installed.packages()) ) {
 }
 
 problem1b <- function(runs=1000000) {
-  # Covariance matrix, as calculated in problem 1 (a).
+  # Covariance matrix from problem 1 (a).
   sigma <- matrix(c( 900, -240,  24,
                     -240,  100, -12,
                       24,  -12,  16), ncol=3)
-  # Mu-vector
+  # Expectation vector from problem 1 (a).
   mean <- c(90, 48, 18)
 
   # Perform simulation
@@ -39,12 +39,16 @@ problem1b <- function(runs=1000000) {
   x2 <- x[,2]
   x3 <- x[,3]
 
-  # P (X1 > 100, X2 > 50, X3 > 20)
+  # The first one is a top-tier character
   println("P(X1 > 100, X2 > 50, X3 > 20) = ",
           (sum(x1 > 100 & x2 > 50 & x3 > 20) / runs),
           " (", runs, " simulations)")
 
-  # X1 ~ N(my=90, var=900)
-  # X2 ~  48, 100
-  # X3 ~ 18, 16
+  println("P(X1 < 100, X2 > 50, X3 < 15) = ",
+          (sum(x1 < 100 & x2 > 50 & x3 < 15) / runs),
+          " (", runs, " simulations)")
+
+  println("P(X1 + 2X2 + 5X3 > 300) = ",
+          (sum((x1 + 2*x2 + 5*x3) > 300) / runs),
+          " (", runs, " simulations)")
 }

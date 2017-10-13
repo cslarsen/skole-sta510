@@ -31,7 +31,8 @@ assignment-1.pdf: \
 
 assignment-2.pdf: \
 	assignment-2.bib \
-	problem1b.out
+	problem1b.out \
+	problem1d.out
 
 problem%.out: assignment-2.R
 	$(RSCRIPT) -e 'pdf("$(@:.out=.pdf)"); source("$<"); $(@:.out=)()' > $@

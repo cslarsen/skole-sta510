@@ -23,10 +23,12 @@ to produce the textual output file \texttt{problem1b.out} and any plots in
 the same time as this document.
 
 \problem{1 (a)}
-\paragraph{The covariance matrix}
-We know that $\rho_{ii} = \rho(X_i, X_i) = \Cov{X_i, X_i} = \Var{X_i}$, giving
-  us $\rho_{11} = \sigma_1^2 = 900$, $\rho_{22} = \sigma_2^2 = 100$ and
-  $\rho_{33} = \sigma_3^2 = 16$.
+Because%
+\begin{align*}
+  \rho_{ab} &= \frac{\Cov(X_a, X_b)}{\sqrt{\Var(X_a)\Var(X_b)}} =
+    \frac{\sigma_{ab}}{\sigma_a\sigma_b} \\
+\end{align*}%
+we have that $\sigma_{ab} = \rho_{ab}\sigma_a\sigma_b$.
 \[
   \Sigma(\textbf{X}) =
     \begin{bmatrix}
@@ -35,11 +37,6 @@ We know that $\rho_{ii} = \rho(X_i, X_i) = \Cov{X_i, X_i} = \Var{X_i}$, giving
       \rho_{31} & \rho_{32} & \rho_{33} \\
     \end{bmatrix}
   =
-    \begin{bmatrix}
-      900 & -0.8 & 0.2 \\
-      \rho_{21} & 100 & -0.3 \\
-      \rho_{31} & \rho_{32} & 16 \\
-    \end{bmatrix}
 \]
 
 \problem{1 (b)}

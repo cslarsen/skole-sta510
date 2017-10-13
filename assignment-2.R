@@ -48,7 +48,9 @@ problem1b <- function(runs=1000000) {
           (sum(x1 < 100 & x2 > 50 & x3 < 15) / runs),
           " (", runs, " simulations)")
 
-  println("P(X1 + 2X2 + 5X3 > 300) = ",
+  # NOTE: We could write sum((x %*% c(1, 2, 5)) > 300) instead, but it yields
+  # the exact same result.
+  println("P(X1 + 2X2 + 5X3 > 300)       = ",
           (sum((x1 + 2*x2 + 5*x3) > 300) / runs),
           " (", runs, " simulations)")
 }

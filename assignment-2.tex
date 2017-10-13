@@ -64,6 +64,50 @@ Output from R using \texttt{rmvnorm} \cite{mvtnorm}:
 \VerbatimInput{problem1b.out}
 
 \problem{1 (c)}
+A top-tier character demands that \text{both} $X_1$ and $X_2$ are high at the
+same time. Therefore, we should have the highest chance of getting a top-tier
+character if they are positively correlated, i.e.~a high $X_1$ implies a high
+$X_2$ (or the other way around).
+
+\paragraph{(i)   $\rho_{12} =  -0.8$}
+\[
+  \Sigma\left(\textbf{X}\right) =
+    \begin{bmatrix}
+      \rho_{11} & \rho_{12} & \rho_{13} \\
+      \rho_{21} & \rho_{22} & \rho_{23} \\
+      \rho_{31} & \rho_{32} & \rho_{33} \\
+    \end{bmatrix}
+  =
+\]
+This scenario has the \textit{least probability} of a top-tier character,
+because $X_1$ and $X_2$ are correlated negatively: A high $X_1$ implies a low
+$X_2$, and a high $X_2$ implies a low $X_1$.
+
+\paragraph{(ii)  $\rho_{12} =   0$}
+\[
+  \Sigma\left(\textbf{X}\right) =
+    \begin{bmatrix}
+      \rho_{11} & \rho_{12} & \rho_{13} \\
+      \rho_{21} & \rho_{22} & \rho_{23} \\
+      \rho_{31} & \rho_{32} & \rho_{33} \\
+    \end{bmatrix}
+  =
+\]
+
+\paragraph{(iii) $\rho_{12} = 0.8$}
+\[
+  \Sigma\left(\textbf{X}\right) =
+    \begin{bmatrix}
+      \rho_{11} & \rho_{12} & \rho_{13} \\
+      \rho_{21} & \rho_{22} & \rho_{23} \\
+      \rho_{31} & \rho_{32} & \rho_{33} \\
+    \end{bmatrix}
+  =
+\]
+This scenare has the \textit{highest probability} of a top-tier character,
+because the two values are positively correlated. That is, they grow the same
+way so that a high $X_1$ or $X_2$ implies a high $X_1$ or $X_2$, respectively.
+
 \problem{1 (d)}
 \problem{2 (a)}
 \problem{2 (b)}

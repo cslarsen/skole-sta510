@@ -53,11 +53,25 @@ problem1b <- function(runs=1000000) {
   println("P(X1 + 2X2 + 5X3 > 300)       = ",
           (sum((x1 + 2*x2 + 5*x3) > 300) / runs),
           " (", runs, " simulations)")
+}
 
-  # Can also calculate these values like this:
-  #println("P(X1 > 100, X2 > 50, X3 > 20) = ",
-          #pmvnorm(mean=mean, sigma=sigma, lower=c(100,50,20), upper=c(Inf, Inf, Inf)),
-          #" (", runs, " simulations)")
+problem1b_exact <- function() {
+  # Covariance matrix from problem 1 (a).
+  sigma <- matrix(c( 900, -240,  24,
+                    -240,  100, -12,
+                      24,  -12,  16), ncol=3)
+  # Expectation vector from problem 1 (a).
+  mean <- c(90, 48, 18)
+
+  println("Exact P(X1 > 100, X2 > 50, X3 > 20) = ",
+          pmvnorm(mean=mean, sigma=sigma,
+                  lower=c(100,  50,  20),
+                  upper=c(Inf, Inf, Inf)))
+
+  println("Exact P(X1 < 100, X2 > 50, X3 < 15) = ",
+          pmvnorm(mean=mean, sigma=sigma,
+                  lower=c(-Inf,  50, -Inf),
+                  upper=c( 100, Inf,   15)))
 }
 
 problem1d <- function(runs=1000000) {

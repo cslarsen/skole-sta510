@@ -6,8 +6,8 @@
 \author{Christian Stigen}
 \date{UiS, October \nth{19}, 2017}
 
-  \begin{document}
-  \maketitle
+\begin{document}
+\maketitle
 \section*{\normalsize{How to run the code}}
 All the code for this exercise can be found in \texttt{assignment-2.R}. I have
 made a single function for each problem. For example, to see the output of
@@ -153,14 +153,14 @@ producing a top-tier character.
 
 \problem{2 (a)}
 The transform method in the lectures seem to first have been presented by
-Çinlar in \cite[p.~96]{cinlar}. I do not have that book, but the key insight is
-the following theorem by Çinlar, reproduced in \cite{generating}:
+Çinlar in \cite[p.~96]{cinlar}. While I do not have the book, the key theorem 
+is reproduced in \cite{generating}. I have quoted that verbatim from
+\cite{generating} as theorem \vref{theorem:cinlar}.
 
-\newtheorem{theorem}{Theorem}
-\begin{theorem}
+~\begin{theorem}
   \label{theorem:cinlar}
   Let $\Lambda(t), t \geqslant 0$ be a positive-valued, continuous,
-  nondecreasing function. THen the random variables $T_1, T_2, \dots$ are event
+  nondecreasing function. Then the random variables $T_1, T_2, \dots$ are event
   times corresponding to a nonhomogeneous Poisson process with expectation
   function $\Lambda(t)$ if and only if $\Lambda(T_1), \Lambda(T_2), \dots$ are
   the event times corresponding to a homogeneous Poisson process with rate one.

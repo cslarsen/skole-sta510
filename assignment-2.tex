@@ -152,6 +152,23 @@ As we can see from the output, we seem to have reasoned correctly in problem 1
 producing a top-tier character.
 
 \problem{2 (a)}
+% TODO: Explain in words first. Understand the process.
+The intensity if given by $\lambda(t) = 14t^{0.4}$. We then have that
+\begin{align*}
+  \Lambda(t) &= \int_0^t{\lambda(u)}\, \textrm{d}u
+    =  14\int_0^t{u^{0.4}}\, \textrm{d}u
+    = \frac{14}{1.4}\left[ u^{1.4} \right]_0^t = 10t^{1.4} = 10t^{\frac{7}{5}}
+\end{align*}
+The inverse will then be given by
+\begin{align*}
+  \Lambda(t) &= 10t^{\frac{7}{5}} \\
+  \Lambda(t)^{\frac{5}{7}} &= 10^{\frac{5}{7}}t \\
+      \left( \frac{\Lambda(t)}{10} \right)^{\frac{5}{7}} &= t \\
+  \Lambda^{-1}(x) &= \left( \frac{\Lambda(t)}{10} \right)^{\frac{5}{7}}
+    = 10^{\frac{7}{5}}\Lambda(t)^{\frac{5}{7}}
+\end{align*}
+
+
 \problem{2 (b)}
 \problem{2 (c)}
 \problem{2 (d)}

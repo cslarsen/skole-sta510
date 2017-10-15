@@ -213,20 +213,15 @@ If we set $w = \Lambda(t)$, its inverse $\Lambda^{-1}(w) = t$ is given by
 
 \paragraph{Sampling from the entire period $t \in [0,5]$}
 Each $t$, represented as $w$ in algorithm \vref{algorithm:nhpp}, should cover the
-entire period from 0 to 5. The way we have written the algorithm, this is
-difficult, since we have $n$ fixed numbers we want to generate. A naive (as in
-inefficient) way would be to drop the requirement to generate $n$ numbers, but
-instead continue to generate samples until we see we have numbers covering the
-entire span of numbers 0--5. An even simpler solution is to sample enough
-numbers. The points is that we don't want to disturb the true distribution of
-numbers, as in dropping numbers that don't cover the range. One could have a
-rolling window of numbers so that we iterate until the $s$ values have been
-sampled from $t \in [0,5]$, but that would most likely seriously skew the
-numbers, since we would always get a distribution that includes all $t \in
-[0,5]$.
+entire period from 0 to 5. For example, when we plot the result, it would not
+look good if we didn't plot for the entire range 0--5.
 
-In fact, this is briefly discussed in \cite{generating}, noting that "Çinlar's
-method may have no solution [or \dots] may not be a proper cdf.".
+This is difficult to achieve in algorithm \vref{algorithm:nhpp}, since it
+generates exactly $n$. I wouldn't want to change the algorithm, in fear of
+disturbing the true distribution of numbers.
+
+A naive way to correct this would be to simply sample a larger number of
+values.
 
 \problem{2 (b)}
 \problem{2 (c)}

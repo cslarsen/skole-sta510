@@ -112,3 +112,18 @@ problem1d <- function(runs=1000000) {
   display("(ii) ", scenario2)
   display("(iii)", scenario3)
 }
+
+# Samples from a non-homogeneous Poisson distribution
+rnhpp <- function(n, inverse_lambda) {
+  w <- rpois(n, lambda=1)
+  s <- inverse_lambda(w)
+}
+
+problem2b <- function(runs=1000) {
+  inverse_lambda <- function(w) {
+    10^(7/5) * w^(5/7)
+  }
+
+  x <- rnhpp(runs, inverse_lambda)
+  plot(x, type="l")
+}

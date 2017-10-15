@@ -114,16 +114,33 @@ problem1d <- function(runs=1000000) {
 }
 
 # Samples from a non-homogeneous Poisson distribution
-rnhpp <- function(n, inverse_lambda) {
+rnhpp <- function(n, lambda_max, inverse_lambda) {
   w <- rpois(n, lambda=1)
   s <- inverse_lambda(w)
 }
 
-problem2b <- function(runs=1000) {
+problem2b <- function(runs=100) {
+  # Start and stop times
+  a <- 0
+  b <- 5
+
+  lambda <- function(t) {
+    10*t^(7/5)
+  }
+
   inverse_lambda <- function(w) {
     10^(7/5) * w^(5/7)
   }
 
-  x <- rnhpp(runs, inverse_lambda)
-  plot(x, type="l")
+  lambda_max = lambda(b)
+  cat("lambda max: ", lambda_max, "\n")
+
+  #x <- rnhpp(3*5*lambda_max, lambda_max, inverse_lambda)
+  x <- (b-a) * rnhpp(100, lambda_max, inverse_lambda) / lambda_max
+  #cat(x, "\n")
+  #x <- cumsum(x)
+  #plot(x, 1:length(x), type="s")
+  plot(seq(a, b, length.out=length(x)), cumsum(x), type="s",
+       xlab="Time", ylab="Cumulative failures")
+  summary(x)
 }

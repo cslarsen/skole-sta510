@@ -141,6 +141,6 @@ problem2b <- function(runs=100) {
   #x <- cumsum(x)
   #plot(x, 1:length(x), type="s")
   plot(seq(a, b, length.out=length(x)), cumsum(x), type="s",
-       xlab="Time", ylab="Cumulative failures")
+       xlab="Time in years", ylab="Cumulative failures")
   summary(x)
 }

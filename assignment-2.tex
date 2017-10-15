@@ -208,8 +208,16 @@ If we set $w = \Lambda(t)$, its inverse $\Lambda^{-1}(w) = t$ is given by
   w^{\frac{5}{7}} &= 10^{\frac{5}{7}}t \\
       \left( \frac{w}{10} \right)^{\frac{5}{7}} 
       &= 10^{\frac{7}{5}}w^{\frac{5}{7}} = t \\
-  \Lambda^{-1}(w) &= 10^{\frac{7}{5}}w^{\frac{5}{7}}
+  \Lambda^{-1}(w) &= t = 10^{\frac{7}{5}}w^{\frac{5}{7}}
 \end{align*}
+
+\paragraph{Sampling from the entire period $t \in [0,5]$}
+Each $t$, represented as $w$ in algorithm \vref{algorithm:nhpp}, should cover the
+entire period from 0 to 5. The way we have written the algorithm, this is
+difficult, since we have $n$ fixed numbers we want to generate. A naive (as in
+inefficient) way would be to drop the requirement to generate $n$ numbers, but
+instead continue to generate samples until we see we have numbers covering the
+entire span of numbers 0--5.
 
 \problem{2 (b)}
 \problem{2 (c)}

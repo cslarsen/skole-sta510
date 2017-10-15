@@ -170,11 +170,31 @@ In other words, it relates a \textit{homogeneous} Poisson process with a
 \textit{constant rate of one} to a non-homogeneous Poisson process. We can
 actually go backwards by sampling event times from the homogeneous, rate 1
 Poisson process, then go backwards through $\Lambda^{-1}$ to then generate
-samples from the non-homogeneous process.
+samples from the non-homogeneous process. See algorithm \vref{algorithm:nhpp}.
+
+\begin{algorithm}
+  \caption{Generates $n$ numbers for the non-homogeneous Poisson process (NHPP)}
+  \label{algorithm:nhpp}
+  \begin{algorithmic}[1]
+    \Function{rnhpp}{$n, \Lambda^{-1}$}
+      \Let{$\textrm{samples}$}{vector of size $n$}
+      \For{$i \gets 1 \textrm{ to } n$}
+        \Let{$w$}{\Call{rpois}{$1$, lambda=$1$}} \Comment{Homogeneous Poisson sampler}
+        \Let{$s$}{$\Lambda^{-1}(w)$}
+      \EndFor
+      \State \Return{$\textrm{samples}$}
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+
+In algorithm \vref{algorithm:nhpp}, $\Lambda^{-1}$ is the inverted rate
+function, while $\textrm{rpois}$ is a function for generating numbers from a
+homogeneous Poisson. The algorithm operates in a for-loop. In the
+implementation, we will operate on vectors.
 
 In practice, this means that the rate function $\Lambda(t)$ must be readily
 reversible. That may not always be the case, but suffices for the current task.
-We will start by finding this reverse function.
+We will start by finding it.
 
 The intensity is given by $\lambda(t) = 14t^{0.4}$. We then have that
 \begin{align*}

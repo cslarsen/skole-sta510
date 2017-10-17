@@ -249,6 +249,8 @@ value in the integrand function. The integral, or area under the curve, should
 then be approximated with the ratio of points that fall above and below the
 line.
 
+\paragraph{Approximating the integral with crude Monte Carlo integration.}
+
 This will be a win in situations where the integral is impossible, hard or
 computationally expensive to perform --- for example, multi-dimensional
 integrals.
@@ -268,7 +270,14 @@ keep track of how many are above and below the integrand line given by $g(x)$.
 The ratio, multiplied with $(b-a)$ will then give us
 $\hat{\theta}_{\textrm{CMC}}$.
 
+\paragraph{Calculating the required number of simulations.}
+To be 95\%{} certain that the estimate is no more than 100 from the true
+answers \dots.
+
 \problem{3 (b)}
+Output from R:
+\VerbatimInput{problem3b.out}
+
 \problem{3 (c)}
 \problem{3 (d)}
 

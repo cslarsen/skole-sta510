@@ -134,15 +134,27 @@ problem2b <- function(runs=100) {
 }
 
 problem3b <- function() {
+  # Integrand
   g <- function(t) {
     25 + 50*t*sin(t*2*pi/24)^2 + 250*sin(t*pi/24)^2
   }
 
-  runs <- 10000000
+  # Bounds
   a <- 0
   b <- 24
+
+  # Perform approximation
+  runs <- 100000
   x <- runif(runs, min=a, max=b)
   theta.hat <- (b - a) * mean(g(x))
 
+
+  # Show the actual value. The exact integral was computed with Wolfram Alpha
+  integral <- function(t) {
+    (25*(pi*(pi*t*(t + 12) - 120 * sin(pi*t/12) - 12 * t * sin(pi*t/6)) - 72 *
+         cos(pi*t/6))) / (2*pi^2)
+  }
+
   println("theta.hat = ", theta.hat, " (", runs, " runs)")
+  println("theta     = ", (integral(b) - integral(a)))
 }

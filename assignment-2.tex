@@ -242,28 +242,31 @@ See the plot in figure \vref{plot:2b}.
 \problem{2 (i)}
 
 \problem{3 (a)}
-The basic idea of Monte Carlo integration is to draw random points from the
-plane, and then divide the number of points that fall below with the number
-that fall above.
+The basic idea of Monte Carlo integration is to approximate an integral by
+sampling. By drawing random numbers in the plane, we can easily determine if
+the point falls above or below the integrand line by inserting the random $x$
+value in the integrand function. The integral, or area under the curve, should
+then be approximated with the ratio of points that fall above and below the
+line.
 
-That ratio gives us an approximation of the integral without having to perform
-the integration at all. We only use the function itself. Of course, this will
-only be useful in situations where finding the integral is impossible, hard or
-computationally very expensive. A typical scenario is multi-dimensional
+This will be a win in situations where the integral is impossible, hard or
+computationally expensive to perform --- for example, multi-dimensional
 integrals.
 
 The \textit{crude Monte Carlo integration} is given by
 \[
-  \hat{\theta}_{CMC} = \frac{b-a}{n} \sum_{i=1}^{n} g(X_i) =
+  \hat{\theta}_{\textrm{CMC}} = \frac{b-a}{n} \sum_{i=1}^{n} g(X_i) =
   (b-a)\overline{g(X)}
 \]
-Here, $f(x) = \frac{1}{b-a}$ is the density function, and $X ~ U[a,b]$.
+Here, $f(x) = \frac{1}{b-a}$ is the density function, and $n$ is the number of
+samples drawn from $X \sim U[a,b]$. By the law of large numbers,
+$\hat{\theta}_{\textrm{CMC}} \to \theta$ as $n \to \infty$. The derivation of the above
+equation is given in the lecture notes.
 
-Now, what we can do then is to drawn several uniform random samples from
-$U[a,b]$, calculate $g(X)$ and then take the average value and multiply it with
-$(b-a)$. That should give us an approximation for $\theta$, because by the
-strong law of large numbers, $\hat{\theta}_{CMC} \to \theta$ as $n \to \infty$,
-where $n$ is the number of samples drawn.
+So, to perform crue Monte Carlo integration, we pick $n$ random numbers and
+keep track of how many are above and below the integrand line given by $g(x)$.
+The ratio, multiplied with $(b-a)$ will then give us
+$\hat{\theta}_{\textrm{CMC}}$.
 
 \problem{3 (b)}
 \problem{3 (c)}

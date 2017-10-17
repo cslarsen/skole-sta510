@@ -242,6 +242,7 @@ See the plot in figure \vref{plot:2b}.
 \problem{2 (i)}
 
 \problem{3 (a)}
+% TODO: Add refs to Cinderalla book and Rizzo
 The basic idea of Monte Carlo integration is to approximate an integral by
 sampling. By drawing random numbers in the plane, we can easily determine if
 the point falls above or below the integrand line by inserting the random $x$
@@ -273,6 +274,26 @@ $\hat{\theta}_{\textrm{CMC}}$.
 \paragraph{Calculating the required number of simulations.}
 To be 95\%{} certain that the estimate is no more than 100 from the true
 answers \dots.
+
+To have a $(1 - \alpha) 100\%{}$ probability that $\hat{\theta}_{\textrm{CMC}}$
+is at most a margin $e$ from $\theta$ we need
+\[
+  SD(\hat{\theta}_{\textrm{CMC}}) = \frac{(b - a)\sigma_{g(X)}}{\sqrt{n}}
+\]
+which gives us
+\[
+  n > \frac{z_{\sfrac{\alpha}{2}}^2 (b - a)^2 \sigma_{g(x)}^2 }{e^2}
+\]
+We can estimate $\sigma_{g(X)}^2$ by a simulation, and then we set $e = 100$
+and $\alpha = 0.5$ giving us $z \approx 1.96$ to calculate the number of
+samples $n$ we need to be $95\%{}$ certain that we are at most $e = 100$ away
+from the true value.
+
+To approximate $\sigma_{g(X)}^2$ we use
+\[
+  \widehat{\sigma_{g(X)}^2} = \frac{1}{1 - n} \sum_{i=1}^n \left(
+        g(X_i) - \overline{g(X)} \right)^2
+\]
 
 \problem{3 (b)}
 Output from R:

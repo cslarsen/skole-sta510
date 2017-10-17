@@ -144,16 +144,16 @@ problem3b <- function() {
   b <- 24
 
   # Approximate standard deviation
-  n <- 1000
-  e <- 100
-  alpha = (1 - 0.95)
+  n <- 1500
+  e <- 100 # error less than 100 from actual theta
+  alpha = (1 - 0.95) # confidence level
   X <- runif(n, min=a, max=b)
   sigma.hat <- sum((g(X) - mean(g(X)))^2) / (n - 1)
   n.hat <- ceiling(sigma.hat * (qnorm(alpha/2)*(b - a) / e )^2)
   println("Approximation of sigma.hat")
   println()
   println("  sigma.hat      = ", sigma.hat, " (", n, " runs)")
-  println("  ceiling(n.hat) = ", n.hat, " (n for alpha=0.05 e=100)")
+  println("  ceiling(n.hat) = ", n.hat, " (alpha=0.05 e=100)")
   println()
 
   # Approximate integral
@@ -177,24 +177,20 @@ problem3b <- function() {
   # Now try to see how many times the difference is within e, to double-check
   # our estimate of n
   calc_diff <- function(dummy) {
-    x <- runif(n.hat, min=a, max=b)
-    theta.hat <- (b - a) * mean(g(x))
-    theta = integral(b) - integral(a)
-    abs(theta - theta.hat)
+    theta.hat <- (b - a) * mean(g(runif(n.hat, min=a, max=b)))
+    abs(theta - theta.hat) < e
   }
 
-  N <- 1000
-  diffs <- mapply(function(dummy) { calc_diff(n.hat) }, 1:N)
-  actual.alpha <- length(diffs[diffs < e]) / length(diffs)
-  println("With n.hat = ", n.hat, ", how many times did we actually")
-  println("get a difference less than e = ", e, " ?")
+  N <- 250
+  good.diffs <- sum(mapply(function(dummy) { calc_diff(n.hat) }, 1:N))
+  empirical.alpha <- good.diffs / N
+  println("Over ", N, " runs, how many times did our theta.hat fall within")
+  println("e = ", e, " of the actual theta ?")
   println()
-  println("  n used to approximate sigma.hat = ", n)
-  println("  actual.alpha = ", actual.alpha)
+  println("  empirical.alpha = ", empirical.alpha)
   println()
 
-  if ( actual.alpha < (1 - alpha) ) {
-    println("This is less than alpha = ", alpha)
-    println("Suggestion: Increase n = ", n)
+  if ( empirical.alpha < (1 - alpha) ) {
+    println("Suggestion: Set n > ", n, " ?")
   }
 }

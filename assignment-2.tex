@@ -151,6 +151,7 @@ As we can see from the output, we seem to have reasoned correctly in problem 1
 (c) about which scenarios should have the highest and lowest probability of
 producing a top-tier character.
 
+\clearpage
 \problem{2 (a)}
 The transform method in the lectures seem to first have been presented by
 Çinlar in \cite[p.~96]{cinlar}. While I do not have the book, the key theorem 
@@ -241,6 +242,7 @@ See the plot in figure \vref{plot:2b}.
 \problem{2 (h)}
 \problem{2 (i)}
 
+\clearpage
 \problem{3 (a)}
 % TODO: Add refs to Cinderalla book and Rizzo
 The basic idea of Monte Carlo integration is to approximate an integral by
@@ -283,11 +285,14 @@ is at most a margin $e$ from $\theta$ we need
 which gives us
 \[
   n > \frac{z_{\sfrac{\alpha}{2}}^2 (b - a)^2 \sigma_{g(x)}^2 }{e^2}
+    = \sigma_{g(x)}^2
+        \left(
+            \frac{z_{\sfrac{\alpha}{2}}(b - a)}{e}
+          \right)^2
 \]
-We can estimate $\sigma_{g(X)}^2$ by a simulation, and then we set $e = 100$
-and $\alpha = 0.5$ giving us $z \approx 1.96$ to calculate the number of
-samples $n$ we need to be $95\%{}$ certain that we are at most $e = 100$ away
-from the true value.
+We can estimate $\sigma_{g(X)}^2$ by a simulation. To be $95\%{}$ certain,
+we set $\alpha = 0.5$ to get $z_\sfrac{\alpha}{2} \approx 1.96$. Finally, the
+margin of error $e = 100$.
 
 To approximate $\sigma_{g(X)}^2$ we use
 \[

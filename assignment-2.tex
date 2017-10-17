@@ -290,17 +290,21 @@ which gives us
             \frac{z_{\sfrac{\alpha}{2}}(b - a)}{e}
           \right)^2
 \]
-We can estimate $\sigma_{g(X)}^2$ by a simulation. To be $95\%{}$ certain,
-we set $\alpha = 0.5$ to get $z_{\sfrac{\alpha}{2}} \approx 1.96$. Finally, the
-margin of error $e = 100$.
-
-To approximate $\sigma_{g(X)}^2$ we use
+We can approximate $\sigma_{g(X)}^2$ as well with
 \[
   \widehat{\sigma_{g(X)}^2} = \frac{1}{1 - n} \sum_{i=1}^n \left(
         g(X_i) - \overline{g(X)} \right)^2
 \]
+where $X \sim [a, b]$.
+
+So, we can then approximate an $n$ so that $(1 - \alpha)100 = 95\%{}$ of the time
+the value $\hat{\theta_{\textrm{CMC}}}$ deviates no more than $e = 100$ from
+the exact $\theta$. I have done this in problem 3 (b) \vpageref{problem:3b}.
+Of course, the value of $n$ will rely heavily on $\sigma_{g(X)}$, or the number
+of samples for estimating it, by transitivity.
 
 \problem{3 (b)}
+\label{problem:3b}
 Output from R:
 \VerbatimInput{problem3b.out}
 

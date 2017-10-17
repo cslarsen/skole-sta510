@@ -144,24 +144,22 @@ problem3b <- function() {
   b <- 24
 
   # Approximate standard deviation
-  n <- 10000
+  n <- 1000
   e <- 100
   alpha = (1 - 0.95)
   X <- runif(n, min=a, max=b)
-  sigma.hat <- (sum( (g(X) - mean(g(X)))^2 )) / (n - 1)
-  n.hat <- sigma.hat * ( qnorm(alpha/2) * (b - a) / e )^2
+  sigma.hat <- sum((g(X) - mean(g(X)))^2) / (n - 1)
+  n.hat <- ceiling(sigma.hat * (qnorm(alpha/2)*(b - a) / e )^2)
   println("Approximation of sigma.hat")
-  println("  sigma.hat      = ", sigma.hat)
-  println("  ceiling(n.hat) = ", ceiling(n.hat))
+  println("  sigma.hat      = ", sigma.hat, " (", n, " runs)")
+  println("  ceiling(n.hat) = ", n.hat, " (n for alpha=0.05 e=100)")
   println()
 
   # Approximate integral
-  runs <- n.hat
-  x <- runif(runs, min=a, max=b)
+  x <- runif(n.hat, min=a, max=b)
   theta.hat <- (b - a) * mean(g(x))
 
-
-  # Show the actual value. The exact integral was computed with Wolfram Alpha
+  # The exact integral (from Wolfram Alpha)
   integral <- function(t) {
     (25*(pi*(pi*t*(t + 12) - 120 * sin(pi*t/12) - 12 * t * sin(pi*t/6)) - 72 *
          cos(pi*t/6))) / (2*pi^2)
@@ -169,7 +167,24 @@ problem3b <- function() {
 
   println("Approximation and exact value of integral")
   theta = integral(b) - integral(a)
-  println("  theta.hat = ", theta.hat, " (", runs, " runs)")
-  println("  theta     = ", theta, "   (from Wolfram Alpha)")
-  println("  diff      = ", abs(theta - theta.hat))
+  println("  theta.hat  = ", theta.hat, " (", n.hat, " runs)")
+  println("  theta      = ", theta, " (from Wolfram Alpha)")
+  println("  difference = ", abs(theta - theta.hat))
+  println()
+
+  # Now try to see how many times the difference is within e, to double-check
+  # our estimate of n
+  calc_diff <- function(dummy) {
+    x <- runif(n.hat, min=a, max=b)
+    theta.hat <- (b - a) * mean(g(x))
+    theta = integral(b) - integral(a)
+    abs(theta - theta.hat)
+  }
+
+  N <- 1000
+  diffs <- mapply(function(dummy) { calc_diff(n.hat) }, 1:N)
+  actual.alpha <- length(diffs[diffs < e]) / length(diffs)
+  println("With n.hat = ", n.hat, ", how many times did we actually")
+  println("get a difference less than e = ", e, " ?")
+  println("  actual.alpha = ", actual.alpha)
 }

@@ -151,6 +151,7 @@ problem3b <- function() {
   sigma.hat <- sum((g(X) - mean(g(X)))^2) / (n - 1)
   n.hat <- ceiling(sigma.hat * (qnorm(alpha/2)*(b - a) / e )^2)
   println("Approximation of sigma.hat")
+  println()
   println("  sigma.hat      = ", sigma.hat, " (", n, " runs)")
   println("  ceiling(n.hat) = ", n.hat, " (n for alpha=0.05 e=100)")
   println()
@@ -167,6 +168,7 @@ problem3b <- function() {
 
   println("Approximation and exact value of integral")
   theta = integral(b) - integral(a)
+  println()
   println("  theta.hat  = ", theta.hat, " (", n.hat, " runs)")
   println("  theta      = ", theta, " (from Wolfram Alpha)")
   println("  difference = ", abs(theta - theta.hat))
@@ -186,5 +188,13 @@ problem3b <- function() {
   actual.alpha <- length(diffs[diffs < e]) / length(diffs)
   println("With n.hat = ", n.hat, ", how many times did we actually")
   println("get a difference less than e = ", e, " ?")
+  println()
+  println("  n used to approximate sigma.hat = ", n)
   println("  actual.alpha = ", actual.alpha)
+  println()
+
+  if ( actual.alpha < (1 - alpha) ) {
+    println("This is less than alpha = ", alpha)
+    println("Suggestion: Increase n = ", n)
+  }
 }

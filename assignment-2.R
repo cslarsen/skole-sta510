@@ -143,8 +143,20 @@ problem3b <- function() {
   a <- 0
   b <- 24
 
-  # Perform approximation
-  runs <- 100000
+  # Approximate standard deviation
+  n <- 10000
+  e <- 100
+  alpha = (1 - 0.95)
+  X <- runif(n, min=a, max=b)
+  sigma.hat <- (sum( (g(X) - mean(g(X)))^2 )) / (n - 1)
+  n.hat <- sigma.hat * ( qnorm(alpha/2) * (b - a) / e )^2
+  println("Approximation of sigma.hat")
+  println("  sigma.hat      = ", sigma.hat)
+  println("  ceiling(n.hat) = ", ceiling(n.hat))
+  println()
+
+  # Approximate integral
+  runs <- n.hat
   x <- runif(runs, min=a, max=b)
   theta.hat <- (b - a) * mean(g(x))
 
@@ -155,6 +167,9 @@ problem3b <- function() {
          cos(pi*t/6))) / (2*pi^2)
   }
 
-  println("theta.hat = ", theta.hat, " (", runs, " runs)")
-  println("theta     = ", (integral(b) - integral(a)))
+  println("Approximation and exact value of integral")
+  theta = integral(b) - integral(a)
+  println("  theta.hat = ", theta.hat, " (", runs, " runs)")
+  println("  theta     = ", theta, "   (from Wolfram Alpha)")
+  println("  diff      = ", abs(theta - theta.hat))
 }

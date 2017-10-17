@@ -132,3 +132,17 @@ problem2b <- function(runs=100) {
        xlab="Time in years", ylab="Cumulative failures")
   summary(x)
 }
+
+problem3b <- function() {
+  g <- function(t) {
+    25 + 50*t*sin(t*2*pi/24)^2 + 250*sin(t*pi/24)^2
+  }
+
+  runs <- 10000000
+  a <- 0
+  b <- 24
+  x <- runif(runs, min=a, max=b)
+  theta.hat <- (b - a) * mean(g(x))
+
+  println("theta.hat = ", theta.hat, " (", runs, " runs)")
+}

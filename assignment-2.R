@@ -210,9 +210,9 @@ problem3c <- function() {
   b <- 24
 
   # Find maximum
-  t.max <- optimize(g, interval=c(a, b), maximum=TRUE)$maximum
-  c <- ceiling(g(t.max))
-  println("c = ", c, " (at t = ", t.max, ")")
+  t.max <- optimize(g, interval=c(a, b), maximum=TRUE)
+  c <- ceiling(g(t.max$maximum))
+  println("c = ", c, " (at t = ", t.max$maximum, ")")
   println("ceiling(c) = ", ceiling(c))
   c <- ceiling(c)
 }

@@ -354,8 +354,8 @@ $e$ away from the true $\theta$ with a $(1-\alpha)$ confidence interval by
 We need to find a suitable $c > \lambda(t)$ for $t \in [a, b]$. This can be
 done in R itself (where we use $g(x) = \lambda(t)$) by using
 \begin{Verbatim}
-t.max <- optimize(g, interval=c(a, b), maximum=TRUE)$maximum
-c <- ceiling(g(t.max))
+t <- optimize(g, interval=c(a, b), maximum=TRUE)
+c <- ceiling(g(t$maximum))
 \end{Verbatim}
 This gives us $c = 1052$.
 

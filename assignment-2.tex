@@ -355,12 +355,25 @@ $e$ away from the true $\theta$ with a $(1-\alpha)$ confidence interval by
 \begin{gather*}
   z_{\sfrac{\alpha}{2}}\, \widehat{\textrm{SD}}(\hat{\theta}_{\textrm{HM}}) < e \\
   z_{\sfrac{\alpha}{2}}\, c(b-a) \sqrt{ \frac{\hat{p}(1-\hat{p})}{n} } < e \\
-  n > \frac{\hat{p}(1 - \hat{p})}{e^2}
-          \left( z_{\sfrac{\alpha}{2}}\, c(b - a) \right)^2
+  n > \hat{p} (1 - \hat{p})
+          \left( \frac{ z_{\sfrac{\alpha}{2}}\, c(b - a) }{ e } \right)^2
 \end{gather*}
 
-We can now proceed to estimate $\hat{p}$.
+We can now estimate $\hat{p}$ using using $\alpha = (1-0.95) = 0.05$ and $e =
+100$. Output from R:
+\VerbatimInput{problem3c.out}
 
+As we can see from the output\footnote{The R output is always run
+whenever I reproduce this PDF document. Therefore, there is some differences
+from each run, obviously due to the probabilistic nature of the code.},
+we will require around 60 thousand runs to estimate
+$\hat{\theta_{\textrm{HM}}}$ with the given confidence. That is much larger
+than what we found for the crude Monte Carlo (CMC), which required 18--20
+thousand runs. The reason is that in HM, the underlying information is
+compressed into a strictly binary outcome (i.e.,~zero or one), which throws away much of
+the information. We then take the mean of the binary values, losing information
+like, for example, how far away the sampled point was from $\lambda(t)$. Thus,
+getting a good mean of the binary values simply requires many more of them.
 
 %%% TODO:
 % Upper bound (isn't it lower bound?). Anway, can clearly see whith requires

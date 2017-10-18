@@ -212,7 +212,8 @@ problem3c <- function() {
   # Find maximum
   t.max <- optimize(g, interval=c(a, b), maximum=TRUE)
   c <- ceiling(g(t.max$maximum))
-  println("c = ", c, " (ceiling at t = ", t.max$maximum, ")")
+  println("Maximum value of g(x) between [", a, ", ", b, "]")
+  println("  c = ", c, " (ceiling at t = ", t.max$maximum, ")")
   println()
 
   # Estimate p.hat
@@ -222,13 +223,15 @@ problem3c <- function() {
   p.hat <- mean(Y <= g(X))
 
   println("Estimation of p")
-  println("   p.hat = ", p.hat, " (over ", n, " runs)")
+  println("  p.hat = ", p.hat, " (over ", n, " runs)")
   println()
 
   # Estimate the number of simulations required for HM Monte Carlo
   e <- 100
   alpha = (1 - 0.95)
-  n.hat <- (p.hat*(1 - p.hat)) * (qnorm(alpha/2) * c*(b - a) / e)^2
+  n.hat <- ceiling((p.hat*(1 - p.hat)) * (qnorm(alpha/2) * c*(b - a) / e)^2)
   println("Estimation of n for HM Monte Carlo")
-  println("   n.hat = ", n.hat)
+  println("  e = ", e)
+  println("  alpha = ", alpha)
+  println("  ceiling(n.hat) = ", n.hat, " (number of runs for HM)")
 }

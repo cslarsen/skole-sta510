@@ -40,6 +40,9 @@ assignment-2.pdf: \
 problem%.out: assignment-2.R
 	$(RSCRIPT) -e 'pdf("$(@:.out=.pdf)"); source("$<"); $(@:.out=)()' > $@
 
+show%: problem%.out
+	@cat $<
+
 open: all
 	$(OPEN) assignment-2.pdf
 

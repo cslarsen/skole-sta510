@@ -311,6 +311,13 @@ According to confidence intervals, $100(1 - \alpha)\%{}$ of the time,
 $\hat{\theta}$ should fall within $e = 100$ of the actual $\theta$.
 
 \problem{3 (c)}
+The \textit{hit or miss Monte Carlo integration} (HM) is done by choosing a
+constant $c$ so that $0 \leqslant g(x) \leqslant c$ for $x \in [a,b]$. We then
+draw random points in this area with $X \sim U[a, b]$ and $Y \sim U[0, c]$ and
+calculate the ratio of points inside and outside of the area delimited by
+$g(x)$ and $y=0$. This should give an approximation of $\theta = \int_a^b
+g(x)\, \textrm{d}x$.
+
 \problem{3 (d)}
 
 \clearpage

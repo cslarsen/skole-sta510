@@ -350,6 +350,15 @@ $e$ away from the true $\theta$ with a $(1-\alpha)$ confidence interval by
           \left( z_{\sfrac{\alpha}{2}}\, c(b - a) \right)^2
 \end{gather*}
 
+\paragraph{Choosing a suitable constant $c$}.
+We need to find a suitable $c > \lambda(t)$ for $t \in [a, b]$. This can be
+done in R itself (where we use $g(x) = \lambda(t)$) by using
+\begin{Verbatim}
+t.max <- optimize(g, interval=c(a, b), maximum=TRUE)$maximum
+c <- ceiling(g(t.max))
+\end{Verbatim}
+This gives us $c = 1052$.
+
 %%% TODO:
 % Upper bound (isn't it lower bound?). Anway, can clearly see whith requires
 % the least number of simulations. But can also compare the variances to see

@@ -194,3 +194,25 @@ problem3b <- function() {
     println("Suggestion: Set n > ", n, " ?")
   }
 }
+
+g <- function(t) {
+  25 + 50*t*sin(t*2*pi/24)^2 + 250*sin(t*pi/24)^2
+}
+
+problem3c_plot <- function(a=0, b=24) {
+  x <- seq(a, b, length.out=100)
+  plot(x, g(x), type="l")
+}
+
+problem3c <- function() {
+  # Bounds
+  a <- 0
+  b <- 24
+
+  # Find maximum
+  t.max <- optimize(g, interval=c(a, b), maximum=TRUE)$maximum
+  c <- ceiling(g(t.max))
+  println("c = ", c, " (at t = ", t.max, ")")
+  println("ceiling(c) = ", ceiling(c))
+  c <- ceiling(c)
+}

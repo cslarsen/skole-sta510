@@ -355,12 +355,13 @@ $e$ away from the true $\theta$ with a $(1-\alpha)$ confidence interval by
 \begin{gather*}
   z_{\sfrac{\alpha}{2}}\, \widehat{\textrm{SD}}(\hat{\theta}_{\textrm{HM}}) < e \\
   z_{\sfrac{\alpha}{2}}\, c(b-a) \sqrt{ \frac{\hat{p}(1-\hat{p})}{n} } < e \\
-  n > \frac{\hat{p}(1 - \hat{p})}{e^2}
-          \left( z_{\sfrac{\alpha}{2}}\, c(b - a) \right)^2
+  n > \hat{p} (1 - \hat{p})
+          \left( \frac{ z_{\sfrac{\alpha}{2}}\, c(b - a) }{ e } \right)^2
 \end{gather*}
 
-We can now proceed to estimate $\hat{p}$.
-
+We can now proceed to estimate $\hat{p}$. We will be using $\alpha = (1-0.95) =
+0.05$ and $e = 100$. Output from R:
+\VerbatimInput{problem3c.out}
 
 %%% TODO:
 % Upper bound (isn't it lower bound?). Anway, can clearly see whith requires

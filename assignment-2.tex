@@ -255,10 +255,11 @@ line.
 \paragraph{Approximating the integral with crude Monte Carlo integration.}
 
 This will be a win in situations where the integral is impossible, hard or
-computationally expensive to perform --- for example, multi-dimensional
-integrals.
+computationally expensive to perform --- this applies especially for
+multi-dimensional integrals, where Monte Carlo integration scales linearly
+while true integration scales polynomially.
 
-The \textit{crude Monte Carlo integration} is given by
+The \textit{crude Monte Carlo integration} (CMC) is given by
 \[
   \hat{\theta}_{\textrm{CMC}} = \frac{b-a}{n} \sum_{i=1}^{n} g(X_i) =
   (b-a)\overline{g(X)}
@@ -268,17 +269,11 @@ samples drawn from $X \sim U[a,b]$. By the law of large numbers,
 $\hat{\theta}_{\textrm{CMC}} \to \theta$ as $n \to \infty$. The derivation of the above
 equation is given in the lecture notes.
 
-So, to perform crue Monte Carlo integration, we pick $n$ random numbers and
-keep track of how many are above and below the integrand line given by $g(x)$.
-The ratio, multiplied with $(b-a)$ will then give us
-$\hat{\theta}_{\textrm{CMC}}$.
-
-\paragraph{Calculating the required number of simulations.}
-To be 95\%{} certain that the estimate is no more than 100 from the true
-answers \dots.
+\paragraph{Estimating the number of simultions.}
 
 To have a $(1 - \alpha) 100\%{}$ probability that $\hat{\theta}_{\textrm{CMC}}$
-is at most a margin $e$ from $\theta$ we need
+is at most a margin $e$ from $\theta$ we need use the empirial standard
+deviation equation.
 \[
   SD(\hat{\theta}_{\textrm{CMC}}) = \frac{(b - a)\sigma_{g(X)}}{\sqrt{n}}
 \]
@@ -297,11 +292,14 @@ We can approximate $\sigma_{g(X)}^2$ as well with
 \]
 where $X \sim [a, b]$.
 
-So, we can then approximate an $n$ so that $(1 - \alpha)100 = 95\%{}$ of the
-time the value $\hat{\theta_{\textrm{CMC}}}$ deviates no more than $e = 100$
-from the exact $\theta$. I have done this in problem 3 (b)
-\vpageref{problem:3b}.  Of course, the value of $n$ will rely heavily on the
-number of samples used to estimate $\widehat{\sigma_{g(X)}}$.
+This gives us a probabilistic lower bound for $n$ so that
+$\hat{\theta_{\textrm{CMC}}}$ deviates no more than $e = 100$ from the true
+$\theta$ in $(1 - \alpha)100 = 95\%{}$ of the time. Of course, this value will
+depend heavily on accuracy of $\widehat{\sigma_{g(X)}}$ and thus on the number
+of samples used to approximate it.
+
+I have implemented this estimation in the code for problem 3 (b)
+\vpageref{problem:3b}.
 
 \problem{3 (b)}
 \label{problem:3b}

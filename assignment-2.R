@@ -216,10 +216,11 @@ problem3c <- function() {
   println()
 
   # Estimate p.hat
-  n <- 10000 # chosen arbitrarily; we could probably calculate that as well
+  n <- 1500 # chosen arbitrarily; we could probably calculate that as well
   Y <- runif(n, min=0, max=c)
   X <- runif(n, min=a, max=b)
   p.hat <- mean(Y <= g(X))
+
   println("Estimation of p")
   println("   p.hat = ", p.hat, " (over ", n, " runs)")
   println()
@@ -227,7 +228,7 @@ problem3c <- function() {
   # Estimate the number of simulations required for HM Monte Carlo
   e <- 100
   alpha = (1 - 0.95)
-  n.hat <- (p.hat*(1 - p.hat) / e^2) * (qnorm(alpha/2) * c(b - a))^2
+  n.hat <- (p.hat*(1 - p.hat)) * (qnorm(alpha/2) * c*(b - a) / e)^2
   println("Estimation of n for HM Monte Carlo")
   println("   n.hat = ", n.hat)
 }

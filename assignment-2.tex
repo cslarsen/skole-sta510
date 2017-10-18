@@ -331,6 +331,41 @@ or
     \frac{c(b-a)}{n} \sum_{i=1}^n \I(Y_i \leqslant g(X_i))
 \]
 
+\paragraph{Number of simulations.}
+The estimated standard error for HM is given by
+\[
+  \widehat{\textrm{SD}}(\hat{\theta}_{\textrm{HM}})
+    = c(b-a) \frac{ \sqrt{\hat{p}(1-\hat{p})}  }{\sqrt{n}}
+\]
+where $p = \P(Y \leqslant g(X))$ is estimated with
+\[
+  \hat{p} = \frac{1}{n} \sum_{i=1}^{n} \I( Y_i \leqslant g(X_i) )
+\]
+That means we can find the number of $n$ simulations required to be less than
+$e$ away from the true $\theta$ with a $(1-\alpha)$ confidence interval by
+\begin{gather*}
+  z_{\sfrac{\alpha}{2}}\, \widehat{\textrm{SD}}(\hat{\theta}_{\textrm{HM}}) < e \\
+  z_{\sfrac{\alpha}{2}}\, c(b-a) \sqrt{ \frac{\hat{p}(1-\hat{p})}{n} } < e \\
+  n > \frac{\hat{p}(1 - \hat{p})}{e^2}
+          \left( z_{\sfrac{\alpha}{2}}\, c(b - a) \right)^2
+\end{gather*}
+
+%%% TODO:
+% Upper bound (isn't it lower bound?). Anway, can clearly see whith requires
+% the least number of simulations. But can also compare the variances to see
+% how effective they are. I.e., if the var1/var2 ratio < 1, then var1 is more
+% efficient, because then it is lower (less variance), and that's exactly what
+% we want to have. Also, can we find the variance explicitly? That would be
+% nice, but probably difficult for the integrand given.
+%
+% Lectures say that w/same number of iterations, CMC is more efficient, because
+% HM reduces data to 0 and 1. We can repeat that, but better yet to include
+% more information.
+%
+% SEE CHAPTER @ for the confidence intervals! I think there is important info
+% there! Also, precision increases with sqrt(n), so need do DOUBLE n to get
+% more precision (or even more than that)...
+
 \problem{3 (d)}
 
 \clearpage

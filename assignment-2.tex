@@ -269,7 +269,7 @@ samples drawn from $X \sim U[a,b]$. By the law of large numbers,
 $\hat{\theta}_{\textrm{CMC}} \to \theta$ as $n \to \infty$. The derivation of the above
 equation is given in the lecture notes.
 
-\paragraph{Estimating the number of simultions.}
+\paragraph{Estimating the number of simulations.}
 
 To have a $(1 - \alpha) 100\%{}$ probability that $\hat{\theta}_{\textrm{CMC}}$
 is at most a margin $e$ from $\theta$ we need use the empirial standard
@@ -337,7 +337,7 @@ The estimated standard error for HM is given by
   \widehat{\textrm{SD}}(\hat{\theta}_{\textrm{HM}})
     = c(b-a) \frac{ \sqrt{\hat{p}(1-\hat{p})}  }{\sqrt{n}}
 \]
-where $p = \P(Y \leqslant g(X))$ is estimated with
+where $p = \Prb(Y \leqslant g(X))$ is estimated with
 \[
   \hat{p} = \frac{1}{n} \sum_{i=1}^{n} \I( Y_i \leqslant g(X_i) )
 \]

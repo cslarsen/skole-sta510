@@ -314,9 +314,22 @@ $\hat{\theta}$ should fall within $e = 100$ of the actual $\theta$.
 The \textit{hit or miss Monte Carlo integration} (HM) is done by choosing a
 constant $c$ so that $0 \leqslant g(x) \leqslant c$ for $x \in [a,b]$. We then
 draw random points in this area with $X \sim U[a, b]$ and $Y \sim U[0, c]$ and
-calculate the ratio of points inside and outside of the area delimited by
-$g(x)$ and $y=0$. This should give an approximation of $\theta = \int_a^b
-g(x)\, \textrm{d}x$.
+keep track of how many hit inside the area delimited by
+$g(x)$ and $y=0$.
+
+This should then enable us to approximate $\theta = \int_a^b
+g(x)\, \textrm{d}x$. The number of hits should be equal to
+$\E\left[ \I(Y \leqslant g(x)) \right]$ and the rectangular area is given by
+$c(b-a)$, or
+\[
+  \theta = \int_a^b g(x)\, \textrm{d}x
+    = c(b-a)\, \E\left[ \I(Y \leqslant g(x)) \right]
+\]
+or
+\[
+  \hat{\theta}_{\textrm{HM}} =
+    \frac{c(b-a)}{n} \sum_{i=1}^n \I(Y_i \leqslant g(X_i))
+\]
 
 \problem{3 (d)}
 

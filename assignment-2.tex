@@ -331,6 +331,15 @@ or
     \frac{c(b-a)}{n} \sum_{i=1}^n \I(Y_i \leqslant g(X_i))
 \]
 
+\paragraph{Choosing a suitable constant $c$.}
+We need to find a suitable $c > \lambda(t)$ for $t \in [a, b]$. This can be
+done in R itself (where we use $g(x) = \lambda(t)$) by using
+\begin{Verbatim}
+t <- optimize(g, interval=c(a, b), maximum=TRUE)
+c <- ceiling(g(t$maximum))
+\end{Verbatim}
+This gives us $c = 1052$.
+
 \paragraph{Estimating the number of simulations.}
 The estimated standard error for HM is given by
 \[
@@ -350,14 +359,8 @@ $e$ away from the true $\theta$ with a $(1-\alpha)$ confidence interval by
           \left( z_{\sfrac{\alpha}{2}}\, c(b - a) \right)^2
 \end{gather*}
 
-\paragraph{Choosing a suitable constant $c$.}
-We need to find a suitable $c > \lambda(t)$ for $t \in [a, b]$. This can be
-done in R itself (where we use $g(x) = \lambda(t)$) by using
-\begin{Verbatim}
-t <- optimize(g, interval=c(a, b), maximum=TRUE)
-c <- ceiling(g(t$maximum))
-\end{Verbatim}
-This gives us $c = 1052$.
+We can now proceed to estimate $\hat{p}$.
+
 
 %%% TODO:
 % Upper bound (isn't it lower bound?). Anway, can clearly see whith requires

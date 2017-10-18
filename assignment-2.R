@@ -1,6 +1,6 @@
 # ==============================
-# STA-510: Mandatory Excercise 1
-# UiS, September 2017
+# STA-510: Mandatory Excercise 2
+# UiS, October 2017
 # Written by Christian Stigen
 # ==============================
 #
@@ -212,7 +212,22 @@ problem3c <- function() {
   # Find maximum
   t.max <- optimize(g, interval=c(a, b), maximum=TRUE)
   c <- ceiling(g(t.max$maximum))
-  println("c = ", c, " (at t = ", t.max$maximum, ")")
-  println("ceiling(c) = ", ceiling(c))
-  c <- ceiling(c)
+  println("c = ", c, " (ceiling at t = ", t.max$maximum, ")")
+  println()
+
+  # Estimate p.hat
+  n <- 10000 # chosen arbitrarily; we could probably calculate that as well
+  Y <- runif(n, min=0, max=c)
+  X <- runif(n, min=a, max=b)
+  p.hat <- mean(Y <= g(X))
+  println("Estimation of p")
+  println("   p.hat = ", p.hat, " (over ", n, " runs)")
+  println()
+
+  # Estimate the number of simulations required for HM Monte Carlo
+  e <- 100
+  alpha = (1 - 0.95)
+  n.hat <- (p.hat*(1 - p.hat) / e^2) * (qnorm(alpha/2) * c(b - a))^2
+  println("Estimation of n for HM Monte Carlo")
+  println("   n.hat = ", n.hat)
 }

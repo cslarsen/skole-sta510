@@ -211,6 +211,42 @@ problem2b_thinning <- function() {
   points(NHPPtimes, rep(0, length(NHPPtimes)), pch=16, cex=0.5, col="red")
 }
 
+problem2d <- function() {
+  rhpp <- function(lambda, a, b, multiplier=3) {
+    n <- multiplier * (b-a) * lambda
+    w <- a + cumsum(rexp(n, lambda))
+    w[w <= b]
+  }
+
+  # See above
+  rnhpp <- function(a, b, lambda.fun, inverse.fun) {
+    inverse.fun(rhpp(lambda=1, a=lambda.fun(a), b=lambda.fun(b)))
+  }
+
+  # The pre-calculated big lambda and its inverse
+  lambda.fun <- function(t) { 10*t^(7/5) }
+  inverse.fun <- function(w) { 10^(-5/7) * w^(5/7) }
+
+  # Calc mean number of failures during the first year
+  runs <- 10000
+  failures <- 0
+  for ( i in 1:runs ) {
+    s <- rnhpp(0, 1, lambda.fun, inverse.fun)
+    failures <- failures + length(s[s<1])
+  }
+  println("Mean failures during first year: ", (sum(failures) / runs),
+          " (", runs, " runs)")
+
+  # Calc
+  failures <- 0
+  runs <- 10000
+  for ( i in 1:runs ) {
+    s <- rnhpp(4, 5, lambda.fun, inverse.fun)
+    failures <- failures + length(s[s>=4 && s<5])
+  }
+  println("Mean failures during last year: ", (sum(failures) / runs))
+}
+
 problem3b <- function() {
   # Integrand
   g <- function(t) {

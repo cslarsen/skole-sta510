@@ -153,7 +153,7 @@ problem3b <- function() {
   println("Approximation of sigma.hat")
   println()
   println("  sigma.hat      = ", sigma.hat, " (", n, " runs)")
-  println("  ceiling(n.hat) = ", n.hat, " (alpha=0.05 e=100)")
+  println("  ceiling(n.hat) = ", n.hat, " (alpha=", alpha, " e=", e, ")")
   println()
 
   # Approximate integral
@@ -181,7 +181,7 @@ problem3b <- function() {
     abs(theta - theta.hat) <= e
   }
 
-  N <- 250
+  N <- 1000
   good.diffs <- sum(mapply(calc_diff, 1:N))
   empirical.alpha <- good.diffs / N
   println("Over ", N, " runs, how many times did our theta.hat fall within")
@@ -248,7 +248,8 @@ problem3d <- function() {
   Y <- runif(n, min=0, max=c)
   theta.hat.hm <- c*(b - a) * mean(Y <= g(X))
 
-  println("Estimation of theta.hat.hm with 95% conf. int. for e = 100")
+  println("Estimation of theta.hat.hm with ", 100*(1-alpha),
+          "% conf. int. for e = ", e)
   println("  theta.hat.hm = ", theta.hat.hm, " (", n, " runs)")
 
   # As before, measure the empirical alpha
@@ -272,7 +273,7 @@ problem3d <- function() {
     abs(theta.exact - theta.hat.hm) <= e
   }
 
-  N <- 250
+  N <- 1000
   good.diffs <- sum(mapply(calc_diff, 1:N))
   empirical.alpha <- good.diffs / N
   println("Over ", N, " runs, how many times did our theta.hat.hm fall within")

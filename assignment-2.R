@@ -211,6 +211,36 @@ problem2b_thinning <- function() {
   points(NHPPtimes, rep(0, length(NHPPtimes)), pch=16, cex=0.5, col="red")
 }
 
+problem2c <- function() {
+  # Strategy: Use Lambda to transfer t from NHPP to HPP space, then use the
+  # ordinary definitio of the Poisson distribution to calculate the
+  # probabilities.
+
+  # The conversion function
+  lambda.fun <- function(t) { 10*t^(7/5) }
+
+  # The definition of the poisson distribution
+  ppoisson <- function(x, t, lambda=1) {
+    exp(-lambda*t)*(lambda*t)^x / factorial(x)
+  }
+
+  # NHPP probability sum P(a <= X <= b) for a given time t
+  P <- function(a, b, t) {
+    # Transfer NHPP t to HPP
+    t.hpp <- lambda.fun(t)
+    sum(ppoisson(seq(a, b), t.hpp))
+  }
+
+  # Probability that first year (t=1) has more than 10 failures =
+  # 1 - probability that first year has 10 or less failures
+  p1 <- 1 - P(0, 10, 1)
+  println("Exact P(more than 10 failures first year) = ", p1)
+
+  # Probability that last year has more than 20 failures
+  p2 <- 1 - sum(P(0, 20, seq(1, 5)))
+  println("Exact P(more than 20 failures last year) = ", p2)
+}
+
 problem2d <- function() {
   rhpp <- function(lambda, a, b, multiplier=3) {
     n <- multiplier * (b-a) * lambda

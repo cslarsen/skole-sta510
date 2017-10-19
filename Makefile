@@ -37,6 +37,7 @@ assignment-2.pdf: \
 	problem2b.out \
 	problem2b_cinlars_method.out \
 	problem2b_thinning.out \
+	problem2c.out \
 	problem2d.out \
 	problem3b.out \
 	problem3c.out \

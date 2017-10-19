@@ -235,3 +235,53 @@ problem3c <- function() {
   println("  alpha = ", alpha)
   println("  ceiling(n.hat) = ", n.hat, " (number of runs for HM)")
 }
+
+problem3d <- function() {
+  # Bounds
+  a <- 0
+  b <- 24
+  c <- 1052
+
+  # Confidence interval (just for printing here; rest derived from problem3c)
+  e <- 100
+  alpha <- (1 - 0.95)
+
+  # The number of simulations, taken from problem3c (rounded up a small amount)
+  n <- 60000
+  X <- runif(n, min=a, max=b)
+  Y <- runif(n, min=0, max=c)
+  theta.hat.hm <- c*(b - a) * mean(Y <= g(X))
+
+  println("Estimation of theta.hat.hm with 95% conf. int. for e = 100")
+  println("  theta.hat.hm = ", theta.hat.hm, " (", n, " runs)")
+
+  # As before, measure the empirical alpha
+  integral <- function(t) {
+    (25*(pi*(pi*t*(t + 12) - 120 * sin(pi*t/12) - 12 * t * sin(pi*t/6)) - 72 *
+         cos(pi*t/6))) / (2*pi^2)
+  }
+
+  theta.exact = integral(b) - integral(a)
+  println("  theta.exact  = ", theta.exact)
+  println("  difference   = ", abs(theta.exact - theta.hat.hm))
+  println()
+
+  # Now try to see how many times the difference is within e, to double-check
+  # our estimate of n
+  calc_diff <- function(dummy) {
+    n <- 60000
+    X <- runif(n, min=a, max=b)
+    Y <- runif(n, min=0, max=c)
+    theta.hat.hm <- c*(b - a) * mean(Y <= g(X))
+    abs(theta.exact - theta.hat.hm) < e
+  }
+
+  N <- 250
+  good.diffs <- sum(mapply(calc_diff, 1:N))
+  empirical.alpha <- good.diffs / N
+  println("Over ", N, " runs, how many times did our theta.hat.hm fall within")
+  println("e = ", e, " of the actual theta ?")
+  println()
+  println("  empirical.alpha = ", empirical.alpha)
+  println()
+}

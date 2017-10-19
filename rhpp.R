@@ -30,18 +30,56 @@ plotRHPP <- function(lambda, t.max) {
 }
 
 plotRNHPP <- function(inverse, t.max) {
-  w <- rhpp(lambda=1, t.max=10*t.max^(7/5), multiplier=3)
+  hpp.tmax <- 10*t.max^(7/5)
+  w <- rhpp(lambda=1, t.max=hpp.tmax, multiplier=3)
   s <- inverse(w)
   plot(s, 1:length(s), type="s", ylim=c(0, length(s)), lwd=1.5,
        xlab="Arrival time", ylab="Event number")
 }
 
-par(mfrow=c(3, 1))
-plotHPP(lambda=1,stoptime=5)
-plotRHPP(lambda=1, t.max=5)
+#par(mfrow=c(3, 1))
+#plotHPP(lambda=1,stoptime=5)
+#plotRHPP(lambda=1, t.max=5)
 
 inverse <- function(w) {
   10^(-5/7) * w^(5/7)  
 }
 
+lfunc <- function(t) {
+  10*t^(7/5)
+}
+
+par(mfrow=c(2,1))
 plotRNHPP(inverse=inverse, t.max=5)
+
+# Function for simulating arrival times for a NHPP between a and b using thinning
+simtNHPP <- function(a,b,lambdamax,lambdafunc){
+  # Simple check that a not too small lambdamax is set
+  if(max(lambdafunc(seq(a,b,length.out = 100)))>lambdamax)
+    stop("lambdamax is smaller than max of the lambdafunction")
+  # First simulate HPP with intensity lambdamax on a to b
+  expectednumber <- (b-a)*lambdamax
+  Nsim <- 3*expectednumber  # Simulate more than the expected number to be certain to exceed stoptime
+  timesbetween <- rexp(Nsim,lambdamax) # Simulate interarrival times
+  timesto <- a+cumsum(timesbetween)   # Calculate arrival times starting at a
+  timesto <- timesto[timesto<b] # Dischard the times larger than b
+  Nevents <- length(timesto) # Count the number of events
+  # Next do the thinning. Only keep the times where u<lambda(s)/lambdamax
+  U <- runif(Nevents)
+  timesto <- timesto[U<lambdafunc(timesto)/lambdamax]
+  timesto  # Return the remaining times
+}
+
+# Specify the intensity function for the traffic example
+lambdatraffic <- function(t)
+  10*t^(7/5)
+# Plot the intensity function
+#tvec <- seq(0,5,by=0.01)
+#plot(tvec,lambdatraffic(tvec),type="l",ylim=c(0,400))
+
+# Generate data with the traffic intensity and plot them
+NHPPtimes <- simtNHPP(a=0,b=5,lambdamax=100,lambdafunc=lambdatraffic)
+plot(NHPPtimes,1:length(NHPPtimes),type="s",xlab = "time",
+     ylab = "Event number",lwd=1.5)
+points(NHPPtimes,rep(0,length(NHPPtimes)),pch=21,bg="red")
+# Rerun the lines above several times

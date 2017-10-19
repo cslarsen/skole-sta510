@@ -144,7 +144,7 @@ problem3b <- function() {
   b <- 24
 
   # Approximate standard deviation
-  n <- 1500
+  n <- 10000
   e <- 100 # error less than 100 from actual theta
   alpha = (1 - 0.95) # confidence level
   X <- runif(n, min=a, max=b)
@@ -189,10 +189,6 @@ problem3b <- function() {
   println()
   println("  empirical.alpha = ", empirical.alpha)
   println()
-
-  if ( empirical.alpha < (1 - alpha) ) {
-    println("Suggestion: Set n > ", n, " ?")
-  }
 }
 
 g <- function(t) {
@@ -217,7 +213,7 @@ problem3c <- function() {
   println()
 
   # Estimate p.hat
-  n <- 1500 # chosen arbitrarily; we could probably calculate that as well
+  n <- 10000 # chosen arbitrarily; we could probably calculate that as well
   Y <- runif(n, min=0, max=c)
   X <- runif(n, min=a, max=b)
   p.hat <- mean(Y <= g(X))

@@ -180,11 +180,12 @@ implementation, we will operate on vectors.
 
 Note that we transform the domain $[a,b]$ to HPP-space by using $\Lambda$.
 
-I have also tested Çinlar's method from \cite{generating} (results not included
-in this report) and found it to be equivalent to algorithm
-\ref{algorithm:nhpp}, although more compressed. It is shown in
+I have also tested Çinlar's method from \cite{generating}
+and found it to be equivalent to algorithm
+\ref{algorithm:nhpp}, although more compressed. The details are in algorithm
 \vref{algorithm:cinlar}. It also seems to use an algorithm by Donald Knuth
-\cite{knuth} to sample numbers from the Poisson distribution.
+\cite{knuth} to sample numbers from the Poisson distribution. A plot using
+Çinlar's method is given in plot \vref{plot:cinlar}.
 
 \begin{algorithm}
   \caption{Generates $n$ numbers for the non-homogeneous Poisson process (NHPP)}
@@ -262,6 +263,14 @@ similar, with equivalent domain and range.
   \includegraphics[width=\textwidth]{problem2b.pdf}
   \caption{Cumulative failures in the first five years.}
   \label{plot:2b}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{problem2b_cinlars_method.pdf}
+  \caption{Plot of Çinlar's algorithm for non-homogeneous Poisson process
+  (NHPP)}
+  \label{plot:cinlar}
 \end{figure}
 
 \problem{2 (c)}

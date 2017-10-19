@@ -35,6 +35,7 @@ assignment-2.pdf: \
 	problem1b_alternative.out \
 	problem1d.out \
 	problem2b.out \
+	problem2b_cinlars_method.out \
 	problem3b.out \
 	problem3c.out \
 	problem3d.out

@@ -150,6 +150,30 @@ problem2b <- function(runs=100) {
   points(s, rep(0, length(s)), pch=16, cex=0.5, col="red")
 }
 
+problem2b_cinlars_method <- function() {
+  rm(list=ls())
+
+  inverse <- function(w) {
+    (10^(-5/7)) * (w^(5/7))
+  }
+  Nsim <- 100
+  s <- 0
+  out <- c()
+  for ( i in 1:Nsim) {
+    u <- runif(1)
+    s <- s - log(u)
+    t <- inverse(s)
+    out <- c(out, t)
+  }
+
+  out <- out[out<=5]
+  plot(out, 1:length(out), type="s",
+       main="Cinlar's method for NHPP",
+       xlab="Arrival times",
+       ylab="Event number")
+  points(out, rep(0, length(out)), pch=16, cex=0.5, col="red")
+}
+
 problem3b <- function() {
   # Integrand
   g <- function(t) {

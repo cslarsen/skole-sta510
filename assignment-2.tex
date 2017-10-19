@@ -180,7 +180,7 @@ samples from the non-homogeneous process. See algorithm \vref{algorithm:nhpp}.
     \Function{rnhpp}{$n, \Lambda^{-1}$}
       \Let{$s$}{vector of size $n$}
       \For{$i \gets 1 \textrm{ to } n$}
-        \Let{$w$}{\Call{rpois}{$1$, lambda=$1$}} \Comment{Homogeneous Poisson sampler}
+        \Let{$w$}{\Call{rhpp}{$1$, lambda=$1$}} \Comment{Homogeneous Poisson sampler}
         \Let{$s_i$}{$\Lambda^{-1}(w)$}
       \EndFor
       \State \Return{$s$}

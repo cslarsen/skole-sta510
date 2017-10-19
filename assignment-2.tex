@@ -310,30 +310,24 @@ Output from R:
 \VerbatimInput{problem2d.out}
 
 \problem{2 (e)}
-We simulate the number of failures during the five year period. For each
-failure, we then simulate the repair time using the gamma distribution with
-$\alpha = 2, \beta = 0.01$. To get a good repair time, we sample randomly from
-the gamme distribution, and calculate the mean repair time.
+The NHPP process gives us arrival times (i.e.,~points in time when a pump
+fails). For each of those we can draw a sample from the gamme distribution with
+shape $\alpha = 2$ and scale $\beta = 0.01$.
 
-The mean repair times should then be accumulated. That should give a plot of
-repair time at any given moment during the five year period.
-
-Of course, this plot would not show dips when each repair has finished.
-
-An alternative is to plot a density function. Plot the failure times as before,
-but along the y-axis, plot the density of repair times at that point. We should
-then get a nice density plot. This would be visually appealing, but it would be
-better to get numbers out of the simulation to best prepare for repairs.
-
-An even simpler approach is to simply run through the failures given by the
-NHPP process. Then, keep track of repair time for each item. At each iteration,
-we decrement the repair times. When the times reach zero, we subtract the
-current failure count. We can then plot the failures and also the repair queue.
-The area under the repair queue curve divided by the number of iterations would
-then give us the mean repair time.
+With that, we can do a number of things. We can calculate the total repair time
+for the entire five year period. This aggregate should obviously be less than
+five years, or else we will not be able to repair all the pumps within the
+period.
 
 \problem{2 (f)}
-Blank answer.
+See the plot in figure \vref{plot:2f}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{problem2f.pdf}
+  \caption{Plot for problem 2 (f).}
+  \label{plot:2f}
+\end{figure}
 
 \problem{2 (g)}
 Blank answer.

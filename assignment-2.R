@@ -298,6 +298,30 @@ problem2d <- function() {
   println("P(failures > 20 last year)  = ", (hits/runs), " (", runs, " runs)")
 }
 
+problem2f <- function() {
+  rhpp <- function(lambda, a, b, multiplier=3) {
+    n <- multiplier * (b-a) * lambda
+    w <- a + cumsum(rexp(n, lambda))
+    w[w <= b]
+  }
+
+  rnhpp <- function(a, b, lambda.fun, inverse.fun) {
+    inverse.fun(rhpp(lambda=1, a=lambda.fun(a), b=lambda.fun(b)))
+  }
+
+  lambda.fun <- function(t) { 10*t^(7/5) }
+  inverse.fun <- function(w) { 10^(-5/7) * w^(5/7) }
+
+  failures <- rnhpp(0, 5, lambda.fun, inverse.fun)
+
+  repair_times <- rgamma(length(failures), shape=2, scale=0.01)
+  plot(failures, cumsum(repair_times), type="s",
+       xlab="Failure times (arrival times)",
+       ylab="Cumulative repair time")
+
+  points(failures, rep(0, length(failures)), pch=16, cex=0.5, col="red")
+}
+
 problem3b <- function() {
   # Integrand
   g <- function(t) {

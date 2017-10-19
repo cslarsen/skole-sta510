@@ -39,6 +39,7 @@ assignment-2.pdf: \
 	problem2b_thinning.out \
 	problem2c.out \
 	problem2d.out \
+	problem2f.out \
 	problem3b.out \
 	problem3c.out \
 	problem3d.out

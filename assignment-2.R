@@ -128,7 +128,7 @@ problem2b <- function(runs=100) {
   }
 
   x <- rnhpp(runs, inverse)
-  plot(seq(min(x), max(x), length.out=length(x)), cumsum(x), type="s",
+  plot(seq(min(x), max(x), length.out=length(x)), cumsum(x), type="l",
        xlab="Time in years", ylab="Cumulative failures")
   summary(x)
 }

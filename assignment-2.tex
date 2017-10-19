@@ -173,6 +173,19 @@ actually go backwards by sampling event times from the homogeneous, rate 1
 Poisson process, then go backwards through $\Lambda^{-1}$ to then generate
 samples from the non-homogeneous process. See algorithm \vref{algorithm:nhpp}.
 
+In algorithm \vref{algorithm:nhpp}, $\Lambda^{-1}$ is the inverted rate
+function, while $\textrm{rpois}$ is a function for generating numbers from a
+homogeneous Poisson. The algorithm operates in a for-loop. In the
+implementation, we will operate on vectors.
+
+Note that we transform the domain $[a,b]$ to HPP-space by using $\Lambda$.
+
+I have also tested Çinlar's method from \cite{generating} (results not included
+in this report) and found it to be equivalent to algorithm
+\ref{algorithm:nhpp}, although more compressed. It is shown in
+\vref{algorithm:cinlar}. It also seems to use an algorithm by Donald Knuth
+\cite{knuth} to sample numbers from the Poisson distribution.
+
 \begin{algorithm}
   \caption{Generates $n$ numbers for the non-homogeneous Poisson process (NHPP)}
   \label{algorithm:nhpp}
@@ -197,13 +210,24 @@ samples from the non-homogeneous process. See algorithm \vref{algorithm:nhpp}.
   \end{algorithmic}
 \end{algorithm}
 
-In algorithm \vref{algorithm:nhpp}, $\Lambda^{-1}$ is the inverted rate
-function, while $\textrm{rpois}$ is a function for generating numbers from a
-homogeneous Poisson. The algorithm operates in a for-loop. In the
-implementation, we will operate on vectors.
+\begin{algorithm}
+  \caption{Çinlar's method for NHPP}
+  \label{algorithm:cinlar}
+  \begin{algorithmic}[1]
+    \Function{cinlar}{$n$}
+      \Let{$s$}{$0$}
+      \Let{$t$}{vector of length $n$}
+      \For{$i \gets 1 \textrm{ to } n$}
+        \Let{$u$}{$U[0,1]$} \Comment{Uniform sample}
+        \Let{$s$}{$s - \log{(u)}$}
+        \Let{$t_i$}{$\Lambda^{-1}(s)$}
+      \EndFor
+      \State \Return{$t$}
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
 
-Note that we transform the domain $[a,b]$ to HPP-space by using $\Lambda$.
-
+\paragraph{Finding $\Lambda$ and $\Lambda^{-1}$.}
 In practice, this means that the rate function $\Lambda(t)$ must be readily
 reversible. That may not always be the case, but suffices for the current task.
 We will start by finding it.
@@ -241,6 +265,12 @@ similar, with equivalent domain and range.
 \end{figure}
 
 \problem{2 (c)}
+In \cite{generating} we see that $\Lambda(t)$ is the expected number of
+failures. So the expected number of failures during the first year is simply
+\[
+  \Lambda(1) = 10
+\]
+
 \problem{2 (d)}
 \problem{2 (e)}
 \problem{2 (f)}

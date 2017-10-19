@@ -177,12 +177,17 @@ samples from the non-homogeneous process. See algorithm \vref{algorithm:nhpp}.
   \caption{Generates $n$ numbers for the non-homogeneous Poisson process (NHPP)}
   \label{algorithm:nhpp}
   \begin{algorithmic}[1]
+    \Function{rhpp}{$\lambda, a, b$}
+    \Comment{Homogeneous Poisson process sampler}
+      \Let{$n$}{$3 (b-a) \lambda$} \Comment{Number of samples}
+      \Let{$w$}{$a + \sum \textrm{rexp}(n, \textrm{rate}=\lambda)$}
+        \Comment{Samples from exponential distribution}
+      \State \Return{$w$ so that $a \leqslant w \leqslant b$}
+    \EndFunction
     \Function{rnhpp}{$n, \Lambda^{-1}$}
-      \Let{$s$}{vector of size $n$}
-      \For{$i \gets 1 \textrm{ to } n$}
-        \Let{$w$}{\Call{rhpp}{$1$, lambda=$1$}} \Comment{Homogeneous Poisson sampler}
-        \Let{$s_i$}{$\Lambda^{-1}(w)$}
-      \EndFor
+      \Comment{Non-homogeneous Poisson process sampler}
+      \Let{$w$}{\Call{rhpp}{$1, \Lambda(a), \Lambda(b)$}}
+      \Let{$s_i$}{$\Lambda^{-1}(w_i)$ for $i \in \textrm{length}(w)$}
       \State \Return{$s$}
     \EndFunction
   \end{algorithmic}
@@ -207,22 +212,15 @@ If we set $w = \Lambda(t)$, its inverse $\Lambda^{-1}(w) = t$ is given by
 \begin{align*}
   w &= 10t^{\frac{7}{5}} \\
   w^{\frac{5}{7}} &= 10^{\frac{5}{7}}t \\
-      \left( \frac{w}{10} \right)^{\frac{5}{7}} 
-      &= 10^{\frac{7}{5}}w^{\frac{5}{7}} = t \\
-  \Lambda^{-1}(w) &= t = 10^{\frac{7}{5}}w^{\frac{5}{7}}
+  \Lambda^{-1}(w) &= t = 10^{-\frac{5}{7}} w^{\frac{5}{7}}
 \end{align*}
 
 \paragraph{Sampling from the entire period $t \in [0,5]$}
-Each $t$, represented as $w$ in algorithm \vref{algorithm:nhpp}, should cover the
-entire period from 0 to 5. For example, when we plot the result, it would not
-look good if we didn't plot for the entire range 0--5.
-
-This is difficult to achieve in algorithm \vref{algorithm:nhpp}, since it
-generates exactly $n$. I wouldn't want to change the algorithm, in fear of
-disturbing the true distribution of numbers.
-
-A naive way to correct this would be to simply sample a larger number of
-values.
+We simply use the same strategy as used in the lecture notes (and accompanying
+code) and put this functionality in the homogeneous Poisson process sampler.
+We calculate the expected number of events, and multiply that with a number
+(three in the submitted code). We then filter away values that are outside this
+range.
 
 \problem{2 (b)}
 See the plot in figure \vref{plot:2b}.

@@ -179,15 +179,19 @@ samples from the non-homogeneous process. See algorithm \vref{algorithm:nhpp}.
   \begin{algorithmic}[1]
     \Function{rhpp}{$\lambda, a, b$}
     \Comment{Homogeneous Poisson process sampler}
-      \Let{$n$}{$3 (b-a) \lambda$} \Comment{Number of samples}
-      \Let{$w$}{$a + \sum \textrm{rexp}(n, \textrm{rate}=\lambda)$}
-        \Comment{Samples from exponential distribution}
+      \Let{$n$}{$3 (b-a) \lambda$} \Comment{Number of samples, arbitrary 3}
+      \Let{$w$}{$a + \textrm{cumsum}(\textrm{rexp}(n, \textrm{rate}=\lambda))$}
+        \Comment{Cum. sum of samples from exp. distribution}
       \State \Return{$w$ so that $a \leqslant w \leqslant b$}
     \EndFunction
     \Function{rnhpp}{$n, \Lambda^{-1}$}
       \Comment{Non-homogeneous Poisson process sampler}
       \Let{$w$}{\Call{rhpp}{$1, \Lambda(a), \Lambda(b)$}}
-      \Let{$s_i$}{$\Lambda^{-1}(w_i)$ for $i \in \textrm{length}(w)$}
+        \Comment{Transforms $a$ and $b$ to HPP-space}
+      \Let{$s$}{vector of length $|w|$}
+      \For{$i \gets 1 \textrm{ to } |w|$}
+        \Let{$s_i$}{$\Lambda^{-1}(w_i)$}
+      \EndFor
       \State \Return{$s$}
     \EndFunction
   \end{algorithmic}

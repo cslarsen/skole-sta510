@@ -34,7 +34,8 @@ plotRNHPP <- function(inverse, t.max) {
   w <- rhpp(lambda=1, t.max=hpp.tmax, multiplier=3)
   s <- inverse(w)
   plot(s, 1:length(s), type="s", ylim=c(0, length(s)), lwd=1.5,
-       xlab="Arrival time", ylab="Event number")
+       xlab="Arrival time", ylab="Event number", main="My RNHPP")
+  points(s, rep(0, length(s)), pch=21, bg="red")
 }
 
 #par(mfrow=c(3, 1))

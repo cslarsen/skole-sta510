@@ -313,13 +313,28 @@ problem2f <- function() {
   inverse.fun <- function(w) { 10^(-5/7) * w^(5/7) }
 
   failures <- rnhpp(0, 5, lambda.fun, inverse.fun)
-
   repair_times <- rgamma(length(failures), shape=2, scale=0.01)
+
   plot(failures, cumsum(repair_times), type="s",
        xlab="Failure times (arrival times)",
        ylab="Cumulative repair time")
 
   points(failures, rep(0, length(failures)), pch=16, cex=0.5, col="red")
+
+  # Now run the simulation several times to get the total repair time required
+  # over the five year period.
+  runs <- 10000
+  repair_times <- c()
+  for ( i in 1:runs ) {
+    failures <- rnhpp(0, 5, lambda.fun, inverse.fun)
+    repair_times <- c(repair_times,
+                      sum(rgamma(length(failures), shape=2, scale=0.01)))
+  }
+
+  println("Mean yearly, total repair time over ", runs, " runs = ", mean(repair_times))
+
+  ratio <- mean(repair_times) / 5
+  println("Ratio of mean(repair_time) / 5 years = ", ratio)
 }
 
 problem3b <- function() {

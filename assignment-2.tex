@@ -326,10 +326,21 @@ repair time over the five year period.
 See the plot in figure \vref{plot:2f}. From the plot, we can see that the
 repair time definitely is less than five years.
 
+Output from R:
+\VerbatimInput{problem2f.out}
+
+While the total repair time of $\approx 1.9$ years is less than five, it means
+that on average, $\frac{1.9}{5} = 0.38$ or 38\%{} of the equipment is in an
+unusable state of repair. That leaves only a capacity of $1 - 0.38 = 0.62$ of
+the equipment in service. In other words, the pumping capacity is almost half
+because of repairs.
+
+My recommendation is to try to decrease the repair time, or buy better pumps.
+
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{problem2f.pdf}
-  \caption{Plot for problem 2 (f).}
+  \caption{Plot of cumulative repair times for problem 2 (f).}
   \label{plot:2f}
 \end{figure}
 

@@ -147,7 +147,7 @@ problem2b <- function(runs=100) {
        main="Non-homogeneous Poisson process (NHPP)")
 
   # Show the points as well
-  points(s, rep(0, length(s)), pch=21, bg="red")
+  points(s, rep(0, length(s)), pch=16, cex=0.5, col="red")
 }
 
 problem3b <- function() {

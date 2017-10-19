@@ -61,7 +61,7 @@ plotRNHPP <- function(a, b, lambda.fun, inverse.fun) {
   w <- rhpp(lambda=1, start=lambda.fun(a), stop=lambda.fun(b), multiplier=1)
   s <- a + inverse.fun(w)
   s <- s[s <= b]
-  plot(s, 1:length(s), type="s", ylim=c(0, 250), lwd=1.5,
+  plot(s, 1:length(s), type="s", ylim=c(0, 120), lwd=1.5,
        xlab="Arrival time", ylab="Event number", main="xMy RNHPP")
   points(s, rep(0, length(s)), pch=21, bg="red")
 }
@@ -72,7 +72,7 @@ plotRNHPP.old <- function(a, b, intensity.fun, inverse.fun) {
   #w <- lfunc(a) + other.hpp(lambda=1, stoptime=intensity.fun(b))
   s <- inverse(w)
 
-  plot(s, 1:length(s), type="s", ylim=c(0, 250), lwd=1.5,
+  plot(s, 1:length(s), type="s", ylim=c(0, 100), lwd=1.5,
        xlab="Arrival time", ylab="Event number", main="My RNHPP")
   points(s, rep(0, length(s)), pch=21, bg="red")
 }
@@ -81,7 +81,7 @@ plotRNHPP.old <- function(a, b, intensity.fun, inverse.fun) {
 #plotHPP(lambda=1,stoptime=5)
 #plotRHPP(lambda=1, t.max=5)
 
-par(mfrow=c(3,1))
+par(mfrow=c(2,1))
 plotRNHPP(0, 5, lfunc, inverse)
 
 # Function for simulating arrival times for a NHPP between a and b using thinning
@@ -103,13 +103,13 @@ simtNHPP <- function(a,b,lambdamax,lambdafunc){
 }
 
 # Plot the intensity function
-tvec <- seq(0,5,by=0.01)
-plot(tvec,lfunc(tvec),type="l",ylim=c(0,250))
+#tvec <- seq(0,5,by=0.01)
+#plot(tvec,lfunc(tvec),type="l",ylim=c(0,100))
 
 # Generate data with the traffic intensity and plot them
 NHPPtimes <- simtNHPP(a=0,b=5,lambdamax=100,lambdafunc=ofunc)
 NHPPtimes <- NHPPtimes[NHPPtimes < 5]
 plot(NHPPtimes,1:length(NHPPtimes),type="s",xlab = "time",
-     ylab = "Event number",lwd=1.5, ylim=c(0,250))
+     ylab = "Event number",lwd=1.5, ylim=c(0,120))
 points(NHPPtimes,rep(0,length(NHPPtimes)),pch=21,bg="red")
 # Rerun the lines above several times

@@ -187,6 +187,9 @@ and found it to be equivalent to algorithm
 \cite{knuth} to sample numbers from the Poisson distribution. A plot using
 Çinlar's method is given in plot \vref{plot:cinlar}.
 
+Finally, I have compared all of this with the code from the lecturer using the
+thinning method, shown in plot \vref{plot:thinning}.
+
 \begin{algorithm}
   \caption{Generates $n$ numbers for the non-homogeneous Poisson process (NHPP)}
   \label{algorithm:nhpp}
@@ -261,7 +264,7 @@ similar, with equivalent domain and range.
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{problem2b.pdf}
-  \caption{Cumulative failures in the first five years.}
+  \caption{Plot for problem 2 (b).}
   \label{plot:2b}
 \end{figure}
 
@@ -269,8 +272,15 @@ similar, with equivalent domain and range.
   \centering
   \includegraphics[width=\textwidth]{problem2b_cinlars_method.pdf}
   \caption{Plot of Çinlar's algorithm for non-homogeneous Poisson process
-  (NHPP)}
+  (NHPP).}
   \label{plot:cinlar}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{problem2b_thinning.pdf}
+  \caption{Plot of NHPP using the thinning method}
+  \label{plot:thinning}
 \end{figure}
 
 \problem{2 (c)}

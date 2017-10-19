@@ -174,6 +174,43 @@ problem2b_cinlars_method <- function() {
   points(out, rep(0, length(out)), pch=16, cex=0.5, col="red")
 }
 
+problem2b_thinning <- function() {
+  # NHPP via thinning.
+  # NOTE: Code taken from lecturer.
+
+  simtNHPP <- function(a,b,lambdamax,lambdafunc){
+    if(max(lambdafunc(seq(a,b,length.out = 100)))>lambdamax)
+      stop("lambdamax is smaller than max of the lambdafunction")
+
+    expectednumber <- (b-a)*lambdamax
+    Nsim <- 3*expectednumber
+    timesbetween <- rexp(Nsim,lambdamax)
+    timesto <- a+cumsum(timesbetween)
+    timesto <- timesto[timesto<b]
+    Nevents <- length(timesto)
+
+    # Thinning
+    U <- runif(Nevents)
+    timesto <- timesto[U<lambdafunc(timesto)/lambdamax]
+    timesto
+  }
+
+  intensity <- function(t) {
+    14*t^0.4
+  }
+
+  # Generate data with the traffic intensity and plot them
+  NHPPtimes <- simtNHPP(a=0, b=5, lambdamax=100, lambdafunc=intensity)
+  NHPPtimes <- NHPPtimes[NHPPtimes <= 5]
+
+  plot(NHPPtimes, 1:length(NHPPtimes), type="s",
+       xlab = "Arrival time",
+       ylab = "Event number",
+       lwd=1.5)
+
+  points(NHPPtimes, rep(0, length(NHPPtimes)), pch=16, cex=0.5, col="red")
+}
+
 problem3b <- function() {
   # Integrand
   g <- function(t) {

@@ -310,6 +310,21 @@ Output from R:
 \VerbatimInput{problem2d.out}
 
 \problem{2 (e)}
+We simulate the number of failures during the five year period. For each
+failure, we then simulate the repair time using the gamma distribution with
+$\alpha = 2, \beta = 0.01$. To get a good repair time, we sample randomly from
+the gamme distribution, and calculate the mean repair time.
+
+The mean repair times should then be accumulated. That should give a plot of
+repair time at any given moment during the five year period.
+
+Of course, this plot would not show dips when each repair has finished.
+
+An alternative is to plot a density function. Plot the failure times as before,
+but along the y-axis, plot the density of repair times at that point. We should
+then get a nice density plot. This would be visually appealing, but it would be
+better to get numbers out of the simulation to best prepare for repairs.
+
 \problem{2 (f)}
 \problem{2 (g)}
 \problem{2 (h)}

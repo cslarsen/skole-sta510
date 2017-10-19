@@ -29,6 +29,15 @@ plotRHPP <- function(lambda, t.max) {
   points(w, rep(0, length(w)), pch=21, bg="red")
 }
 
+
+inverse <- function(w) {
+  10^(-5/7) * w^(5/7)
+}
+
+lfunc <- function(t) {
+  10*t^(7/5)
+}
+
 plotRNHPP <- function(inverse, t.max) {
   hpp.tmax <- 10*t.max^(7/5)
   w <- rhpp(lambda=1, t.max=hpp.tmax, multiplier=3)
@@ -41,14 +50,6 @@ plotRNHPP <- function(inverse, t.max) {
 #par(mfrow=c(3, 1))
 #plotHPP(lambda=1,stoptime=5)
 #plotRHPP(lambda=1, t.max=5)
-
-inverse <- function(w) {
-  10^(-5/7) * w^(5/7)  
-}
-
-lfunc <- function(t) {
-  10*t^(7/5)
-}
 
 par(mfrow=c(2,1))
 plotRNHPP(inverse=inverse, t.max=5)
@@ -72,8 +73,9 @@ simtNHPP <- function(a,b,lambdamax,lambdafunc){
 }
 
 # Specify the intensity function for the traffic example
-lambdatraffic <- function(t)
+lambdatraffic <- function(t) {
   10*t^(7/5)
+}
 # Plot the intensity function
 #tvec <- seq(0,5,by=0.01)
 #plot(tvec,lambdatraffic(tvec),type="l",ylim=c(0,400))

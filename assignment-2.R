@@ -113,24 +113,41 @@ problem1d <- function(runs=1000000) {
   display("(iii)", scenario3)
 }
 
-# Samples from a non-homogeneous Poisson distribution
-rnhpp <- function(runs, inverse) {
-  cumsum(inverse(runif(runs)))
-}
-
 problem2b <- function(runs=100) {
-  # Start and stop times
-  a <- 0
-  b <- 5
-
-  inverse <- function(w) {
-    (-log(1 - w))^(5/7)
+  # Samples from a homogeneous Poisson process (HPP). The multiplier is to make
+  # sure we get samples in the entire range [a, b].
+  rhpp <- function(lambda, a, b, multiplier=3) {
+    n <- multiplier * (b-a) * lambda
+    w <- a + cumsum(rexp(n, lambda))
+    w[w <= b]
   }
 
-  x <- rnhpp(runs, inverse)
-  plot(seq(min(x), max(x), length.out=length(x)), cumsum(x), type="l",
-       xlab="Time in years", ylab="Cumulative failures")
-  summary(x)
+  # Samples from a non-homogeneous Poisson process (NHPP) in the range [a, b].
+  # The lambda.fun parameter is the big lambda function (expected value of
+  # intensity) and inverse.fun is the reverse of that function.
+  rnhpp <- function(a, b, lambda.fun, inverse.fun) {
+    # First sample from HPP. Remember to transform [a,b] to values in the HPP
+    # space.
+    w <- rhpp(lambda=1, a=lambda.fun(a), b=lambda.fun(b))
+
+    # Return the arrival values transformed back to NHPP space
+    s <- inverse.fun(w)
+  }
+
+  # The pre-calculated big lambda and its inverse
+  lambda.fun <- function(t) { 10*t^(7/5) }
+  inverse.fun <- function(w) { 10^(-5/7) * w^(5/7) }
+
+  # Get arrival times (x-values in the plot)
+  s <- rnhpp(0, 5, lambda.fun, inverse.fun)
+
+  plot(s, 1:length(s), type="s", lwd=1.5,
+       xlab="Arrival time",
+       ylab="Event number",
+       main="Non-homogeneous Poisson process (NHPP)")
+
+  # Show the points as well
+  points(s, rep(0, length(s)), pch=21, bg="red")
 }
 
 problem3b <- function() {

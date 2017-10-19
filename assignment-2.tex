@@ -202,6 +202,8 @@ function, while $\textrm{rpois}$ is a function for generating numbers from a
 homogeneous Poisson. The algorithm operates in a for-loop. In the
 implementation, we will operate on vectors.
 
+Note that we transform the domain $[a,b]$ to HPP-space by using $\Lambda$.
+
 In practice, this means that the rate function $\Lambda(t)$ must be readily
 reversible. That may not always be the case, but suffices for the current task.
 We will start by finding it.

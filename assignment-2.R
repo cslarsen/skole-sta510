@@ -255,6 +255,15 @@ problem2d <- function() {
     failures <- failures + length(s[s>=4 && s<5])
   }
   println("Mean failures during last year: ", (sum(failures) / runs))
+
+  # P(more than 20 pump failures last year)
+  runs <- 10000
+  hits <- 0
+  for ( i in 1:runs ) {
+    s <- rnhpp(4, 5, lambda.fun, inverse.fun)
+    hits <- hits + (length(s) > 20)
+  }
+  println("P(failures > 20 last year) = ", (hits/runs))
 }
 
 problem3b <- function() {

@@ -237,7 +237,17 @@ problem2d <- function() {
   println("Mean failures during first year: ", (sum(failures) / runs),
           " (", runs, " runs)")
 
-  # Calc
+  # Probability of more than 10 pump failures during first year
+  runs <- 10000
+  hits <- 0
+  for ( i in 1:runs ) {
+    s <- rnhpp(0, 1, lambda.fun, inverse.fun)
+    hits <- hits + (length(s) > 10)
+  }
+  println("P(failures > 10 first year) = ", (hits/runs))
+  println()
+
+  # Calc mean number of failures during the last year
   failures <- 0
   runs <- 10000
   for ( i in 1:runs ) {

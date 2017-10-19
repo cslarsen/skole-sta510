@@ -325,6 +325,13 @@ but along the y-axis, plot the density of repair times at that point. We should
 then get a nice density plot. This would be visually appealing, but it would be
 better to get numbers out of the simulation to best prepare for repairs.
 
+An even simpler approach is to simply run through the failures given by the
+NHPP process. Then, keep track of repair time for each item. At each iteration,
+we decrement the repair times. When the times reach zero, we subtract the
+current failure count. We can then plot the failures and also the repair queue.
+The area under the repair queue curve divided by the number of iterations would
+then give us the mean repair time.
+
 \problem{2 (f)}
 Blank answer.
 

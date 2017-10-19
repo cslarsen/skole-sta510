@@ -178,11 +178,11 @@ problem3b <- function() {
   # our estimate of n
   calc_diff <- function(dummy) {
     theta.hat <- (b - a) * mean(g(runif(n.hat, min=a, max=b)))
-    abs(theta - theta.hat) < e
+    abs(theta - theta.hat) <= e
   }
 
   N <- 250
-  good.diffs <- sum(mapply(function(dummy) { calc_diff(n.hat) }, 1:N))
+  good.diffs <- sum(mapply(calc_diff, 1:N))
   empirical.alpha <- good.diffs / N
   println("Over ", N, " runs, how many times did our theta.hat fall within")
   println("e = ", e, " of the actual theta ?")
@@ -269,7 +269,7 @@ problem3d <- function() {
     X <- runif(n, min=a, max=b)
     Y <- runif(n, min=0, max=c)
     theta.hat.hm <- c*(b - a) * mean(Y <= g(X))
-    abs(theta.exact - theta.hat.hm) < e
+    abs(theta.exact - theta.hat.hm) <= e
   }
 
   N <- 250

@@ -227,14 +227,14 @@ problem2d <- function() {
   lambda.fun <- function(t) { 10*t^(7/5) }
   inverse.fun <- function(w) { 10^(-5/7) * w^(5/7) }
 
-  # Calc mean number of failures during the first year
+  # Expected failures last year
   runs <- 10000
   failures <- 0
   for ( i in 1:runs ) {
     s <- rnhpp(0, 1, lambda.fun, inverse.fun)
     failures <- failures + length(s[s<1])
   }
-  println("Mean failures during first year: ", (sum(failures) / runs),
+  println("Expected failures last year: ", (sum(failures) / runs),
           " (", runs, " runs)")
 
   # Probability of more than 10 pump failures during first year
@@ -244,17 +244,19 @@ problem2d <- function() {
     s <- rnhpp(0, 1, lambda.fun, inverse.fun)
     hits <- hits + (length(s) > 10)
   }
-  println("P(failures > 10 first year) = ", (hits/runs))
+  println("P(failures > 10 first year) = ", (hits/runs),
+          " (", runs, " runs)")
   println()
 
-  # Calc mean number of failures during the last year
+  # Expected failures last year
   failures <- 0
   runs <- 10000
   for ( i in 1:runs ) {
     s <- rnhpp(4, 5, lambda.fun, inverse.fun)
     failures <- failures + length(s[s>=4 && s<5])
   }
-  println("Mean failures during last year: ", (sum(failures) / runs))
+  println("Expected failures last year: ", (sum(failures) / runs),
+          " (", runs, " runs)")
 
   # P(more than 20 pump failures last year)
   runs <- 10000
@@ -263,7 +265,7 @@ problem2d <- function() {
     s <- rnhpp(4, 5, lambda.fun, inverse.fun)
     hits <- hits + (length(s) > 20)
   }
-  println("P(failures > 20 last year) = ", (hits/runs))
+  println("P(failures > 20 last year)  = ", (hits/runs), " (", runs, " runs)")
 }
 
 problem3b <- function() {

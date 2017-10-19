@@ -12,8 +12,8 @@ plotHPP <- function(lambda,stoptime) {
 
 rhpp <- function(lambda, t.max, multiplier=3) {
   # Number of simulations required
-  n <- t.max * lambda
-  n <- multiplier * n
+  expected <- t.max * lambda
+  n <- multiplier * expected
   
   # Arrival times
   w <- cumsum(rexp(n, lambda))
@@ -42,7 +42,7 @@ plotRNHPP <- function(inverse, t.max) {
   hpp.tmax <- 10*t.max^(7/5)
   w <- rhpp(lambda=1, t.max=hpp.tmax, multiplier=3)
   s <- inverse(w)
-  plot(s, 1:length(s), type="s", ylim=c(0, length(s)), lwd=1.5,
+  plot(s, 1:length(s), type="s", ylim=c(0, 250), lwd=1.5,
        xlab="Arrival time", ylab="Event number", main="My RNHPP")
   points(s, rep(0, length(s)), pch=21, bg="red")
 }
@@ -83,6 +83,6 @@ lambdatraffic <- function(t) {
 # Generate data with the traffic intensity and plot them
 NHPPtimes <- simtNHPP(a=0,b=5,lambdamax=100,lambdafunc=lambdatraffic)
 plot(NHPPtimes,1:length(NHPPtimes),type="s",xlab = "time",
-     ylab = "Event number",lwd=1.5)
+     ylab = "Event number",lwd=1.5, ylim=c(0,250))
 points(NHPPtimes,rep(0,length(NHPPtimes)),pch=21,bg="red")
 # Rerun the lines above several times

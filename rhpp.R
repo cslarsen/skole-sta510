@@ -10,16 +10,29 @@ plotHPP <- function(lambda,stoptime) {
   points(timesto,rep(0,Nevents),pch=21,bg="red")
 }
 
-rhpp <- function(lambda, t.max, multiplier=3) {
+other.hpp <- function(lambda,stoptime) {
+  expectednumber <- stoptime*lambda
+  Nsim <- 3*expectednumber
+  timesbetween <- rexp(Nsim,lambda) # Simulate interarrival times
+  timesto <- cumsum(timesbetween)   # Calculate arrival times
+  timesto <- timesto[timesto<stoptime] # Dischard the times larger than stoptime
+  return (timesto)
+#  Nevents <- length(timesto) # Count the number of events
+#  plot(timesto,1:Nevents,type="s",xlab = "arrival time",
+#       ylab = "Event number",lwd=1.5,ylim=c(0,Nevents))
+#  points(timesto,rep(0,Nevents),pch=21,bg="red")
+}
+
+rhpp <- function(lambda, start, stop, multiplier=3) {
   # Number of simulations required
-  expected <- t.max * lambda
+  expected <- stop * lambda
   n <- multiplier * expected
   
   # Arrival times
-  w <- cumsum(rexp(n, lambda))
+  w <- start + cumsum(rexp(n, lambda))
   
   # Filter out those larger than t.max
-  w <- w[w <= t.max]
+  w <- w[w <= stop]
 }
 
 plotRHPP <- function(lambda, t.max) {
@@ -31,17 +44,34 @@ plotRHPP <- function(lambda, t.max) {
 
 
 inverse <- function(w) {
-  10^(-5/7) * w^(5/7)
+  (10^(-5/7)) * (w^(5/7))
 }
 
 lfunc <- function(t) {
   10*t^(7/5)
 }
 
-plotRNHPP <- function(inverse, t.max) {
-  hpp.tmax <- 10*t.max^(7/5)
-  w <- rhpp(lambda=1, t.max=hpp.tmax, multiplier=3)
+ofunc <- function(t) {
+  14*t^0.4
+}
+
+plotRNHPP <- function(a, b, lambda.fun, inverse.fun) {
+  #w <- cumsum(rexp(1000, rate=1))
+  #w <- cumsum(rpois(1000, lambda=1))
+  w <- rhpp(lambda=1, start=lambda.fun(a), stop=lambda.fun(b), multiplier=1)
+  s <- a + inverse.fun(w)
+  s <- s[s <= b]
+  plot(s, 1:length(s), type="s", ylim=c(0, 250), lwd=1.5,
+       xlab="Arrival time", ylab="Event number", main="xMy RNHPP")
+  points(s, rep(0, length(s)), pch=21, bg="red")
+}
+
+plotRNHPP.old <- function(a, b, intensity.fun, inverse.fun) {
+  w <- intensity.fun(a) + rhpp(lambda=1, start=intensity.fun(a),
+                               stop=intensity.fun(b), multiplier=3)
+  #w <- lfunc(a) + other.hpp(lambda=1, stoptime=intensity.fun(b))
   s <- inverse(w)
+
   plot(s, 1:length(s), type="s", ylim=c(0, 250), lwd=1.5,
        xlab="Arrival time", ylab="Event number", main="My RNHPP")
   points(s, rep(0, length(s)), pch=21, bg="red")
@@ -51,8 +81,8 @@ plotRNHPP <- function(inverse, t.max) {
 #plotHPP(lambda=1,stoptime=5)
 #plotRHPP(lambda=1, t.max=5)
 
-par(mfrow=c(2,1))
-plotRNHPP(inverse=inverse, t.max=5)
+par(mfrow=c(3,1))
+plotRNHPP(0, 5, lfunc, inverse)
 
 # Function for simulating arrival times for a NHPP between a and b using thinning
 simtNHPP <- function(a,b,lambdamax,lambdafunc){
@@ -72,16 +102,13 @@ simtNHPP <- function(a,b,lambdamax,lambdafunc){
   timesto  # Return the remaining times
 }
 
-# Specify the intensity function for the traffic example
-lambdatraffic <- function(t) {
-  10*t^(7/5)
-}
 # Plot the intensity function
-#tvec <- seq(0,5,by=0.01)
-#plot(tvec,lambdatraffic(tvec),type="l",ylim=c(0,400))
+tvec <- seq(0,5,by=0.01)
+plot(tvec,lfunc(tvec),type="l",ylim=c(0,250))
 
 # Generate data with the traffic intensity and plot them
-NHPPtimes <- simtNHPP(a=0,b=5,lambdamax=100,lambdafunc=lambdatraffic)
+NHPPtimes <- simtNHPP(a=0,b=5,lambdamax=100,lambdafunc=ofunc)
+NHPPtimes <- NHPPtimes[NHPPtimes < 5]
 plot(NHPPtimes,1:length(NHPPtimes),type="s",xlab = "time",
      ylab = "Event number",lwd=1.5, ylim=c(0,250))
 points(NHPPtimes,rep(0,length(NHPPtimes)),pch=21,bg="red")

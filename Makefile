@@ -1,4 +1,4 @@
-TARGETS := assignment-2.pdf
+TARGETS := assignment-3.pdf
 
 OS := $(shell uname)
 ifeq ($(OS),Linux)
@@ -44,22 +44,26 @@ assignment-2.pdf: \
 	problem3c.out \
 	problem3d.out
 
-problem%.out: assignment-2.R
+assignment-3.pdf: \
+	assignment-3.bib
+
+problem%.out: assignment-3.R
 	$(RSCRIPT) -e 'pdf("$(@:.out=.pdf)"); source("$<"); $(@:.out=)()' > $@
 
 show%: problem%.out
 	@cat $<
 
 open: all
-	$(OPEN) assignment-2.pdf
+	$(OPEN) assignment-3.pdf
 
 check:
-	$(DETEX) assignment-2.tex | diction -bs
+	$(DETEX) assignment-3.tex | diction -bs
 
 %.eps: %.gp data.txt
 	gnuplot $<
 
 assignment-2.pdf: assignment-2.tex preamble.tex
+assignment-3.pdf: assignment-3.tex preamble.tex
 
 %.pdf: %.tex
 	$(PDFLATEX) -halt-on-error $<

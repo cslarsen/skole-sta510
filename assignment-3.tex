@@ -1,0 +1,32 @@
+\documentclass[a4paper,english,12pt]{article}
+\input{preamble}
+
+\title{STA-510 Statistical modelling and simulation}
+\subtitle{Mandatory exercise 3}
+\author{Christian Stigen}
+\date{UiS, November \nth{11}, 2017}
+
+\begin{document}
+\maketitle
+\section*{\normalsize{How to run the code}}
+All the code for this exercise can be found in \texttt{assignment-3.R}. I have
+made a single function for each problem. For example, to see the output of
+problem 1 (d), execute the function \texttt{problem1d()}.  From the UNIX
+command-line, you can run
+\begin{verbatim}
+Rscript -e 'pdf("problem1b.pdf");
+            source("assignment-3.R");
+            problem1b()' > problem1b.out
+\end{verbatim}
+to produce the textual output file \texttt{problem1b.out} and any plots in
+\texttt{problem1b.pdf}. In R Studio, you may want to reset the display with
+\texttt{par(mfrow=c(1,1))} before each call. All plots and R output was
+generated automatically at the same time as this document.
+
+\cite{cinlar}
+
+\clearpage
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,assignment-3}
+
+\end{document}
